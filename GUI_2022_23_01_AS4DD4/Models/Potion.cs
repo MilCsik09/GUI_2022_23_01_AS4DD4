@@ -2,5 +2,18 @@
 {
     public class Potion
     {
+
+
+        public string Name { get; set; }
+        public int HealthRegeneration { get; set; }
+        public Potion(string name, int healthRegeneration)
+        {
+            Name = name;
+            HealthRegeneration = healthRegeneration;
+        }
+        public Potion()
+        {
+
+        }
     }
 }

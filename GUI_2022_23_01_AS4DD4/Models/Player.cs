@@ -10,6 +10,8 @@ namespace GUI_2022_23_01_AS4DD4.Models
 {
     internal class Player
     {
+
+
         public int Health { get; set; }
         public string Name { get; set; }
         public int Level { get; set; } = 1;
@@ -22,8 +24,23 @@ namespace GUI_2022_23_01_AS4DD4.Models
 
         public Ammo Ammo { get; set; }
         public Armor Armor { get; set; }
-        
+        public Player(int health, string name, int level, int experience, int experienceNeeded, Weapon weapon, List<Potion> potions, Ammo ammo, Armor armor)
+        {
+            Health = health;
+            Name = name;
+            Level = level;
+            Experience = experience;
+            ExperienceNeeded = experienceNeeded;
+            Weapon = weapon;
+            Potions = potions;
+            Ammo = ammo;
+            Armor = armor;
+        }
 
+        public Player()
+        {
+
+        }
 
 
     }
