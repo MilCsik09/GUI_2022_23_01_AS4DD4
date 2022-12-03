@@ -9,6 +9,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic
 {
     public class ShooterLogic : IShooterControl, IShooterModel
     {
+        public int elapsedSeconds;
         public event EventHandler Changed;
         public event EventHandler GameOver;
         System.Windows.Size area;
@@ -36,9 +37,19 @@ namespace GUI_2022_23_01_AS4DD4.Logic
             }
         }
 
-        public void DamageTaken(Player player) ///TODO Milan
+        public void DamageTaken(Player player, Enemy enemy) ///TODO Milan
         {
-            throw new NotImplementedException();
+            if(elapsedSeconds == player.TimeToShoot)
+            {
+                if ((player.Health - enemy.DamageToPlayer) <= 0)
+                {
+                    GameOver?.Invoke(this, new EventArgs());
+                }
+                else
+                {
+                    player.Health -= enemy.DamageToPlayer;
+                }
+            }
         }
 
         public void Heal(Potion potion, Player player)
