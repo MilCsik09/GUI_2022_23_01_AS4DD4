@@ -11,8 +11,13 @@ namespace GUI_2022_23_01_AS4DD4.Logic
     {
         public event EventHandler Changed;
         public event EventHandler GameOver;
+        System.Windows.Size area;
+        public void SetupSizes(System.Windows.Size area)
+        {
+            this.area = area;
+        }
 
-        public void ArmorRegenerate(Armor armor, Player player)
+            public void ArmorRegenerate(Armor armor, Player player)
         {
             if (player.Health < 150)
             {
@@ -56,6 +61,11 @@ namespace GUI_2022_23_01_AS4DD4.Logic
         }
 
         public void Shoot(int x, int y, Player player) ///Milan TODO
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void TimeStep()
         {
             throw new NotImplementedException();
         }

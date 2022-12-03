@@ -7,6 +7,14 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" SizeChanged="Window_SizeChanged">
     <Grid x:Name="grid">
+        <StackPanel x:Name="stack">
+        <Button x:Name="load" Content="Load" HorizontalAlignment="Center" VerticalAlignment="Top" Click="load_Click" Margin="30"/>
+        <Button x:Name="create" Content="New Game" HorizontalAlignment="Center" VerticalAlignment="Top" Click="create_Click" Margin="20"/>
+        <Button x:Name="shop" Content="Shop" HorizontalAlignment="Center" VerticalAlignment="Top" Click="shop_Click" Margin="20"/>
+            <Button x:Name="save" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Top" Click="save_Click" Margin="20"/>
+            <Button x:Name="exit" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Top" Click="exit_Click" Margin="20"/>
+        </StackPanel>
         <local:Display x:Name="display"/>
+
     </Grid>
 </Window>

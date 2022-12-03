@@ -14,7 +14,7 @@ namespace GUI_2022_23_01_AS4DD4.Models
 
         public int Health { get; set; }
         public string Name { get; set; }
-        public int Level { get; set; } = 1;
+        public Level Level { get; set; }
         public int Experience { get; set; } = 0;
         public int ExperienceNeeded { get; set; } = 400;
 
@@ -24,7 +24,7 @@ namespace GUI_2022_23_01_AS4DD4.Models
         public Ammo Ammo { get; set; }
         public Armor Armor { get; set; }
 
-        public Player(int health, string name, int level, int experience, int experienceNeeded, Weapon weapon, List<Potion> potions, Ammo ammo, Armor armor)
+        public Player(int health, string name, Level level, int experience, int experienceNeeded, Weapon weapon, List<Potion> potions, Ammo ammo, Armor armor)
         {
             Health = health;
             Name = name;

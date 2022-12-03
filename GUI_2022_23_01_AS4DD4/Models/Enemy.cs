@@ -10,16 +10,16 @@ using Size = System.Windows.Size;
 
 namespace GUI_2022_23_01_AS4DD4.Models
 {
-    internal class Enemy
+    public class Enemy
     {
 
 
         public string Name { get; set; }
         public int Health { get; set; }
         public int DamageToPlayer { get; set; }
-        public Point Position { get; set; }
+        public Point Position { get; set; } //nem toltjuk be ezt meg majd random legeneraljuk
         public Size Size { get; set; }
-        public List<CrossHair> CrossHairs { get; set; }
+        public List<CrossHair> CrossHairs { get; set; } //nem toltjuk be majd kesobb random legeneraljuk
         public int XPGiven { get; set; }
 
         public Enemy()
@@ -27,14 +27,12 @@ namespace GUI_2022_23_01_AS4DD4.Models
 
         }
 
-        public Enemy(string name, int health, int damageToPlayer, Point position, Size size, List<CrossHair> crossHairs, int xPGiven)
+        public Enemy(string name, int health, int damageToPlayer, Size size, int xPGiven)
         {
             Name = name;
             Health = health;
             DamageToPlayer = damageToPlayer;
-            Position = position;
             Size = size;
-            CrossHairs = crossHairs;
             XPGiven = xPGiven;
         }
     }
