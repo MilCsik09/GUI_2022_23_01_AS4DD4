@@ -5,10 +5,10 @@ namespace GUI_2022_23_01_AS4DD4.Logic
 {
     public interface IShooterControl
     {
-        public void Shoot(int x, int y);
-        public void Heal(Potion potion);
-        public void ArmorRegenerate(Armor armor);
-        public void DamageTaken();
+        public void Shoot(int x, int y, Player player);
+        public void Heal(Potion potion, Player player);
+        public void ArmorRegenerate(Armor armor, Player player);
+        public void DamageTaken(Player player);
 
 
         
