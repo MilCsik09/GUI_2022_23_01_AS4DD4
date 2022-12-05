@@ -1,4 +1,5 @@
 ﻿using GUI_2022_23_01_AS4DD4.Logic;
+using GUI_2022_23_01_AS4DD4.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,12 +76,14 @@ namespace GUI_2022_23_01_AS4DD4
         }
         private void create_Click(object sender, RoutedEventArgs e)
         {
-            
+            GameWindow gw = new GameWindow();
+            gw.Show();
         }
 
         private void shop_Click(object sender, RoutedEventArgs e)
         {
-
+            ShopWindow sw = new ShopWindow();
+            sw.Show();
         }
         private void save_Click(object sender, RoutedEventArgs e)
         {
