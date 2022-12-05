@@ -1,0 +1,9 @@
+100
+Barna
+1
+0
+200
+Pistol
+Minor;Major
+Standard
+Light
