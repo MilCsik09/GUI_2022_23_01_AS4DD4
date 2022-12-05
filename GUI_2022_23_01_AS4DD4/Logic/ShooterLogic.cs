@@ -106,6 +106,11 @@ namespace GUI_2022_23_01_AS4DD4.Logic
             }
         }
 
+        public void SpawnEnemy()
+        {
+
+        }
+
         public void LoadAssets()
         {
             AmmoList =
