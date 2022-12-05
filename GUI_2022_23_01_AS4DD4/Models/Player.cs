@@ -23,11 +23,12 @@ namespace GUI_2022_23_01_AS4DD4.Models
         public List<Potion> Potions { get; set; }
         public Ammo Ammo { get; set; }
         public Armor Armor { get; set; }
+        public int Money { get; set; } = 0;
 
         public int TimeToShoot { get; set; } = 10;
 
 
-        public Player(int health, string name, Level level, int experience, int experienceNeeded, Weapon weapon, List<Potion> potions, Ammo ammo, Armor armor)
+        public Player(int health, string name, Level level, int experience, int experienceNeeded, Weapon weapon, List<Potion> potions, Ammo ammo, Armor armor, int money)
         {
             Health = health;
             Name = name;
@@ -38,6 +39,7 @@ namespace GUI_2022_23_01_AS4DD4.Models
             Potions = potions;
             Ammo = ammo;
             Armor = armor;
+            Money = money;
         }
 
         public Player()

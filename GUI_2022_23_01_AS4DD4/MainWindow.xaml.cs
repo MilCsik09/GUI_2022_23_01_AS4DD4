@@ -84,7 +84,7 @@ namespace GUI_2022_23_01_AS4DD4
         }
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            JSONConverter.Convert();
+
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)

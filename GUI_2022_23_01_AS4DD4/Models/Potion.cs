@@ -6,10 +6,12 @@
 
         public string Name { get; set; }
         public int HealthRegeneration { get; set; }
-        public Potion(string name, int healthRegeneration)
+        public int Price { get; set; }
+        public Potion(string name, int healthRegeneration, int price)
         {
             Name = name;
             HealthRegeneration = healthRegeneration;
+            Price = price;
         }
         public Potion()
         {

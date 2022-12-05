@@ -24,19 +24,21 @@ namespace GUI_2022_23_01_AS4DD4.Models
         [JsonIgnore]
         public List<CrossHair> CrossHairs { get; set; } //nem toltjuk be majd kesobb random legeneraljuk
         public int XPGiven { get; set; }
+        public int MoneyGiven { get; set; }
 
         public Enemy()
         {
 
         }
 
-        public Enemy(string name, int health, int damageToPlayer, Size size, int xPGiven)
+        public Enemy(string name, int health, int damageToPlayer, Size size, int xPGiven, int moneyGiven)
         {
             Name = name;
             Health = health;
             DamageToPlayer = damageToPlayer;
             Size = size;
             XPGiven = xPGiven;
+            MoneyGiven = moneyGiven;
         }
     }
 }

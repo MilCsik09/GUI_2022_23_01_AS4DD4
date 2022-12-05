@@ -1,6 +1,17 @@
 [
   {
     "Name": "Pistol",
-    "BaseDamage": 20
+    "BaseDamage": 10,
+	"Price":20
+  },
+  {
+    "Name": "Heavy Pistol",
+    "BaseDamage": 20,
+	"Price":40
+  },
+  {
+    "Name": "Revolver",
+    "BaseDamage": 30,
+	"Price":100
   }
 ]

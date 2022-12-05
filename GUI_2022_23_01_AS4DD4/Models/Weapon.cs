@@ -6,11 +6,13 @@
 
         public string Name { get; set; }
         public int BaseDamage { get; set; }
+        public int Price { get; set; }
 
-        public Weapon(string name, int baseDamage)
+        public Weapon(string name, int baseDamage, int price)
         {
             Name = name;
             BaseDamage = baseDamage;
+            Price = price;
         }
         public Weapon()
         {

@@ -8,6 +8,19 @@
       "Width": 20,
       "Height": 20
     },
-    "XPGiven": 50
+    "XPGiven": 50,
+	"MoneyGiven":50
+  },
+  {
+    "Name": "Heavy Bandit",
+    "Health": 200,
+    "DamageToPlayer": 25,
+    "Size": {
+      "IsEmpty": false,
+      "Width": 15,
+      "Height": 15
+    },
+    "XPGiven": 150,
+	"MoneyGiven":150
   }
 ]
