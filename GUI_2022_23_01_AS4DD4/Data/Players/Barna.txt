@@ -7,3 +7,4 @@ Pistol
 Minor;Major
 Standard
 Light
+20

@@ -17,13 +17,14 @@ namespace GUI_2022_23_01_AS4DD4.Models
         public Level Level { get; set; }
         public int Experience { get; set; } = 0;
         public int ExperienceNeeded { get; set; } = 400;
-        public int TimeToShoot { get; set; } = 10;
 
         public Weapon Weapon { get; set; }
         
         public List<Potion> Potions { get; set; }
         public Ammo Ammo { get; set; }
         public Armor Armor { get; set; }
+
+        public int TimeToShoot { get; set; } = 10;
 
 
         public Player(int health, string name, Level level, int experience, int experienceNeeded, Weapon weapon, List<Potion> potions, Ammo ammo, Armor armor)
