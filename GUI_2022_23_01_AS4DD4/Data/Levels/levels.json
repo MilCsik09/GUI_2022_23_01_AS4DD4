@@ -1,0 +1,29 @@
+[
+  {
+    "Name": "First",
+    "Enemy": [
+      {
+        "Name": "Bandit",
+        "Health": 100,
+        "DamageToPlayer": 12,
+        "Size": {
+          "IsEmpty": false,
+          "Width": 20,
+          "Height": 20
+        },
+        "XPGiven": 50
+      },
+      {
+        "Name": "Bandit",
+        "Health": 100,
+        "DamageToPlayer": 12,
+        "Size": {
+          "IsEmpty": false,
+          "Width": 20,
+          "Height": 20
+        },
+        "XPGiven": 50
+      }
+    ]
+  }
+]
