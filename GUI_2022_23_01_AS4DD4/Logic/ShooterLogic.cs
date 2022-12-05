@@ -9,9 +9,10 @@ namespace GUI_2022_23_01_AS4DD4.Logic
 {
     public class ShooterLogic : IShooterControl, IShooterModel
     {
-        public int elapsedSeconds;
+        public int elapsedSeconds = 0;
         public event EventHandler Changed;
         public event EventHandler GameOver;
+        public Player player;
         System.Windows.Size area;
         public void SetupSizes(System.Windows.Size area)
         {
@@ -49,6 +50,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic
                 {
                     player.Health -= player.Level.GetCurrentEnemy().DamageToPlayer;
                 }
+                elapsedSeconds = 0;
             }
         }
 
@@ -85,7 +87,8 @@ namespace GUI_2022_23_01_AS4DD4.Logic
 
         internal void TimeStep()
         {
-            
+            elapsedSeconds++;
+            DamageTaken(player);
         }
     }
 }

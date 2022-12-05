@@ -17,7 +17,7 @@ namespace GUI_2022_23_01_AS4DD4.Models
         public Level Level { get; set; }
         public int Experience { get; set; } = 0;
         public int ExperienceNeeded { get; set; } = 400;
-        public int TimeToShoot { get; set; } = 4;
+        public int TimeToShoot { get; set; } = 10;
 
         public Weapon Weapon { get; set; }
         
