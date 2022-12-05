@@ -1,6 +1,8 @@
 ﻿using GUI_2022_23_01_AS4DD4.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -85,10 +87,51 @@ namespace GUI_2022_23_01_AS4DD4.Logic
             }
         }
 
+        public void NextLevelCheck() //TODO
+        {
+            if(player.Level.CurrentEnemy == player.Level.Enemy.Count)
+            {
+                
+            }
+        }
+
+        public void LoadAssets()
+        {
+
+        }
+
+        public void LoadPlayer(string playerName) {
+
+            string fileName = playerName+".txt";
+            string path = Path.Combine(Environment.CurrentDirectory, @"Data\Players", fileName);
+
+            string[] playerData = File.ReadAllLines(path);
+
+            Player player = new Player();
+            player.Health = int.Parse(playerData[0]);
+            player.Name = playerData[1];
+            player.Level = null; //2
+            player.Experience = int.Parse(playerData[3]);
+            player.ExperienceNeeded = int.Parse(playerData[4]);
+            player.Weapon = null; //5
+            player.Potions = null; //6
+            player.Ammo = null; //7
+            player.Armor = null; //8
+            player.TimeToShoot = int.Parse(playerData[9]);
+
+        
+        }
+
+        public void CreateNewPlayer() {
+        
+        
+        }
+
         internal void TimeStep()
         {
             elapsedSeconds++;
             DamageTaken(player);
+            NextLevelCheck();
         }
     }
 }
