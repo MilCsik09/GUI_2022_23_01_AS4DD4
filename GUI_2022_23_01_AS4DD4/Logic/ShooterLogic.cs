@@ -140,7 +140,8 @@ namespace GUI_2022_23_01_AS4DD4.Logic
         {
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(player, options);
-            string path = Path.Combine(Environment.CurrentDirectory, @"Data\Players", player.Name+".json");
+            string fileName = player.Name + ".json";
+            string path = Path.Combine(@"..\..\..\Data\Players", fileName);
             File.WriteAllText(path, jsonString);
         }
 
