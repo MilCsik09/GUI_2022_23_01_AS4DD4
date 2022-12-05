@@ -12,6 +12,10 @@ namespace GUI_2022_23_01_AS4DD4.Models
             Enemy = enemy;
             CurrentEnemy = 0;
         }
+        public Level()
+        {
+
+        }
 
         public Enemy GetCurrentEnemy()
         {
