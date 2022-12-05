@@ -52,7 +52,7 @@ namespace GUI_2022_23_01_AS4DD4
 
         private void SetBackground()
         {
-            ImageBrush myBrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Background.jpg"), UriKind.RelativeOrAbsolute)));
+            ImageBrush myBrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Background.jpg"), UriKind.RelativeOrAbsolute)));
 
             grid.Background = myBrush;
         }
