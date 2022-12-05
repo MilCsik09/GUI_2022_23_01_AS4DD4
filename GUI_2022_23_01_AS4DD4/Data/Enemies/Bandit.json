@@ -2,16 +2,10 @@
   "Name": "Bandit",
   "Health": 100,
   "DamageToPlayer": 12,
-  "Position": {
-    "IsEmpty": true,
-    "X": 0,
-    "Y": 0
-  },
   "Size": {
     "IsEmpty": false,
     "Width": 20,
     "Height": 20
   },
-  "CrossHairs": null,
   "XPGiven": 50
 }

@@ -70,11 +70,11 @@ namespace GUI_2022_23_01_AS4DD4
 
         private void load_Click(object sender, RoutedEventArgs e)
         {
-            logic.LoadPlayer();
+            
         }
         private void create_Click(object sender, RoutedEventArgs e)
         {
-            logic.CreateNewPlayer();
+            
         }
 
         private void shop_Click(object sender, RoutedEventArgs e)
