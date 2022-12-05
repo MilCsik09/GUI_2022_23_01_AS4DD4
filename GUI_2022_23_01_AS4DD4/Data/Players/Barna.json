@@ -1,0 +1,69 @@
+{
+  "Health": 100,
+  "Name": "Barna",
+  "Level": {
+    "Enemy": [
+      {
+        "Name": "Bandit",
+        "Health": 100,
+        "DamageToPlayer": 12,
+        "Position": {
+          "IsEmpty": true,
+          "X": 0,
+          "Y": 0
+        },
+        "Size": {
+          "IsEmpty": false,
+          "Width": 20,
+          "Height": 20
+        },
+        "CrossHairs": null,
+        "XPGiven": 50
+      },
+      {
+        "Name": "Bandit",
+        "Health": 100,
+        "DamageToPlayer": 12,
+        "Position": {
+          "IsEmpty": true,
+          "X": 0,
+          "Y": 0
+        },
+        "Size": {
+          "IsEmpty": false,
+          "Width": 20,
+          "Height": 20
+        },
+        "CrossHairs": null,
+        "XPGiven": 50
+      }
+    ]
+  },
+  "Experience": 0,
+  "ExperienceNeeded": 200,
+  "Weapon": {
+    "Name": "Pistol",
+    "BaseDamage": 20
+  },
+  "Potions": [
+    {
+      "Name": "Minor",
+      "HealthRegeneration": 25
+    },
+    {
+      "Name": "Minor",
+      "HealthRegeneration": 25
+    }
+  ],
+  "Ammo": {
+    "Name": "Standard",
+    "Damage": 5,
+    "Number": 30
+  },
+  "Armor": {
+    "Name": "Light",
+    "Protection": 10,
+    "DamageReducton": 5
+  },
+  "TimeToShoot": 20
+}
