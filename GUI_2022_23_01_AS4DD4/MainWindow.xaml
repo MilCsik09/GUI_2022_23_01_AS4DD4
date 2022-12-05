@@ -15,6 +15,7 @@
             <Button x:Name="exit" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Top" Click="exit_Click" Margin="20"/>
         </StackPanel>
         <local:Display x:Name="display"/>
+        <local:Display HorizontalAlignment="Left" Height="100" Margin="197,110,0,0" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

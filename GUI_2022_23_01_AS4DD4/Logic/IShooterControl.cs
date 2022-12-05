@@ -8,7 +8,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic
         public void Shoot(int x, int y, Player player);
         public void Heal(Potion potion, Player player);
         public void ArmorRegenerate(Armor armor, Player player);
-        public void DamageTaken(Player player, Enemy enemy);
+        public void DamageTaken(Player player);
 
 
         

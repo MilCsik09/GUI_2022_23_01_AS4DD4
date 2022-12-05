@@ -37,17 +37,17 @@ namespace GUI_2022_23_01_AS4DD4.Logic
             }
         }
 
-        public void DamageTaken(Player player, Enemy enemy) ///TODO Milan
+        public void DamageTaken(Player player) ///TODO armor damage reduction.
         {
             if(elapsedSeconds == player.TimeToShoot)
             {
-                if ((player.Health - enemy.DamageToPlayer) <= 0)
+                if ((player.Health - player.Level.GetCurrentEnemy().DamageToPlayer) <= 0)
                 {
                     GameOver?.Invoke(this, new EventArgs());
                 }
                 else
                 {
-                    player.Health -= enemy.DamageToPlayer;
+                    player.Health -= player.Level.GetCurrentEnemy().DamageToPlayer;
                 }
             }
         }
@@ -73,12 +73,19 @@ namespace GUI_2022_23_01_AS4DD4.Logic
 
         public void Shoot(int x, int y, Player player) ///Milan TODO
         {
-            throw new NotImplementedException();
+            List<CrossHair> crossHairs = player.Level.GetCurrentEnemy().CrossHairs;
+            foreach(CrossHair crossHair in crossHairs)
+            {
+                if(crossHair.Position.X == x && crossHair.Position.Y == y) ///finish the logic for shoot position && get the position of the mouse.
+                {
+                    player.Level.GetCurrentEnemy().CrossHairs.Remove(crossHair);
+                }
+            }
         }
 
         internal void TimeStep()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
