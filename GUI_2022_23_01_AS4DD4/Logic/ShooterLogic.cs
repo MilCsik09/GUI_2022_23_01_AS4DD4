@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace GUI_2022_23_01_AS4DD4.Logic
 {
@@ -125,6 +127,14 @@ namespace GUI_2022_23_01_AS4DD4.Logic
         public void CreateNewPlayer() {
         
         
+        }
+
+        public void SavePlayer(Player player)
+        {
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonString = JsonSerializer.Serialize(player, options);
+            string path = Path.Combine(Environment.CurrentDirectory, @"Data\Players", player.Name+".json");
+            File.WriteAllText(path, jsonString);
         }
 
         internal void TimeStep()
