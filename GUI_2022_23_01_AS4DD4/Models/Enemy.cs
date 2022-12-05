@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Point = System.Drawing.Point;
 using Size = System.Windows.Size;
+using System.Text.Json.Serialization;
 
 namespace GUI_2022_23_01_AS4DD4.Models
 {
@@ -17,8 +18,10 @@ namespace GUI_2022_23_01_AS4DD4.Models
         public string Name { get; set; }
         public int Health { get; set; }
         public int DamageToPlayer { get; set; }
+        [JsonIgnore]
         public Point Position { get; set; } //nem toltjuk be ezt meg majd random legeneraljuk
         public Size Size { get; set; }
+        [JsonIgnore]
         public List<CrossHair> CrossHairs { get; set; } //nem toltjuk be majd kesobb random legeneraljuk
         public int XPGiven { get; set; }
 
