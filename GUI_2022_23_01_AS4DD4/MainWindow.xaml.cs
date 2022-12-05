@@ -35,7 +35,7 @@ namespace GUI_2022_23_01_AS4DD4
             logic.TimeStep();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs? e)
+        private void Window_Loaded(object? sender, EventArgs e)
         {
             logic.GameOver += Logic_GameOver;
             display.SetupModel(logic);
@@ -72,13 +72,15 @@ namespace GUI_2022_23_01_AS4DD4
 
         private void load_Click(object sender, RoutedEventArgs e)
         {
-            logic.LoadPlayer("Barna");
+            logic.LoadPlayer("Barna");//TODO change this to read string from GUI
         }
         private void create_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gw = new GameWindow();
+            GameWindow gw = new GameWindow();            
             gw.Show();
+            gw.ContentRendered += Window_Loaded;
         }
+
 
         private void shop_Click(object sender, RoutedEventArgs e)
         {
