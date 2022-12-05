@@ -2,6 +2,7 @@
 using GUI_2022_23_01_AS4DD4.Windows;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Path = System.IO.Path;
 
 namespace GUI_2022_23_01_AS4DD4
 {
@@ -24,15 +26,35 @@ namespace GUI_2022_23_01_AS4DD4
     public partial class MainWindow : Window
     {
         public ShooterLogic logic;
+
+        //public Brush BackgroundBrush
+        //{
+        //    get
+        //    {
+        //        return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Background"), UriKind.RelativeOrAbsolute)));
+        //        //return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/;component/Images/Background.jpg"), UriKind.RelativeOrAbsolute));
+        //    }
+        //}
+
         public MainWindow()
         {
             InitializeComponent();
             logic = new ShooterLogic();
             logic.LoadAssets();
+            SetBackground();
         }
         private void Dt_Tick(object? sender, EventArgs e)
         {
             logic.TimeStep();
+        }
+
+
+
+        private void SetBackground()
+        {
+            ImageBrush myBrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Background.jpg"), UriKind.RelativeOrAbsolute)));
+
+            grid.Background = myBrush;
         }
 
         private void Window_Loaded(object? sender, EventArgs e)
