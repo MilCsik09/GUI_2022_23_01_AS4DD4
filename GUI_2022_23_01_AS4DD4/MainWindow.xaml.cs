@@ -22,19 +22,20 @@ namespace GUI_2022_23_01_AS4DD4
     /// </summary>
     public partial class MainWindow : Window
     {
-        ShooterLogic logic;
+        public ShooterLogic logic;
         public MainWindow()
         {
             InitializeComponent();
+            logic = new ShooterLogic();
+            logic.LoadAssets();
         }
         private void Dt_Tick(object? sender, EventArgs e)
         {
             logic.TimeStep();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs? e)
         {
-            logic = new ShooterLogic();
             logic.GameOver += Logic_GameOver;
             display.SetupModel(logic);
 
@@ -70,7 +71,7 @@ namespace GUI_2022_23_01_AS4DD4
 
         private void load_Click(object sender, RoutedEventArgs e)
         {
-            
+            logic.LoadPlayer("Barna");
         }
         private void create_Click(object sender, RoutedEventArgs e)
         {
@@ -83,7 +84,7 @@ namespace GUI_2022_23_01_AS4DD4
         }
         private void save_Click(object sender, RoutedEventArgs e)
         {
-
+            JSONConverter.Convert();
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)

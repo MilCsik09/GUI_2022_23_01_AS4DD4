@@ -13,6 +13,15 @@ namespace GUI_2022_23_01_AS4DD4
 {
     class JSONConverter
     {
+
+        public static List<Ammo> AmmoList = new List<Ammo>();
+        public static List<Armor> ArmorList = new List<Armor>();
+        public static List<Enemy> EnemyList = new List<Enemy>();
+        public static List<Level> LevelList = new List<Level>();
+        public static List<Potion> PotionList = new List<Potion>();
+        public static List<Weapon> WeaponList = new List<Weapon>();
+
+
         static Armor armor = new Armor();
         static Enemy bandit = new Enemy();
         static Level level = new Level();
@@ -57,33 +66,41 @@ namespace GUI_2022_23_01_AS4DD4
             player.Armor = armor;
             player.TimeToShoot = 20;
 
+            AmmoList.Add(standard);
+            ArmorList.Add(armor);
+            EnemyList.Add(bandit);
+            LevelList.Add(level);
+            PotionList.Add(minor);
+            WeaponList.Add(pistol);
+
+
             var options = new JsonSerializerOptions { WriteIndented = true };
             string playerJson = JsonSerializer.Serialize(player, options);
             string path = Path.Combine(@"..\..\..\Data\Players", player.Name + ".json");
             File.WriteAllText(path, playerJson);
 
-            string armorJson = JsonSerializer.Serialize(armor, options);
-            string armorpath = Path.Combine(@"..\..\..\Data\Armors", armor.Name + ".json");
+            string armorJson = JsonSerializer.Serialize(ArmorList, options);
+            string armorpath = Path.Combine(@"..\..\..\Data\Armors", "armors.json");
             File.WriteAllText(armorpath, armorJson);
 
-            string banditJson = JsonSerializer.Serialize(bandit, options);
-            string banditpath = Path.Combine(@"..\..\..\Data\Enemies", bandit.Name + ".json");
+            string banditJson = JsonSerializer.Serialize(EnemyList, options);
+            string banditpath = Path.Combine(@"..\..\..\Data\Enemies", "enemies.json");
             File.WriteAllText(banditpath, banditJson);
 
-            string levelJson = JsonSerializer.Serialize(level, options);
-            string levelpath = Path.Combine(@"..\..\..\Data\Levels", "1.json");
+            string levelJson = JsonSerializer.Serialize(LevelList, options);
+            string levelpath = Path.Combine(@"..\..\..\Data\Levels", "levels.json");
             File.WriteAllText(levelpath, levelJson);
 
-            string ammoJson = JsonSerializer.Serialize(standard, options);
-            string ammopath = Path.Combine(@"..\..\..\Data\Ammos", standard.Name + ".json");
+            string ammoJson = JsonSerializer.Serialize(AmmoList, options);
+            string ammopath = Path.Combine(@"..\..\..\Data\Ammos", "ammos.json");
             File.WriteAllText(ammopath, ammoJson);
 
-            string potionJson = JsonSerializer.Serialize(minor, options);
-            string potionpath = Path.Combine(@"..\..\..\Data\Potions", minor.Name + ".json");
+            string potionJson = JsonSerializer.Serialize(PotionList, options);
+            string potionpath = Path.Combine(@"..\..\..\Data\Potions", "potions.json");
             File.WriteAllText(potionpath, potionJson);
 
-            string weaponJson = JsonSerializer.Serialize(pistol, options);
-            string weaponpath = Path.Combine(@"..\..\..\Data\Weapons", pistol.Name + ".json");
+            string weaponJson = JsonSerializer.Serialize(WeaponList, options);
+            string weaponpath = Path.Combine(@"..\..\..\Data\Weapons", "weapons.json");
             File.WriteAllText(weaponpath, weaponJson);
 
 

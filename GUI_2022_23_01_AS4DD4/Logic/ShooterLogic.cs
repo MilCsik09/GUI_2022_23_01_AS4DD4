@@ -16,7 +16,16 @@ namespace GUI_2022_23_01_AS4DD4.Logic
         public int elapsedSeconds = 0;
         public event EventHandler Changed;
         public event EventHandler GameOver;
-        public Player player;
+        public Player? player;
+        public bool Ingame = false;
+        public List<Ammo>? AmmoList = new List<Ammo>();
+        public List<Armor>? ArmorList = new List<Armor>();
+        public List<Enemy>? EnemyList = new List<Enemy>();
+        public List<Level>? LevelList = new List<Level>();
+        public List<Potion>? PotionList = new List<Potion>();
+        public List<Weapon>? WeaponList = new List<Weapon>();
+
+
         System.Windows.Size area;
         public void SetupSizes(System.Windows.Size area)
         {
@@ -99,29 +108,27 @@ namespace GUI_2022_23_01_AS4DD4.Logic
 
         public void LoadAssets()
         {
-
+            AmmoList =
+                JsonSerializer.Deserialize<List<Ammo>>(File.ReadAllText(Path.Combine(@"..\..\..\Data\Ammos", "ammos.json")));
+            ArmorList =
+                JsonSerializer.Deserialize<List<Armor>>(File.ReadAllText(Path.Combine(@"..\..\..\Data\Armors", "armors.json")));
+            EnemyList =
+                JsonSerializer.Deserialize<List<Enemy>>(File.ReadAllText(Path.Combine(@"..\..\..\Data\Enemies", "enemies.json")));
+            LevelList =
+                JsonSerializer.Deserialize<List<Level>>(File.ReadAllText(Path.Combine(@"..\..\..\Data\Levels", "levels.json")));
+            PotionList =
+                JsonSerializer.Deserialize<List<Potion>>(File.ReadAllText(Path.Combine(@"..\..\..\Data\Potions", "potions.json")));
+            WeaponList =
+                JsonSerializer.Deserialize<List<Weapon>>(File.ReadAllText(Path.Combine(@"..\..\..\Data\Weapons", "weapons.json")));
         }
 
         public void LoadPlayer(string playerName) {
 
-            string fileName = playerName+".txt";
-            string path = Path.Combine(Environment.CurrentDirectory, @"Data\Players", fileName);
+            string fileName = playerName+".json";
+            string path = Path.Combine(@"..\..\..\Data\Players", fileName);
 
-            string[] playerData = File.ReadAllLines(path);
-
-            Player player = new Player();
-            player.Health = int.Parse(playerData[0]);
-            player.Name = playerData[1];
-            player.Level = null; //2
-            player.Experience = int.Parse(playerData[3]);
-            player.ExperienceNeeded = int.Parse(playerData[4]);
-            player.Weapon = null; //5
-            player.Potions = null; //6
-            player.Ammo = null; //7
-            player.Armor = null; //8
-            player.TimeToShoot = int.Parse(playerData[9]);
-
-        
+            player =
+                JsonSerializer.Deserialize<Player>(File.ReadAllText(path));
         }
 
         public void CreateNewPlayer() {
@@ -139,9 +146,13 @@ namespace GUI_2022_23_01_AS4DD4.Logic
 
         internal void TimeStep()
         {
-            elapsedSeconds++;
-            DamageTaken(player);
-            NextLevelCheck();
+            if (Ingame)
+            {
+                elapsedSeconds++;
+                DamageTaken(player);
+                NextLevelCheck();
+            }
+                
         }
     }
 }
