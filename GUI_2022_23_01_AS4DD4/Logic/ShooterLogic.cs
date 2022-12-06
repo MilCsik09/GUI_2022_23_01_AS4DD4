@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Collections.ObjectModel;
 
 namespace GUI_2022_23_01_AS4DD4.Logic
 {
@@ -126,6 +127,8 @@ namespace GUI_2022_23_01_AS4DD4.Logic
             WeaponList =
                 JsonSerializer.Deserialize<List<Weapon>>(File.ReadAllText(Path.Combine(@"..\..\..\Data\Weapons", "weapons.json")));
         }
+
+        
 
         public void LoadPlayer(string playerName) {
 

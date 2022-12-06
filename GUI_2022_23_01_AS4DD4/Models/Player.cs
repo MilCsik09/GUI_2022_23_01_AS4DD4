@@ -18,11 +18,11 @@ namespace GUI_2022_23_01_AS4DD4.Models
         public int Experience { get; set; } = 0;
         public int ExperienceNeeded { get; set; } = 400;
 
-        public Weapon Weapon { get; set; }
+        public Weapon? Weapon { get; set; }
         
         public List<Potion> Potions { get; set; }
-        public Ammo Ammo { get; set; }
-        public Armor Armor { get; set; }
+        public Ammo? Ammo { get; set; }
+        public Armor? Armor { get; set; }
         public int Money { get; set; } = 0;
 
         public int TimeToShoot { get; set; } = 10;

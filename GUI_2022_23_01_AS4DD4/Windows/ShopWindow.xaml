@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_2022_23_01_AS4DD4.Windows"
+        xmlns:vms="clr-namespace:GUI_2022_23_01_AS4DD4.ViewModels"
         mc:Ignorable="d"
         Title="ShopWindow" Height="800" Width="800">
     <Grid>
+        <Grid.DataContext>
+            <vms:ShopWindowViewModel/>
+        </Grid.DataContext>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -15,8 +19,9 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ListBox ItemsSource="{Binding Students}" SelectedItem="{Binding SelectedStudent}" Grid.Row="0">
+        <ListBox ItemsSource="{Binding Ammos}" SelectedItem="{Binding SelectedAmmo}" Grid.Row="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding Name}"/>
@@ -25,29 +30,29 @@
         </ListBox>
         <StackPanel Grid.Column="1">
             <Label Content="Ammo" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedStudent.Name}" Padding="10" Margin="0,0,0,30"/>
+            <Label Content="{Binding }" Padding="10" Margin="0,0,0,30"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Buy Ammo" Command="{Binding CreateStudentCommand}" Margin="10" Padding="10"/>
-                <Button Content="Sell Ammo" Command="{Binding DeleteStudentCommand}" Margin="10" Padding="10"/>
+                <Button Content="Buy Ammo" Command="{Binding BuyAmmoCommand}" Margin="10" Padding="10"/>
+                <Button Content="Sell Ammo" Command="{Binding SellAmmoCommand}" Margin="10" Padding="10"/>
             </StackPanel>
         </StackPanel>
-        <ListBox ItemsSource="{Binding Subjects}" SelectedItem="{Binding SelectedSubject}" Grid.Row="1">
+        <ListBox ItemsSource="{Binding Armors}" SelectedItem="{Binding SelectedArmor}" Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding SubjectName}"/>
+                    <Label Content="{Binding Name}"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <Label Content="Weapon" Background="LightBlue" Padding="10"/>
+            <Label Content="Armor" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedSubject.SubjectName}" Padding="10" Margin="0,0,0,30"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Buy Weapon" Command="{Binding CreateSubjectCommand}" Margin="10" Padding="10"/>
-                <Button Content="Sell Weapon" Command="{Binding DeleteSubjectCommand}" Margin="10" Padding="10"/>
+                <Button Content="Buy Armor" Command="{Binding BuyArmorCommand}" Margin="10" Padding="10"/>
+                <Button Content="Sell Armor" Command="{Binding SellArmorCommand}" Margin="10" Padding="10"/>
             </StackPanel>
         </StackPanel>
-        <ListBox ItemsSource="{Binding Teachers}" SelectedItem="{Binding SelectedTeacher}" Grid.Row="2">
+        <ListBox ItemsSource="{Binding Potions}" SelectedItem="{Binding SelectedPotion}" Grid.Row="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding Name}"/>
@@ -55,13 +60,32 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <StackPanel Grid.Column="1" Grid.Row="2">
-            <Label Content="Armor" Background="LightBlue" Padding="10"/>
+            <Label Content="Potion" Background="LightBlue" Padding="10"/>
             <TextBox Text="{Binding SelectedTeacher.Name}" Padding="10" Margin="0,0,0,30"/>
             
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Buy Armor" Command="{Binding CreateTeacherCommand}" Margin="10" Padding="10"/>
-                <Button Content="Sell Armor" Command="{Binding DeleteTeacherCommand}" Margin="10" Padding="10"/>
+                <Button Content="Buy Potion" Command="{Binding BuyPotionCommand}" Margin="10" Padding="10"/>
+                <Button Content="Sell Potion" Command="{Binding SellPotionCommand}" Margin="10" Padding="10"/>
             </StackPanel>
         </StackPanel>
+
+        <ListBox ItemsSource="{Binding Weapons}" SelectedItem="{Binding SelectedWeapon}" Grid.Row="3">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <Label Content="Weapon" Background="LightBlue" Padding="10"/>
+            <TextBox Text="{Binding SelectedTeacher.Name}" Padding="10" Margin="0,0,0,30"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Content="Buy Weapon" Command="{Binding BuyWeaponCommand}" Margin="10" Padding="10"/>
+                <Button Content="Sell Weapon" Command="{Binding SellWeaponCommand}" Margin="10" Padding="10"/>
+            </StackPanel>
+        </StackPanel>
+
+
     </Grid>
 </Window>
