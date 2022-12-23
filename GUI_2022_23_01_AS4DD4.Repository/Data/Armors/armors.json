@@ -1,0 +1,20 @@
+[
+  {
+    "Name": "Light",
+    "Protection": 10,
+    "DamageReducton": 5,
+	"Price":5
+  },
+  {
+    "Name": "Medium",
+    "Protection": 15,
+    "DamageReducton": 10,
+	"Price":20
+  },
+  {
+    "Name": "Heavy",
+    "Protection": 20,
+    "DamageReducton": 15,
+	"Price":30
+  }
+]

@@ -1,7 +1,7 @@
 ﻿using GUI_2022_23_01_AS4DD4.Models;
 using System;
 
-namespace GUI_2022_23_01_AS4DD4.Logic
+namespace GUI_2022_23_01_AS4DD4.Logic.Interfaces
 {
     public interface IShooterControl
     {
@@ -11,6 +11,6 @@ namespace GUI_2022_23_01_AS4DD4.Logic
         public void DamageTaken(Player player);
 
 
-        
+
     }
 }

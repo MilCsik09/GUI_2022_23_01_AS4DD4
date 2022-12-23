@@ -1,4 +1,5 @@
 ﻿using GUI_2022_23_01_AS4DD4.Logic;
+using GUI_2022_23_01_AS4DD4.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.IO;

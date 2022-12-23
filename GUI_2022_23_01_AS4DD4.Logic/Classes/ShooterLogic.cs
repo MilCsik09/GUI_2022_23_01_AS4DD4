@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using GUI_2022_23_01_AS4DD4.Logic.Interfaces;
 
-namespace GUI_2022_23_01_AS4DD4.Logic
+namespace GUI_2022_23_01_AS4DD4.Logic.Classes
 {
     public class ShooterLogic : IShooterControl, IShooterModel
     {
@@ -18,21 +19,16 @@ namespace GUI_2022_23_01_AS4DD4.Logic
         public event EventHandler GameOver;
         public Player? player;
         public bool Ingame = false;
-        public List<Ammo>? AmmoList = new List<Ammo>();
-        public List<Armor>? ArmorList = new List<Armor>();
-        public List<Enemy>? EnemyList = new List<Enemy>();
-        public List<Level>? LevelList = new List<Level>();
-        public List<Potion>? PotionList = new List<Potion>();
-        public List<Weapon>? WeaponList = new List<Weapon>();
+        public List<Ammo> AmmoList = new List<Ammo>();
+        public List<Armor> ArmorList = new List<Armor>();
+        public List<Enemy> EnemyList = new List<Enemy>();
+        public List<Level> LevelList = new List<Level>();
+        public List<Potion> PotionList = new List<Potion>();
+        public List<Weapon> WeaponList = new List<Weapon>();
 
 
-        System.Windows.Size area;
-        public void SetupSizes(System.Windows.Size area)
-        {
-            this.area = area;
-        }
 
-            public void ArmorRegenerate(Armor armor, Player player)
+        public void ArmorRegenerate(Armor armor, Player player)
         {
             if (player.Health < 150)
             {
@@ -40,7 +36,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic
                 {
                     player.Health += armor.Protection;
                 }
-                else if(player.Health == 150)
+                else if (player.Health == 150)
                 {
 
                 }
@@ -53,9 +49,9 @@ namespace GUI_2022_23_01_AS4DD4.Logic
 
         public void DamageTaken(Player player) ///TODO armor damage reduction.
         {
-            if(elapsedSeconds == player.TimeToShoot)
+            if (elapsedSeconds == player.TimeToShoot)
             {
-                if ((player.Health - player.Level.GetCurrentEnemy().DamageToPlayer) <= 0)
+                if (player.Health - player.Level.GetCurrentEnemy().DamageToPlayer <= 0)
                 {
                     GameOver?.Invoke(this, new EventArgs());
                 }
@@ -89,9 +85,9 @@ namespace GUI_2022_23_01_AS4DD4.Logic
         public void Shoot(int x, int y, Player player) ///Milan TODO
         {
             List<CrossHair> crossHairs = player.Level.GetCurrentEnemy().CrossHairs;
-            foreach(CrossHair crossHair in crossHairs)
+            foreach (CrossHair crossHair in crossHairs)
             {
-                if(crossHair.Position.X == x && crossHair.Position.Y == y) ///finish the logic for shoot position && get the position of the mouse.
+                if (crossHair.Position.X == x && crossHair.Position.Y == y) ///finish the logic for shoot position && get the position of the mouse.
                 {
                     player.Level.GetCurrentEnemy().CrossHairs.Remove(crossHair);
                 }
@@ -100,9 +96,9 @@ namespace GUI_2022_23_01_AS4DD4.Logic
 
         public void NextLevelCheck() //TODO
         {
-            if(player.Level.CurrentEnemy == player.Level.Enemy.Count)
+            if (player.Level.CurrentEnemy == player.Level.Enemy.Count)
             {
-                
+
             }
         }
 
@@ -111,7 +107,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic
 
         }
 
-        public void LoadAssets()
+        public void LoadAssets()        //TODO fix - áthelyezés projekt
         {
             AmmoList =
                 JsonSerializer.Deserialize<List<Ammo>>(File.ReadAllText(Path.Combine(@"..\..\..\Data\Ammos", "ammos.json")));
@@ -127,18 +123,20 @@ namespace GUI_2022_23_01_AS4DD4.Logic
                 JsonSerializer.Deserialize<List<Weapon>>(File.ReadAllText(Path.Combine(@"..\..\..\Data\Weapons", "weapons.json")));
         }
 
-        public void LoadPlayer(string playerName) {
+        public void LoadPlayer(string playerName)
+        {
 
-            string fileName = playerName+".json";
+            string fileName = playerName + ".json";
             string path = Path.Combine(@"..\..\..\Data\Players", fileName);
 
             player =
                 JsonSerializer.Deserialize<Player>(File.ReadAllText(path));
         }
 
-        public void CreateNewPlayer() {
-        
-        
+        public void CreateNewPlayer()
+        {
+
+
         }
 
         public void SavePlayer(Player player)
@@ -146,7 +144,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(player, options);
             string fileName = player.Name + ".json";
-            string path = Path.Combine(@"..\..\..\Data\Players", fileName);
+            string path = Path.Combine(@"..\..\..\Data\Players", fileName);     //todo fix
             File.WriteAllText(path, jsonString);
         }
 
@@ -158,7 +156,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic
                 DamageTaken(player);
                 NextLevelCheck();
             }
-                
+
         }
     }
 }

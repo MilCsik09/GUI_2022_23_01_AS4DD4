@@ -1,0 +1,14 @@
+[
+  {
+    "Name": "Standard",
+    "Damage": 5,
+    "Number": 30,
+	"Price":5
+  },
+  {
+    "Name": "Advanced",
+    "Damage": 25,
+    "Number": 30,
+	"Price":25
+  }
+]

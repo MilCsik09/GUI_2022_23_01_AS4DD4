@@ -1,0 +1,12 @@
+[
+  {
+    "Name": "Minor",
+    "HealthRegeneration": 25,
+	"Price":5
+  },
+  {
+    "Name": "Major",
+    "HealthRegeneration": 50,
+	"Price":5
+  }
+]

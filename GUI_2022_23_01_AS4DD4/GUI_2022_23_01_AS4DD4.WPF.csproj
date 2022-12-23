@@ -15,4 +15,9 @@
     <Folder Include="Data\Ammos\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GUI_2022_23_01_AS4DD4.Logic\GUI_2022_23_01_AS4DD4.Logic.csproj" />
+    <ProjectReference Include="..\GUI_2022_23_01_AS4DD4.Models\GUI_2022_23_01_AS4DD4.Models.csproj" />
+  </ItemGroup>
+
 </Project>
