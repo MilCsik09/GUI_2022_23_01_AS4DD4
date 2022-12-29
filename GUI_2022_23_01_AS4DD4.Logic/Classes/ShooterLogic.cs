@@ -148,7 +148,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             File.WriteAllText(path, jsonString);
         }
 
-        internal void TimeStep()
+        public void TimeStep()        //set to public for debug purposes --- mainwindow
         {
             if (Ingame)
             {

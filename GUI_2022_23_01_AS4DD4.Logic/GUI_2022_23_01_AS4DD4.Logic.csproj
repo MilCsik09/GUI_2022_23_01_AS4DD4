@@ -1,12 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
   </PropertyGroup>
 
 
   <ItemGroup>
     <ProjectReference Include="..\GUI_2022_23_01_AS4DD4.Models\GUI_2022_23_01_AS4DD4.Models.csproj" />
+    <ProjectReference Include="..\GUI_2022_23_01_AS4DD4.Repository\GUI_2022_23_01_AS4DD4.Repository.csproj" />
   </ItemGroup>
 
 </Project>

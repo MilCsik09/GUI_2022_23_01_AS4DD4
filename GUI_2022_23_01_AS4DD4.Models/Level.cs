@@ -9,7 +9,7 @@ namespace GUI_2022_23_01_AS4DD4.Models
         public int CurrentEnemy;
         public Level(string name, List<Enemy> enemy)
         {
-            name = name;
+            Name = name;
             Enemy = enemy;
             CurrentEnemy = 0;
         }

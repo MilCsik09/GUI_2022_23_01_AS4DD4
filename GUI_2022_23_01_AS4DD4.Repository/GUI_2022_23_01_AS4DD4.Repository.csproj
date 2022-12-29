@@ -1,7 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GUI_2022_23_01_AS4DD4.Models\GUI_2022_23_01_AS4DD4.Models.csproj" />
+  </ItemGroup>
 
 </Project>

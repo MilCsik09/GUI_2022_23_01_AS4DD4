@@ -1,4 +1,5 @@
 ﻿using GUI_2022_23_01_AS4DD4.Logic;
+using GUI_2022_23_01_AS4DD4.Logic.Classes;
 using GUI_2022_23_01_AS4DD4.Windows;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,7 @@ namespace GUI_2022_23_01_AS4DD4
             dt.Start();
 
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
-            logic.SetupSizes((new System.Windows.Size((int)grid.ActualWidth, (int)grid.ActualHeight)));
+            //logic.SetupSizes((new System.Windows.Size((int)grid.ActualWidth, (int)grid.ActualHeight)));
         }
         private void Logic_GameOver(object? sender, EventArgs e)
         {
