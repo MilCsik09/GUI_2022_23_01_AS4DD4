@@ -4,10 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_2022_23_01_AS4DD4.Windows"
+        xmlns:vms="clr-namespace:GUI_2022_23_01_AS4DD4.WPF.Viewmodels"
         mc:Ignorable="d"
         Title="ShopWindow" Height="800" Width="800">
+    <Window.DataContext>
+        <vms:ShopWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid>
-
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
@@ -27,10 +32,10 @@
         </ListBox>
         <StackPanel Grid.Column="1">
             <Label Content="Ammo" Background="LightBlue" Padding="10"/>
-            <Label Content="{Binding }" Padding="10" Margin="0,0,0,30"/>
+            <Label Content="" Padding="10" Margin="0,0,0,30"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Buy Ammo" Command="{Binding BuyAmmoCommand}" Margin="10" Padding="10"/>
-                <Button Content="Sell Ammo" Command="{Binding SellAmmoCommand}" Margin="10" Padding="10"/>
+                <!--<Button Content="Sell Ammo" Command="{Binding SellAmmoCommand}" Margin="10" Padding="10"/>-->
             </StackPanel>
         </StackPanel>
         <ListBox ItemsSource="{Binding Armors}" SelectedItem="{Binding SelectedArmor}" Grid.Row="1">
@@ -42,11 +47,11 @@
         </ListBox>
         <StackPanel Grid.Column="1" Grid.Row="1">
             <Label Content="Armor" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedSubject.SubjectName}" Padding="10" Margin="0,0,0,30"/>
+            <!--<TextBox Text="{Binding SelectedSubject.SubjectName}" Padding="10" Margin="0,0,0,30"/>-->
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Buy Armor" Command="{Binding BuyArmorCommand}" Margin="10" Padding="10"/>
-                <Button Content="Sell Armor" Command="{Binding SellArmorCommand}" Margin="10" Padding="10"/>
+                <!--<Button Content="Sell Armor" Command="{Binding SellArmorCommand}" Margin="10" Padding="10"/>-->
             </StackPanel>
         </StackPanel>
         <ListBox ItemsSource="{Binding Potions}" SelectedItem="{Binding SelectedPotion}" Grid.Row="2">
@@ -58,11 +63,11 @@
         </ListBox>
         <StackPanel Grid.Column="1" Grid.Row="2">
             <Label Content="Potion" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedTeacher.Name}" Padding="10" Margin="0,0,0,30"/>
+            <!--<TextBox Text="{Binding SelectedTeacher.Name}" Padding="10" Margin="0,0,0,30"/>-->
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Buy Potion" Command="{Binding BuyPotionCommand}" Margin="10" Padding="10"/>
-                <Button Content="Sell Potion" Command="{Binding SellPotionCommand}" Margin="10" Padding="10"/>
+                <!--<Button Content="Sell Potion" Command="{Binding SellPotionCommand}" Margin="10" Padding="10"/>-->
             </StackPanel>
         </StackPanel>
 
@@ -75,11 +80,11 @@
         </ListBox>
         <StackPanel Grid.Column="1" Grid.Row="3">
             <Label Content="Weapon" Background="LightBlue" Padding="10"/>
-            <TextBox Text="{Binding SelectedTeacher.Name}" Padding="10" Margin="0,0,0,30"/>
+            <!--<TextBox Text="{Binding SelectedTeacher.Name}" Padding="10" Margin="0,0,0,30"/>-->
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Buy Weapon" Command="{Binding BuyWeaponCommand}" Margin="10" Padding="10"/>
-                <Button Content="Sell Weapon" Command="{Binding SellWeaponCommand}" Margin="10" Padding="10"/>
+                <!--<Button Content="Sell Weapon" Command="{Binding SellWeaponCommand}" Margin="10" Padding="10"/>-->
             </StackPanel>
         </StackPanel>
 

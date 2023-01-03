@@ -41,13 +41,13 @@ namespace GUI_2022_23_01_AS4DD4
         {
             InitializeComponent();
             logic = new ShooterLogic();
-            logic.LoadAssets();
+            logic.LoadAssets();         //lehet, hogy itt nincs is rá szükség
             SetBackground();
         }
-        private void Dt_Tick(object? sender, EventArgs e)
-        {
-            logic.TimeStep();
-        }
+        //private void Dt_Tick(object? sender, EventArgs e)       //a GameWindowban fog kelleni
+        //{
+        //    logic.TimeStep();
+        //}
 
 
 
@@ -63,10 +63,10 @@ namespace GUI_2022_23_01_AS4DD4
             logic.GameOver += Logic_GameOver;
             display.SetupModel(logic);
 
-            DispatcherTimer dt = new DispatcherTimer();
-            dt.Interval = TimeSpan.FromMilliseconds(100);
-            dt.Tick += Dt_Tick;
-            dt.Start();
+            //DispatcherTimer dt = new DispatcherTimer();
+            //dt.Interval = TimeSpan.FromMilliseconds(100);
+            //dt.Tick += Dt_Tick;
+            //dt.Start();
 
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
             //logic.SetupSizes((new System.Windows.Size((int)grid.ActualWidth, (int)grid.ActualHeight)));

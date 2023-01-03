@@ -158,5 +158,28 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             }
 
         }
+        public void BuyAmmo(Ammo ammo)
+        {
+            this.player.Ammo = ammo;
+        
+        }
+
+        public void BuyArmor(Armor armor)
+        {
+            this.player.Armor = armor;
+
+        }
+
+        public void BuyPotion(Potion potion)
+        {
+            this.player.Potions.Add(potion);
+
+        }
+
+        public void BuyWeapon(Weapon weapon)
+        {
+            this.player.Weapon = weapon;
+
+        }
     }
 }

@@ -20,11 +20,10 @@ namespace GUI_2022_23_01_AS4DD4.Windows
     /// </summary>
     public partial class ShopWindow : Window
     {
-        public ShooterLogic logic;
         public ShopWindow(ShooterLogic logic)
         {
-            this.logic = logic;
             InitializeComponent();
+            this.DataContext = logic; 
         }
     }
 }
