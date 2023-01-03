@@ -107,7 +107,7 @@ namespace GUI_2022_23_01_AS4DD4
 
         private void shop_Click(object sender, RoutedEventArgs e)
         {
-            ShopWindow sw = new ShopWindow();
+            ShopWindow sw = new ShopWindow(logic);
             sw.Show();
         }
         private void save_Click(object sender, RoutedEventArgs e)

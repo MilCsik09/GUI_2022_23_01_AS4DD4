@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI_2022_23_01_AS4DD4.Logic.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,8 +20,10 @@ namespace GUI_2022_23_01_AS4DD4.Windows
     /// </summary>
     public partial class ShopWindow : Window
     {
-        public ShopWindow()
+        public ShooterLogic logic;
+        public ShopWindow(ShooterLogic logic)
         {
+            this.logic = logic;
             InitializeComponent();
         }
     }
