@@ -25,6 +25,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             ObservableCollection<Armor> Armors = new ObservableCollection<Armor>(logic.ArmorList);
             ObservableCollection<Potion> Potions = new ObservableCollection<Potion>(logic.PotionList);
             ObservableCollection<Weapon> Weapons = new ObservableCollection<Weapon>(logic.WeaponList);
+            //Money = logic.player.Money;
 
             BuyAmmoCommand = new RelayCommand(() => { logic.BuyAmmo(selectedAmmo); });
 
@@ -41,6 +42,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
         public ObservableCollection<Armor> Armors { get; set; }
         public ObservableCollection<Potion> Potions { get; set; }
         public ObservableCollection<Weapon> Weapons { get; set; }
+        public int Money { get; set; } 
 
         private Ammo selectedAmmo;
 

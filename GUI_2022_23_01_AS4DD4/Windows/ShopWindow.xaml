@@ -22,6 +22,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         <ListBox ItemsSource="{Binding Ammos}" SelectedItem="{Binding SelectedAmmo}" Grid.Row="0">
             <ListBox.ItemTemplate>
@@ -87,7 +88,10 @@
                 <!--<Button Content="Sell Weapon" Command="{Binding SellWeaponCommand}" Margin="10" Padding="10"/>-->
             </StackPanel>
         </StackPanel>
-
+        <Label x:Name="money" Content="{Binding Money}" HorizontalAlignment="Center" VerticalAlignment="Center">
+            
+            
+        </Label>
 
     </Grid>
 </Window>
