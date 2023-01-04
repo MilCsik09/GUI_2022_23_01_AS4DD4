@@ -14,7 +14,7 @@
           "Height": 20
         },
         "XPGiven": 50,
-	    "MoneyGiven":50
+        "MoneyGiven": 50
       },
       {
         "Name": "Bandit",
@@ -26,41 +26,36 @@
           "Height": 20
         },
         "XPGiven": 50,
-		"MoneyGiven":50
+        "MoneyGiven": 50
       }
     ]
   },
   "Experience": 0,
   "ExperienceNeeded": 200,
   "Weapon": {
-    "Name": "Pistol",
-    "BaseDamage": 10,
-	"Price":20
+    "Name": "Revolver",
+    "BaseDamage": 30,
+    "Price": 100
   },
   "Potions": [
     {
-    "Name": "Minor",
-		"HealthRegeneration": 25,
-		"Price":5
-	  },
-	  {
-		"Name": "Major",
-		"HealthRegeneration": 50,
-		"Price":5
-	  }
+      "Name": "Major",
+      "HealthRegeneration": 50,
+      "Price": 5
+    }
   ],
   "Ammo": {
-    "Name": "Standard",
-    "Damage": 5,
+    "Name": "Advanced",
+    "Damage": 25,
     "Number": 30,
-	"Price":5
+    "Price": 25
   },
   "Armor": {
-    "Name": "Light",
-    "Protection": 10,
-    "DamageReducton": 5,
-	"Price":5
+    "Name": "Medium",
+    "Protection": 15,
+    "DamageReducton": 10,
+    "Price": 20
   },
-  "TimeToShoot": 20,
-  "Money":5000
+  "Money": 4012,
+  "TimeToShoot": 20
 }

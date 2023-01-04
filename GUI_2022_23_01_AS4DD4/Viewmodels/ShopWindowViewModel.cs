@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,34 +17,58 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
     public class ShopWindowViewModel : ObservableRecipient
     {
 
-        private ShooterLogic logic = new ShooterLogic();
+        private ShopLogic logic = new ShopLogic();
 
-        public ShopWindowViewModel()
-        {
-            logic.LoadAssets();
-            ObservableCollection<Ammo> Ammos = new ObservableCollection<Ammo>(logic.AmmoList);
-            ObservableCollection<Armor> Armors = new ObservableCollection<Armor>(logic.ArmorList);
-            ObservableCollection<Potion> Potions = new ObservableCollection<Potion>(logic.PotionList);
-            ObservableCollection<Weapon> Weapons = new ObservableCollection<Weapon>(logic.WeaponList);
-            //Money = logic.player.Money;
-
-            BuyAmmoCommand = new RelayCommand(() => { logic.BuyAmmo(selectedAmmo); });
-
-            BuyArmorCommand = new RelayCommand(() => { logic.BuyArmor(selectedArmor); });
-
-            BuyPotionCommand = new RelayCommand(() => { logic.BuyPotion(selectedPotion); });
-
-            BuyWeaponCommand = new RelayCommand(() => { logic.BuyWeapon(selectedWeapon); });
-
-
-        }
 
         public ObservableCollection<Ammo> Ammos { get; set; }
         public ObservableCollection<Armor> Armors { get; set; }
         public ObservableCollection<Potion> Potions { get; set; }
         public ObservableCollection<Weapon> Weapons { get; set; }
-        public int Money { get; set; } 
+        public int Money { get; set; }
 
+        //public Ammo currentAmmo { get; set; }     //lejjebb a propertyknél
+        //public Armor currentArmor { get; set; }
+        //public Weapon currentWeapon { get; set; }
+        public ObservableCollection<Potion> PlayerPotions { get; set; }
+
+
+        //ctor
+        public ShopWindowViewModel()
+        {
+            logic.LoadAssets();
+            logic.LoadPlayer("Barna");          //DEBUG
+
+            //player = logic.player;
+
+            //current equipment
+            currentAmmo = logic.player.Ammo;
+            currentArmor = logic.player.Armor;
+            currentWeapon = logic.player.Weapon;
+            PlayerPotions = new ObservableCollection<Potion>(logic.player.Potions);
+
+
+            Ammos = new ObservableCollection<Ammo>(logic.AmmoList);
+            Armors = new ObservableCollection<Armor>(logic.ArmorList);
+            Potions = new ObservableCollection<Potion>(logic.PotionList);
+            Weapons = new ObservableCollection<Weapon>(logic.WeaponList);
+            Money = logic.player.Money;
+
+            
+            BuyAmmoCommand = new RelayCommand(() => { logic.BuyAmmo(selectedAmmo); });
+            BuyArmorCommand = new RelayCommand(() => { logic.BuyArmor(selectedArmor); });
+            BuyPotionCommand = new RelayCommand(() => { logic.BuyPotion(selectedPotion); });
+            BuyWeaponCommand = new RelayCommand(() => { logic.BuyWeapon(selectedWeapon); });
+
+            SellAmmoCommand = new RelayCommand(() => { logic.SellAmmo(currentAmmo); });
+            SellArmorCommand = new RelayCommand(() => { logic.SellArmor(currentArmor); });
+            SellPotionCommand = new RelayCommand(() => { logic.SellPotion(selectedPlayerPotion); });
+            SellWeaponCommand = new RelayCommand(() => { logic.SellWeapon(currentWeapon); });
+
+
+        }
+
+
+        //ammo
         private Ammo selectedAmmo;
 
         public Ammo SelectedAmmo
@@ -52,6 +77,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             set { selectedAmmo = value; }
         }
 
+        //armor
         private Armor selectedArmor;
 
         public Armor SelectedArmor
@@ -60,6 +86,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             set { selectedArmor = value; }
         }
 
+        //potion
         private Potion selectedPotion;
 
         public Potion SelectedPotion
@@ -68,6 +95,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             set { selectedPotion = value; }
         }
 
+        //weapon
         private Weapon selectedWeapon;
 
         public Weapon SelectedWeapon
@@ -76,11 +104,52 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             set { selectedWeapon = value; }
         }
 
+        //current ammo
+        private Ammo currentAmmo;
+
+        public Ammo CurrentAmmo
+        {
+            get { return currentAmmo; }
+            set { currentAmmo = value; }
+        }
+
+        //current armor
+        private Armor currentArmor;
+
+        public Armor CurrentArmor
+        {
+            get { return currentArmor; }
+            set { currentArmor = value; }
+        }
+
+        //current weapon
+        private Weapon currentWeapon;
+
+        public Weapon CurrentWeapon
+        {
+            get { return currentWeapon; }
+            set { currentWeapon = value; }
+        }
+
+        //current potions - selected item
+        private Potion selectedPlayerPotion;
+
+        public Potion SelectedPlayerPotion
+        {
+            get { return selectedPlayerPotion; }
+            set { selectedPlayerPotion = value; }
+        }
+
+        //icommands
         public ICommand BuyAmmoCommand { get; set; }
         public ICommand BuyArmorCommand { get; set; }
         public ICommand BuyPotionCommand { get; set; }
         public ICommand BuyWeaponCommand { get; set; }
 
+        public ICommand SellAmmoCommand { get; set; }
+        public ICommand SellArmorCommand { get; set; }
+        public ICommand SellPotionCommand { get; set; }
+        public ICommand SellWeaponCommand { get; set; }
 
 
 
