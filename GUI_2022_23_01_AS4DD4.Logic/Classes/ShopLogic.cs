@@ -1,4 +1,6 @@
-﻿using GUI_2022_23_01_AS4DD4.Models;
+﻿using GUI_2022_23_01_AS4DD4.Logic.Interfaces;
+using GUI_2022_23_01_AS4DD4.Models;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,16 +11,49 @@ using System.Threading.Tasks;
 
 namespace GUI_2022_23_01_AS4DD4.Logic.Classes
 {
-    public class ShopLogic
+    public class ShopLogic : IShopLogic
     {
+        IMessenger messenger;
         public Player? player = new Player();
-        public List<Ammo>? AmmoList = new List<Ammo>();
-        public List<Armor>? ArmorList = new List<Armor>();
-        public List<Potion>? PotionList = new List<Potion>();
-        public List<Weapon>? WeaponList = new List<Weapon>();
+        public List<Ammo>? ammoList = new List<Ammo>();
+        public List<Armor>? armorList = new List<Armor>();
+        public List<Potion>? potionList = new List<Potion>();
+        public List<Weapon>? weaponList = new List<Weapon>();
 
-        public ShopLogic()
+        public Player Player 
+        { 
+            get => player; 
+            set => player = value; 
+        }
+
+
+        public List<Ammo> AmmoList
         {
+            get => ammoList;
+            set => ammoList = value;
+        }
+
+        public List<Armor> ArmorList
+        {
+            get => armorList;
+            set => armorList = value;
+        }
+
+        public List<Potion> PotionList
+        {
+            get => potionList;
+            set => potionList = value;
+        }
+
+        public List<Weapon> WeaponList
+        {
+            get => weaponList;
+            set => weaponList = value;
+        }
+
+        public ShopLogic(IMessenger messenger)
+        {
+            this.messenger = messenger;
             LoadAssets();
             //LoadPlayer(player.Name);
         }
@@ -63,6 +98,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             {
                 player.Ammo = ammo;
                 player.Money -= ammo.Price;
+                messenger.Send("Ammo bought", "ShopInfo");
                 SavePlayer(player);
                 //LoadPlayer(player.Name);
             }
@@ -75,6 +111,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             {
                 player.Money += (int)(0.8 * ammo.Price);
                 player.Ammo = null;
+                messenger.Send("Ammo sold", "ShopInfo");
                 SavePlayer(player);
             }
         }
@@ -86,6 +123,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             {
                 player.Armor = armor;
                 player.Money -= armor.Price;
+                messenger.Send("Armor bought", "ShopInfo");
                 SavePlayer(player);
             }
         }
@@ -96,6 +134,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             {
                 player.Money += (int)(0.8 * armor.Price);
                 player.Armor = null;
+                messenger.Send("Armor sold", "ShopInfo");
                 SavePlayer(player);
             }
         }
@@ -107,6 +146,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             {
                 player.Potions.Add(potion);
                 player.Money -= potion.Price;
+                messenger.Send("Potion bought", "ShopInfo");
                 SavePlayer(player);
             }
         }
@@ -117,6 +157,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             {
                 player.Money += (int)(0.8 * potion.Price);
                 player.Potions.Remove(potion);
+                messenger.Send("Potion sold", "ShopInfo");
                 SavePlayer(player);
             }
         }
@@ -128,6 +169,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             {
                 player.Weapon = weapon;
                 player.Money -= weapon.Price;
+                messenger.Send("Weapon bought", "ShopInfo");
                 SavePlayer(player);
             }
         }
@@ -138,9 +180,13 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             {
                 player.Money += (int)(0.8 * weapon.Price);
                 player.Weapon = null;
+                messenger.Send("Weapon sold", "ShopInfo");
                 SavePlayer(player);
             }
         }
+
+
+
 
     }
 }

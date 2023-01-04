@@ -1,15 +1,20 @@
 ﻿using GUI_2022_23_01_AS4DD4.Logic.Classes;
+using GUI_2022_23_01_AS4DD4.Logic.Interfaces;
 using GUI_2022_23_01_AS4DD4.Models;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
+using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
+using Microsoft.Toolkit.Mvvm.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
@@ -17,8 +22,8 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
     public class ShopWindowViewModel : ObservableRecipient
     {
 
-        private ShopLogic logic = new ShopLogic();
-
+        //ShopLogic logic = new ShopLogic();
+        IShopLogic logic; 
 
         public ObservableCollection<Ammo> Ammos { get; set; }
         public ObservableCollection<Armor> Armors { get; set; }
@@ -33,25 +38,27 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
 
 
         //ctor
-        public ShopWindowViewModel()
+        public ShopWindowViewModel(IShopLogic logic)
         {
+
+            this.logic = logic;
             logic.LoadAssets();
             logic.LoadPlayer("Barna");          //DEBUG
 
             //player = logic.player;
 
             //current equipment
-            currentAmmo = logic.player.Ammo;
-            currentArmor = logic.player.Armor;
-            currentWeapon = logic.player.Weapon;
-            PlayerPotions = new ObservableCollection<Potion>(logic.player.Potions);
+            currentAmmo = logic.Player.Ammo;
+            currentArmor = logic.Player.Armor;
+            currentWeapon = logic.Player.Weapon;
+            PlayerPotions = new ObservableCollection<Potion>(logic.Player.Potions);
 
 
             Ammos = new ObservableCollection<Ammo>(logic.AmmoList);
             Armors = new ObservableCollection<Armor>(logic.ArmorList);
             Potions = new ObservableCollection<Potion>(logic.PotionList);
             Weapons = new ObservableCollection<Weapon>(logic.WeaponList);
-            Money = logic.player.Money;
+            Money = logic.Player.Money;
 
 
             BuyAmmoCommand = new RelayCommand(
@@ -88,6 +95,34 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
                 () => { return currentWeapon != null; }
                 );
 
+
+            Messenger.Register<ShopWindowViewModel, string, string>(this, "ShopInfo", (recipient, msg) =>
+            {
+                OnPropertyChanged("CurrentAmmo");
+                OnPropertyChanged("CurrentArmor");
+                OnPropertyChanged("CurrentWeapon");
+                OnPropertyChanged("PlayerPotions");
+                OnPropertyChanged("Money");
+
+            });
+
+        }
+
+
+
+        public static bool IsInDesignMode
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
+        }
+
+
+        public ShopWindowViewModel()
+            : this(IsInDesignMode ? null : Ioc.Default.GetService<IShopLogic>())
+        {
 
         }
 

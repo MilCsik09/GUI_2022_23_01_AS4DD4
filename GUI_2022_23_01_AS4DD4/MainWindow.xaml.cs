@@ -1,5 +1,6 @@
 ﻿using GUI_2022_23_01_AS4DD4.Logic;
 using GUI_2022_23_01_AS4DD4.Logic.Classes;
+using GUI_2022_23_01_AS4DD4.Logic.Interfaces;
 using GUI_2022_23_01_AS4DD4.Windows;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace GUI_2022_23_01_AS4DD4
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ShooterLogic logic;
+        //public IShopLogic logic;
 
         //public Brush BackgroundBrush
         //{
@@ -40,8 +41,8 @@ namespace GUI_2022_23_01_AS4DD4
         public MainWindow()
         {
             InitializeComponent();
-            logic = new ShooterLogic();
-            logic.LoadAssets();         //lehet, hogy itt nincs is rá szükség
+            //logic = new ShopLogic();
+            //logic.LoadAssets();         //lehet, hogy itt nincs is rá szükség
             SetBackground();
         }
         //private void Dt_Tick(object? sender, EventArgs e)       //a GameWindowban fog kelleni
@@ -60,8 +61,8 @@ namespace GUI_2022_23_01_AS4DD4
 
         private void Window_Loaded(object? sender, EventArgs e)
         {
-            logic.GameOver += Logic_GameOver;
-            display.SetupModel(logic);
+            ////logic.GameOver += Logic_GameOver;
+            ////display.SetupModel(logic);
 
             //DispatcherTimer dt = new DispatcherTimer();
             //dt.Interval = TimeSpan.FromMilliseconds(100);
@@ -95,7 +96,9 @@ namespace GUI_2022_23_01_AS4DD4
 
         private void load_Click(object sender, RoutedEventArgs e)
         {
-            logic.LoadPlayer("Barna");//TODO change this to read string from GUI
+            //logic.LoadPlayer("Barna");//TODO change this to read string from GUI
+            GameWindow gw = new GameWindow();
+            gw.Show();
         }
         private void create_Click(object sender, RoutedEventArgs e)
         {
@@ -107,12 +110,12 @@ namespace GUI_2022_23_01_AS4DD4
 
         private void shop_Click(object sender, RoutedEventArgs e)
         {
-            ShopWindow sw = new ShopWindow(logic);
+            ShopWindow sw = new ShopWindow();
             sw.Show();
         }
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            logic.SavePlayer(logic.player);
+            //logic.SavePlayer(logic.player);
 
         }
 

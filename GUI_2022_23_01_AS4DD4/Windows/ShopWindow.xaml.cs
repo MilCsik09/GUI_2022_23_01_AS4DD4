@@ -1,4 +1,5 @@
 ﻿using GUI_2022_23_01_AS4DD4.Logic.Classes;
+using GUI_2022_23_01_AS4DD4.Logic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,9 @@ namespace GUI_2022_23_01_AS4DD4.Windows
     /// </summary>
     public partial class ShopWindow : Window
     {
-        public ShopWindow(ShooterLogic logic)
+        public ShopWindow()
         {
             InitializeComponent();
-            this.DataContext = logic; 
         }
     }
 }
