@@ -1,21 +1,42 @@
-﻿using System.CodeDom;
+﻿using Microsoft.Toolkit.Mvvm.ComponentModel;
+using System.CodeDom;
 
 namespace GUI_2022_23_01_AS4DD4.Models
 {
-    public class Ammo
+    public class Ammo : ObservableObject
     {
-
-        public string Name { get; set; }
-        public int Damage { get; set; }
-        public int Number { get; set; }
-        public int Price { get; set; }
-        public Ammo(string name, int damage, int number, int price)
+        private string name;
+        public string Name
         {
-            Name = name;
-            Damage = damage;
-            Number = number;
-            Price = price;
+            get { return name; }
+            set { SetProperty(ref name, value); }
         }
+        private int damage;
+        public int Damage
+        {
+            get { return damage; }
+            set { SetProperty(ref damage, value); }
+        }
+        private int number;
+        public int Number
+        {
+            get { return number; }
+            set { SetProperty(ref number, value); }
+        }
+        private int price;
+        public int Price
+        {
+            get { return price; }
+            set { SetProperty(ref price, value); }
+        }
+         
+        //public Ammo(string name, int damage, int number, int price)
+        //{
+        //    Name = name;
+        //    Damage = damage;
+        //    Number = number;
+        //    Price = price;
+        //}
 
         public Ammo()
         {

@@ -7,15 +7,15 @@
         xmlns:vms="clr-namespace:GUI_2022_23_01_AS4DD4.WPF.Viewmodels"
         mc:Ignorable="d"
         Title="ShopWindow" Height="800" Width="800">
-    <!--<Window.DataContext>
+    <Window.DataContext>
         <vms:ShopWindowViewModel/>
-    </Window.DataContext>-->
+    </Window.DataContext>
     
     <Grid>
 
-        <Grid.DataContext>
+        <!--<Grid.DataContext>
             <vms:ShopWindowViewModel/>
-        </Grid.DataContext>
+        </Grid.DataContext>-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
