@@ -29,13 +29,134 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
         public ObservableCollection<Armor> Armors { get; set; }
         public ObservableCollection<Potion> Potions { get; set; }
         public ObservableCollection<Weapon> Weapons { get; set; }
+        public ObservableCollection<Potion> PlayerPotions { get; set; }
         public int Money { get; set; }
 
         //public Ammo currentAmmo { get; set; }     //lejjebb a propertyknél
         //public Armor currentArmor { get; set; }
         //public Weapon currentWeapon { get; set; }
-        public ObservableCollection<Potion> PlayerPotions { get; set; }
 
+
+        //ammo
+        private Ammo selectedAmmo;
+
+        public Ammo SelectedAmmo
+        {
+            get { return selectedAmmo; }
+            set
+            {
+                SetProperty(ref selectedAmmo, value);
+                (BuyAmmoCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
+        //armor
+        private Armor selectedArmor;
+
+        public Armor SelectedArmor
+        {
+            get { return selectedArmor; }
+            set
+            {
+                SetProperty(ref selectedArmor, value);
+                (BuyArmorCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
+        //potion
+        private Potion selectedPotion;
+
+        public Potion SelectedPotion
+        {
+            get { return selectedPotion; }
+            set
+            {
+                SetProperty(ref selectedPotion, value);
+                (BuyPotionCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
+        //weapon
+        private Weapon selectedWeapon;
+
+        public Weapon SelectedWeapon
+        {
+            get { return selectedWeapon; }
+            set
+            {
+                SetProperty(ref selectedWeapon, value);
+                (BuyWeaponCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
+        //current ammo
+        private Ammo currentAmmo;
+
+        public Ammo CurrentAmmo
+        {
+            get { return currentAmmo; }
+            set { currentAmmo = value; }
+        }
+
+        //current armor
+        private Armor currentArmor;
+
+        public Armor CurrentArmor
+        {
+            get { return currentArmor; }
+            set { currentArmor = value; }
+        }
+
+        //current weapon
+        private Weapon currentWeapon;
+
+        public Weapon CurrentWeapon
+        {
+            get { return currentWeapon; }
+            set { currentWeapon = value; }
+        }
+
+        //current potions - selected item
+        private Potion selectedPlayerPotion;
+
+        public Potion SelectedPlayerPotion
+        {
+            get { return selectedPlayerPotion; }
+            set
+            {
+                SetProperty(ref selectedPlayerPotion, value);
+                (SellPotionCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
+        }
+
+        //icommands
+        public ICommand BuyAmmoCommand { get; set; }
+        public ICommand BuyArmorCommand { get; set; }
+        public ICommand BuyPotionCommand { get; set; }
+        public ICommand BuyWeaponCommand { get; set; }
+
+        public ICommand SellAmmoCommand { get; set; }
+        public ICommand SellArmorCommand { get; set; }
+        public ICommand SellPotionCommand { get; set; }
+        public ICommand SellWeaponCommand { get; set; }
+
+
+
+        public static bool IsInDesignMode
+        {
+            get
+            {
+                var prop = DesignerProperties.IsInDesignModeProperty;
+                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
+            }
+        }
+
+
+        public ShopWindowViewModel()
+            : this(IsInDesignMode ? null : Ioc.Default.GetService<IShopLogic>())
+        {
+
+        }
 
         //ctor
         public ShopWindowViewModel(IShopLogic logic)
@@ -110,125 +231,9 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
 
 
 
-        public static bool IsInDesignMode
-        {
-            get
-            {
-                var prop = DesignerProperties.IsInDesignModeProperty;
-                return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
-            }
-        }
 
 
-        public ShopWindowViewModel()
-            : this(IsInDesignMode ? null : Ioc.Default.GetService<IShopLogic>())
-        {
-
-        }
-
-
-        //ammo
-        private Ammo selectedAmmo;
-
-        public Ammo SelectedAmmo
-        {
-            get { return selectedAmmo; }
-            set 
-            {
-                SetProperty(ref selectedAmmo, value);
-                (BuyAmmoCommand as RelayCommand).NotifyCanExecuteChanged();
-            }
-        }
-
-        //armor
-        private Armor selectedArmor;
-
-        public Armor SelectedArmor
-        {
-            get { return selectedArmor; }
-            set
-            {
-                SetProperty(ref selectedArmor, value);
-                (BuyArmorCommand as RelayCommand).NotifyCanExecuteChanged();
-            }
-        }
-
-        //potion
-        private Potion selectedPotion;
-
-        public Potion SelectedPotion
-        {
-            get { return selectedPotion; }
-            set
-            {
-                SetProperty(ref selectedPotion, value);
-                (BuyPotionCommand as RelayCommand).NotifyCanExecuteChanged();
-            }
-        }
-
-        //weapon
-        private Weapon selectedWeapon;
-
-        public Weapon SelectedWeapon
-        {
-            get { return selectedWeapon; }
-            set 
-            {
-                SetProperty(ref selectedWeapon, value);
-                (BuyWeaponCommand as RelayCommand).NotifyCanExecuteChanged();
-            }
-        }
-
-        //current ammo
-        private Ammo currentAmmo;
-
-        public Ammo CurrentAmmo
-        {
-            get { return currentAmmo; }
-            set { currentAmmo = value; }
-        }
-
-        //current armor
-        private Armor currentArmor;
-
-        public Armor CurrentArmor
-        {
-            get { return currentArmor; }
-            set { currentArmor = value; }
-        }
-
-        //current weapon
-        private Weapon currentWeapon;
-
-        public Weapon CurrentWeapon
-        {
-            get { return currentWeapon; }
-            set { currentWeapon = value; }
-        }
-
-        //current potions - selected item
-        private Potion selectedPlayerPotion;
-
-        public Potion SelectedPlayerPotion
-        {
-            get { return selectedPlayerPotion; }
-            set 
-            {
-                SetProperty(ref selectedPlayerPotion, value);
-                (SellPotionCommand as RelayCommand).NotifyCanExecuteChanged();
-            }
-        }
-
-        //icommands
-        public ICommand BuyAmmoCommand { get; set; }
-        public ICommand BuyArmorCommand { get; set; }
-        public ICommand BuyPotionCommand { get; set; }
-        public ICommand BuyWeaponCommand { get; set; }
-
-        public ICommand SellAmmoCommand { get; set; }
-        public ICommand SellArmorCommand { get; set; }
-        public ICommand SellPotionCommand { get; set; }
-        public ICommand SellWeaponCommand { get; set; }
+ 
 
 
 
