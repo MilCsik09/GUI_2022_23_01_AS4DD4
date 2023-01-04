@@ -11,6 +11,13 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Interfaces
         List<Potion> PotionList { get; }
         List<Weapon> WeaponList { get; }
 
+        int GetMoney { get; }
+
+        Ammo GetCurrentAmmo { get; }
+        Armor GetCurrentArmor { get; }
+        List<Potion> GetCurrentPotions { get; }
+        Weapon GetCurrentWeapon { get; }
+
 
         void BuyAmmo(Ammo ammo);
         void BuyArmor(Armor armor);
@@ -19,9 +26,9 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Interfaces
         void LoadAssets();
         void LoadPlayer(string playerName);
         void SavePlayer(Player player);
-        void SellAmmo(Ammo ammo);
-        void SellArmor(Armor armor);
+        void SellAmmo();
+        void SellArmor();
         void SellPotion(Potion potion);
-        void SellWeapon(Weapon weapon);
+        void SellWeapon();
     }
 }

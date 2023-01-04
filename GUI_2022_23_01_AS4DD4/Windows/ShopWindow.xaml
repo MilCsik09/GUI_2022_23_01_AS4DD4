@@ -72,7 +72,7 @@
                 <Button Content="Buy Potion" Command="{Binding BuyPotionCommand}" Margin="10" Padding="10"/>
                 <Button Content="Sell Potion" Command="{Binding SellPotionCommand}" Margin="10" Padding="10"/>
             </StackPanel>
-            <ListBox ItemsSource="{Binding PlayerPotions}" SelectedItem="{Binding SelectedPlayerPotion}">
+            <ListBox ItemsSource="{Binding CurrentPotions}" SelectedItem="{Binding SelectedPlayerPotion}" Height="80">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Name}"/>

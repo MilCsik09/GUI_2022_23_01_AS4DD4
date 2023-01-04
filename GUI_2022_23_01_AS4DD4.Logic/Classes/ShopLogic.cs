@@ -59,6 +59,44 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
         }
 
 
+        //for UI update
+        public int GetMoney
+        {
+            get
+            {
+                return Player.Money;
+            }
+        }
+        public Ammo GetCurrentAmmo
+        {
+            get
+            {
+                return Player.Ammo;
+            }
+        }
+        public Armor GetCurrentArmor
+        {
+            get
+            {
+                return Player.Armor;
+            }
+        }
+        public List<Potion> GetCurrentPotions
+        {
+            get
+            {
+                return Player.Potions;
+            }
+        }
+        public Weapon GetCurrentWeapon
+        {
+            get
+            {
+                return Player.Weapon;
+            }
+        }
+
+
 
         public void LoadAssets()
         {
@@ -105,11 +143,11 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
 
         }
 
-        public void SellAmmo(Ammo ammo)
+        public void SellAmmo()
         {
-            if (ammo != null)
+            if (player.Ammo != null)
             {
-                player.Money += (int)(0.8 * ammo.Price);
+                player.Money += (int)(0.8 * player.Ammo.Price);
                 player.Ammo = null;
                 messenger.Send("Ammo sold", "ShopInfo");
                 SavePlayer(player);
@@ -128,11 +166,11 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             }
         }
 
-        public void SellArmor(Armor armor)
+        public void SellArmor()
         {
-            if (armor != null)
+            if (player.Armor != null)
             {
-                player.Money += (int)(0.8 * armor.Price);
+                player.Money += (int)(0.8 * player.Armor.Price);
                 player.Armor = null;
                 messenger.Send("Armor sold", "ShopInfo");
                 SavePlayer(player);
@@ -151,15 +189,17 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             }
         }
 
-        public void SellPotion(Potion potion)
+        public void SellPotion(Potion potionToSell)
         {
-            if (potion != null)
+
+            if (player.Potions.Contains(potionToSell) && player.Potions.Count > 0)
             {
-                player.Money += (int)(0.8 * potion.Price);
-                player.Potions.Remove(potion);
+                player.Money += (int)(0.8 * potionToSell.Price);
+                player.Potions.Remove(potionToSell);
                 messenger.Send("Potion sold", "ShopInfo");
                 SavePlayer(player);
             }
+
         }
 
         //weapon
@@ -174,11 +214,11 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             }
         }
 
-        public void SellWeapon(Weapon weapon)
+        public void SellWeapon()
         {
-            if (weapon != null)
+            if (player.Weapon != null)
             {
-                player.Money += (int)(0.8 * weapon.Price);
+                player.Money += (int)(0.8 * player.Weapon.Price);
                 player.Weapon = null;
                 messenger.Send("Weapon sold", "ShopInfo");
                 SavePlayer(player);

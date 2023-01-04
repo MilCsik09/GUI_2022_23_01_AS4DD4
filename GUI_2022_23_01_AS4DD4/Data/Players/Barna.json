@@ -33,21 +33,11 @@
   "Experience": 0,
   "ExperienceNeeded": 200,
   "Weapon": {
-    "Name": "Pistol",
-    "BaseDamage": 10,
-    "Price": 20
+    "Name": "Heavy Pistol",
+    "BaseDamage": 20,
+    "Price": 40
   },
   "Potions": [
-    {
-      "Name": "Minor",
-      "HealthRegeneration": 25,
-      "Price": 5
-    },
-    {
-      "Name": "Major",
-      "HealthRegeneration": 50,
-      "Price": 5
-    },
     {
       "Name": "Minor",
       "HealthRegeneration": 25,
@@ -61,11 +51,11 @@
     "Price": 25
   },
   "Armor": {
-    "Name": "Medium",
-    "Protection": 15,
-    "DamageReducton": 10,
-    "Price": 20
+    "Name": "Heavy",
+    "Protection": 20,
+    "DamageReducton": 15,
+    "Price": 30
   },
-  "Money": 5805,
+  "Money": 5246,
   "TimeToShoot": 20
 }
