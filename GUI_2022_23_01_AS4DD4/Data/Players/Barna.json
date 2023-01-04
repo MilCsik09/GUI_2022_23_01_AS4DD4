@@ -33,14 +33,14 @@
   "Experience": 0,
   "ExperienceNeeded": 200,
   "Weapon": {
-    "Name": "Revolver",
-    "BaseDamage": 30,
-    "Price": 100
+    "Name": "Heavy Pistol",
+    "BaseDamage": 20,
+    "Price": 40
   },
   "Potions": [
     {
-      "Name": "Major",
-      "HealthRegeneration": 50,
+      "Name": "Minor",
+      "HealthRegeneration": 25,
       "Price": 5
     }
   ],
@@ -56,6 +56,6 @@
     "DamageReducton": 10,
     "Price": 20
   },
-  "Money": 4012,
+  "Money": 6040,
   "TimeToShoot": 20
 }

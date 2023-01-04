@@ -53,16 +53,40 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             Weapons = new ObservableCollection<Weapon>(logic.WeaponList);
             Money = logic.player.Money;
 
-            
-            BuyAmmoCommand = new RelayCommand(() => { logic.BuyAmmo(selectedAmmo); });
-            BuyArmorCommand = new RelayCommand(() => { logic.BuyArmor(selectedArmor); });
-            BuyPotionCommand = new RelayCommand(() => { logic.BuyPotion(selectedPotion); });
-            BuyWeaponCommand = new RelayCommand(() => { logic.BuyWeapon(selectedWeapon); });
 
-            SellAmmoCommand = new RelayCommand(() => { logic.SellAmmo(currentAmmo); });
-            SellArmorCommand = new RelayCommand(() => { logic.SellArmor(currentArmor); });
-            SellPotionCommand = new RelayCommand(() => { logic.SellPotion(selectedPlayerPotion); });
-            SellWeaponCommand = new RelayCommand(() => { logic.SellWeapon(currentWeapon); });
+            BuyAmmoCommand = new RelayCommand(
+                () => { logic.BuyAmmo(selectedAmmo); },
+                () => { return selectedAmmo != null; }
+                );
+            BuyArmorCommand = new RelayCommand(
+                () => { logic.BuyArmor(selectedArmor); },
+                () => { return selectedArmor != null; }
+                );
+            BuyPotionCommand = new RelayCommand(
+                () => { logic.BuyPotion(selectedPotion); },
+                () => { return selectedPotion != null; }
+                );
+            BuyWeaponCommand = new RelayCommand(
+                () => { logic.BuyWeapon(selectedWeapon); },
+                () => { return selectedWeapon != null; }
+                );
+
+            SellAmmoCommand = new RelayCommand(
+                () => { logic.SellAmmo(currentAmmo); },
+                () => { return currentAmmo != null; }
+                );
+            SellArmorCommand = new RelayCommand(
+                () => { logic.SellArmor(currentArmor); },
+                () => { return currentArmor != null; }
+                );
+            SellPotionCommand = new RelayCommand(
+                () => { logic.SellPotion(selectedPlayerPotion); },
+                () => { return selectedPlayerPotion != null; }
+                );
+            SellWeaponCommand = new RelayCommand(
+                () => { logic.SellWeapon(currentWeapon); },
+                () => { return currentWeapon != null; }
+                );
 
 
         }
@@ -74,7 +98,11 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
         public Ammo SelectedAmmo
         {
             get { return selectedAmmo; }
-            set { selectedAmmo = value; }
+            set 
+            {
+                SetProperty(ref selectedAmmo, value);
+                (BuyAmmoCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
         }
 
         //armor
@@ -83,7 +111,11 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
         public Armor SelectedArmor
         {
             get { return selectedArmor; }
-            set { selectedArmor = value; }
+            set
+            {
+                SetProperty(ref selectedArmor, value);
+                (BuyArmorCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
         }
 
         //potion
@@ -92,7 +124,11 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
         public Potion SelectedPotion
         {
             get { return selectedPotion; }
-            set { selectedPotion = value; }
+            set
+            {
+                SetProperty(ref selectedPotion, value);
+                (BuyPotionCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
         }
 
         //weapon
@@ -101,7 +137,11 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
         public Weapon SelectedWeapon
         {
             get { return selectedWeapon; }
-            set { selectedWeapon = value; }
+            set 
+            {
+                SetProperty(ref selectedWeapon, value);
+                (BuyWeaponCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
         }
 
         //current ammo
@@ -137,7 +177,11 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
         public Potion SelectedPlayerPotion
         {
             get { return selectedPlayerPotion; }
-            set { selectedPlayerPotion = value; }
+            set 
+            {
+                SetProperty(ref selectedPlayerPotion, value);
+                (SellPotionCommand as RelayCommand).NotifyCanExecuteChanged();
+            }
         }
 
         //icommands
