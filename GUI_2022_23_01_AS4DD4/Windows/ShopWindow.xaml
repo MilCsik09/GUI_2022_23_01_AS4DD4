@@ -69,10 +69,10 @@
             <Label Content="Potion" Background="LightBlue" Padding="10"/>
             <!--<TextBox Text="{Binding SelectedTeacher.Name}" Padding="10" Margin="0,0,0,30"/>-->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Content="Buy Potion" Command="{Binding BuyPotionCommand}" Margin="10" Padding="10"/>
-                <Button Content="Sell Potion" Command="{Binding SellPotionCommand}" Margin="10" Padding="10"/>
+                <Button Content="Buy Potion" Command="{Binding BuyPotionCommand}" Click="BuyPotion_Click" Margin="10" Padding="10"/>
+                <Button Content="Sell Potion" Command="{Binding SellPotionCommand}" Click="SellPotion_Click" Margin="10" Padding="10"/>
             </StackPanel>
-            <ListBox ItemsSource="{Binding CurrentPotions}" SelectedItem="{Binding SelectedPlayerPotion}" Height="80">
+            <ListBox x:Name="PlayerpotionsListBox" ItemsSource="{Binding CurrentPotions}" SelectedItem="{Binding SelectedPlayerPotion}" Height="80">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding Name}"/>

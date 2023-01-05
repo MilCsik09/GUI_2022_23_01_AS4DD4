@@ -227,6 +227,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
                 () => { logic.SellPotion(selectedPlayerPotion); },
                 () => { return SelectedPlayerPotion != null; }
                 );
+
             SellWeaponCommand = new RelayCommand(
                 () => { logic.SellWeapon(); }
                 //() => { return CurrentWeapon != null; }
