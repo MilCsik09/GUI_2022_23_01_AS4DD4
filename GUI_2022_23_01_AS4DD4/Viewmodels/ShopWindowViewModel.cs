@@ -126,24 +126,24 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
 
         //current potions
 
-        public List<Potion> CurrentPotions
+        public Potion CurrentPotion
         {
-            get { return logic.GetCurrentPotions; }
+            get { return logic.GetCurrentPotion; }
         }
 
 
         //current potions - selected item
-        private Potion selectedPlayerPotion;
+        //private Potion selectedPlayerPotion;
 
-        public Potion SelectedPlayerPotion
-        {
-            get { return selectedPlayerPotion; }
-            set
-            {
-                SetProperty(ref selectedPlayerPotion, value);
-                (SellPotionCommand as RelayCommand).NotifyCanExecuteChanged();
-            }
-        }
+        //public Potion SelectedPlayerPotion
+        //{
+        //    get { return selectedPlayerPotion; }
+        //    set
+        //    {
+        //        SetProperty(ref selectedPlayerPotion, value);
+        //        (SellPotionCommand as RelayCommand).NotifyCanExecuteChanged();
+        //    }
+        //}
 
         //icommands
         public ICommand BuyAmmoCommand { get; set; }
@@ -224,8 +224,9 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
                 //() => { return CurrentArmor != null; }
                 );
             SellPotionCommand = new RelayCommand(
-                () => { logic.SellPotion(selectedPlayerPotion); },
-                () => { return SelectedPlayerPotion != null; }
+                () => { logic.SellPotion(); }
+                //() => { logic.SellPotion(selectedPlayerPotion); }
+                //() => { return SelectedPlayerPotion != null; }
                 );
 
             SellWeaponCommand = new RelayCommand(
@@ -240,7 +241,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
                 OnPropertyChanged("CurrentArmor");
                 OnPropertyChanged("CurrentWeapon");
                 //OnPropertyChanged("PlayerPotions");
-                OnPropertyChanged("CurrentPotions");
+                OnPropertyChanged("CurrentPotion");
                 OnPropertyChanged("Money");
 
             });

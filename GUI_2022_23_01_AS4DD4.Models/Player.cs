@@ -21,7 +21,8 @@ namespace GUI_2022_23_01_AS4DD4.Models
 
         public Weapon Weapon { get; set; }
         
-        public List<Potion> Potions { get; set; }
+        public Potion Potion { get; set; }
+        //public List<Potion> Potions { get; set; }
         public Ammo Ammo { get; set; }
         public Armor Armor { get; set; }
         private int money;

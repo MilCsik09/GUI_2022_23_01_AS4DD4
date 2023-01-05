@@ -26,14 +26,5 @@ namespace GUI_2022_23_01_AS4DD4.Windows
             InitializeComponent();
         }
 
-        private void SellPotion_Click(object sender, RoutedEventArgs e)
-        {
-            PlayerpotionsListBox.Items.Refresh();
-        }
-
-        private void BuyPotion_Click(object sender, RoutedEventArgs e)
-        {
-            PlayerpotionsListBox.Items.Refresh();
-        }
     }
 }

@@ -172,7 +172,8 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
 
         public void BuyPotion(Potion potion)
         {
-            this.player.Potions.Add(potion);
+            this.player.Potion = potion;
+            //this.player.Potions.Add(potion);
 
         }
 

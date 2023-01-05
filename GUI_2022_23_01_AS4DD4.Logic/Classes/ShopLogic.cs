@@ -81,13 +81,20 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
                 return Player.Armor;
             }
         }
-        public List<Potion> GetCurrentPotions
+        public Potion GetCurrentPotion
         {
             get
             {
-                return Player.Potions;
+                return Player.Potion;
             }
         }
+        //public List<Potion> GetCurrentPotions
+        //{
+        //    get
+        //    {
+        //        return Player.Potions;
+        //    }
+        //}
         public Weapon GetCurrentWeapon
         {
             get
@@ -182,25 +189,49 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
         {
             if (player.Money >= potion.Price)
             {
-                player.Potions.Add(potion);
+                player.Potion = potion;
                 player.Money -= potion.Price;
                 messenger.Send("Potion bought", "ShopInfo");
                 SavePlayer(player);
             }
         }
 
-        public void SellPotion(Potion potionToSell)
+        public void SellPotion()
         {
 
-            if (player.Potions.Contains(potionToSell) && player.Potions.Count > 0)
+            if (player.Potion != null)
             {
-                player.Money += (int)(0.8 * potionToSell.Price);
-                player.Potions.Remove(potionToSell);
+                player.Money += (int)(0.8 * player.Potion.Price);
+                player.Potion = null;
                 messenger.Send("Potion sold", "ShopInfo");
                 SavePlayer(player);
             }
 
         }
+
+        //public void BuyPotion(Potion potion)
+        //{
+        //    if (player.Money >= potion.Price)
+        //    {
+        //        player.Potions.Add(potion);
+        //        player.Money -= potion.Price;
+        //        messenger.Send("Potion bought", "ShopInfo");
+        //        SavePlayer(player);
+        //    }
+        //}
+
+        //public void SellPotion(Potion potionToSell)
+        //{
+
+        //    if (player.Potions.Contains(potionToSell) && player.Potions.Count > 0)
+        //    {
+        //        player.Money += (int)(0.8 * potionToSell.Price);
+        //        player.Potions.Remove(potionToSell);
+        //        messenger.Send("Potion sold", "ShopInfo");
+        //        SavePlayer(player);
+        //    }
+
+        //}
 
         //weapon
         public void BuyWeapon(Weapon weapon)
