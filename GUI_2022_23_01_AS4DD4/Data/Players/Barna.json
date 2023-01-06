@@ -38,22 +38,22 @@
     "Price": 40
   },
   "Potion": {
-    "Name": "Minor",
-    "HealthRegeneration": 25,
+    "Name": "Major",
+    "HealthRegeneration": 50,
     "Price": 5
   },
   "Ammo": {
-    "Name": "Standard",
-    "Damage": 5,
+    "Name": "Advanced",
+    "Damage": 25,
     "Number": 30,
-    "Price": 5
+    "Price": 25
   },
   "Armor": {
-    "Name": "Medium",
-    "Protection": 15,
-    "DamageReducton": 10,
-    "Price": 20
+    "Name": "Heavy",
+    "Protection": 20,
+    "DamageReducton": 15,
+    "Price": 30
   },
-  "Money": 4665,
+  "Money": 4593,
   "TimeToShoot": 20
 }
