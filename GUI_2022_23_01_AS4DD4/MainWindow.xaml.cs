@@ -2,6 +2,7 @@
 using GUI_2022_23_01_AS4DD4.Logic.Classes;
 using GUI_2022_23_01_AS4DD4.Logic.Interfaces;
 using GUI_2022_23_01_AS4DD4.Windows;
+using GUI_2022_23_01_AS4DD4.WPF.Windows;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -97,8 +98,9 @@ namespace GUI_2022_23_01_AS4DD4
         private void load_Click(object sender, RoutedEventArgs e)
         {
             //logic.LoadPlayer("Barna");//TODO change this to read string from GUI
-            GameWindow gw = new GameWindow();
-            gw.Show();
+            //GameWindow gw = new GameWindow();
+            LoadWindow lw = new LoadWindow();
+            lw.Show();
         }
         private void create_Click(object sender, RoutedEventArgs e)
         {

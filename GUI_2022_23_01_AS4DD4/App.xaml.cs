@@ -23,6 +23,7 @@ namespace GUI_2022_23_01_AS4DD4
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                     //.AddSingleton<IShooterLogic, ShooterLogic>()
+                    .AddSingleton<ILoadLogic, LoadLogic>()
                     .AddSingleton<IShopLogic, ShopLogic>()
                     .AddSingleton<IMessenger>(WeakReferenceMessenger.Default)
                     .BuildServiceProvider()
