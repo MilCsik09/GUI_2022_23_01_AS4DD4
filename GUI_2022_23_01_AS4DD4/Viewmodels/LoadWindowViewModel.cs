@@ -1,5 +1,6 @@
 ﻿using GUI_2022_23_01_AS4DD4.Logic.Interfaces;
 using GUI_2022_23_01_AS4DD4.Models;
+using GUI_2022_23_01_AS4DD4.WPF.Windows;
 using Microsoft.Toolkit.Mvvm.ComponentModel;
 using Microsoft.Toolkit.Mvvm.DependencyInjection;
 using Microsoft.Toolkit.Mvvm.Input;
@@ -18,6 +19,8 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
 {
     public class LoadWindowViewModel : ObservableRecipient
     {
+
+        
 
         //logic
         ILoadLogic logic;
@@ -80,11 +83,25 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
 
 
             LoadPlayerCommand = new RelayCommand(
-                () => { logic.LoadPlayer(selectedProfile); },
+                () => {Window current = Application.Current.MainWindow;
+                        Player player = logic.LoadPlayer(selectedProfile);
+                        MainWindow mw = new MainWindow(player);
+                        current.Close();
+                        App.Current.MainWindow = mw;
+                        mw.Show();
+                        
+                },
                 () => selectedProfile != null
                 );
             DeletePlayerCommand = new RelayCommand(
-                () => { logic.DeletePlayer(selectedProfile); },
+                () => {Window current = Application.Current.MainWindow;
+                        logic.DeletePlayer(selectedProfile);
+                        LoadWindow lw = new LoadWindow();
+                        current.Close();
+                        Application.Current.MainWindow = lw;
+                        lw.Show();
+                        
+                },
                 () => selectedProfile != null
                 );
 

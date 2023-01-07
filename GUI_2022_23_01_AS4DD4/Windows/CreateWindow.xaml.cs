@@ -1,4 +1,5 @@
-﻿using GUI_2022_23_01_AS4DD4.Models;
+﻿using GUI_2022_23_01_AS4DD4.Logic.Classes;
+using GUI_2022_23_01_AS4DD4.Models;
 using GUI_2022_23_01_AS4DD4.WPF.Viewmodels;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,12 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
     /// </summary>
     public partial class CreateWindow : Window
     {
+        LoadLogic logic = new LoadLogic();
         public CreateWindow()
         {
             InitializeComponent();
             var vm = new CreateWindowViewModel();
-            vm.Setup();
+            //vm.Setup();
             this.DataContext = vm;
         }
 
@@ -36,10 +38,26 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-
+            Window current = Application.Current.MainWindow;
+            Player newPlayer = new Player();
+            if(nameTextBox.Text == "")
+            {
+                newPlayer.Name = "Anonymus";
+            }
+            else 
+            {
+                newPlayer.Name = nameTextBox.Text;
+            }
+            
             nameTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-            MainWindow mw = new MainWindow();
-            mw.ShowDialog();
+            MainWindow mw = new MainWindow(newPlayer);
+            current.Close();
+            App.Current.MainWindow = mw;
+            mw.Show();
+            logic.SavePlayer(newPlayer);
+
+
+
 
             this.DialogResult = true;
         }

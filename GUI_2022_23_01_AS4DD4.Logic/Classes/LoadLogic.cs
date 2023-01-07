@@ -16,7 +16,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
     {
         Player player = new Player();
         IMessenger messenger;
-        IList<string> playerList = new List<string>();
+        IList<string> playerList;
 
         public Player Player
         {
@@ -30,7 +30,10 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             set => playerList = value;
         }
 
+        public LoadLogic()
+        {
 
+        }
 
         public LoadLogic(IMessenger messenger)
         {
@@ -42,7 +45,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
 
         public void LoadAssets()
         {
-            playerList.Clear();
+            playerList = new List<string>();
             string[] files = Directory.GetFiles(@"..\..\..\Data\Players");
 
             foreach (var file in files)
@@ -76,16 +79,16 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
 
 
 
-        public void LoadPlayer(string playerName)
+        public Player LoadPlayer(string playerName)
         {
 
             string fileName = playerName + ".json";
             string path = Path.Combine(@"..\..\..\Data\Players", fileName);
 
-            player =
-                JsonSerializer.Deserialize<Player>(File.ReadAllText(path));
+            
 
             messenger.Send("Player loaded", "PlayerInfo");
+            return JsonSerializer.Deserialize<Player>(File.ReadAllText(path));
         }
 
         public void SavePlayer(Player player)

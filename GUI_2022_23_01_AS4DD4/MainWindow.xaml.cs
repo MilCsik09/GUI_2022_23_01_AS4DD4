@@ -1,6 +1,7 @@
 ﻿using GUI_2022_23_01_AS4DD4.Logic;
 using GUI_2022_23_01_AS4DD4.Logic.Classes;
 using GUI_2022_23_01_AS4DD4.Logic.Interfaces;
+using GUI_2022_23_01_AS4DD4.Models;
 using GUI_2022_23_01_AS4DD4.Windows;
 using GUI_2022_23_01_AS4DD4.WPF.Windows;
 using System;
@@ -28,6 +29,14 @@ namespace GUI_2022_23_01_AS4DD4
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Player player;
+
+       public static Player Player
+        {
+            get { return ((MainWindow)Application.Current.MainWindow).player; }
+            set { ((MainWindow)Application.Current.MainWindow).player = value; }
+        }
+
         //public IShopLogic logic;
 
         //public Brush BackgroundBrush
@@ -39,11 +48,12 @@ namespace GUI_2022_23_01_AS4DD4
         //    }
         //}
 
-        public MainWindow()
+        public MainWindow(Player player)
         {
             InitializeComponent();
             //logic = new ShopLogic();
             //logic.LoadAssets();         //lehet, hogy itt nincs is rá szükség
+            this.player = player;
             SetBackground();
         }
         //private void Dt_Tick(object? sender, EventArgs e)       //a GameWindowban fog kelleni
@@ -97,10 +107,15 @@ namespace GUI_2022_23_01_AS4DD4
 
         private void load_Click(object sender, RoutedEventArgs e)
         {
-            //logic.LoadPlayer("Barna");//TODO change this to read string from GUI
-            //GameWindow gw = new GameWindow();
+
+            Window current = Application.Current.MainWindow;
             LoadWindow lw = new LoadWindow();
+            current.Close();            
+            App.Current.MainWindow = lw;
             lw.Show();
+
+            
+            
         }
         private void create_Click(object sender, RoutedEventArgs e)
         {

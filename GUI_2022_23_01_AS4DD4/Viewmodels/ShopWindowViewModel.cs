@@ -180,7 +180,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
 
             this.logic = logic;
             logic.LoadAssets();
-            logic.LoadPlayer("Barna");                      //DEBUG
+            logic.LoadPlayer(MainWindow.Player.Name);
 
             //player = logic.player;
 

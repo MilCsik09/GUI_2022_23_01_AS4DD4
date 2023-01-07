@@ -13,18 +13,18 @@ namespace GUI_2022_23_01_AS4DD4.Models
     {
 
 
-        public int Health { get; set; }
+        public int Health { get; set; } = 100;
         public string Name { get; set; }
-        public Level Level { get; set; }
+        public Level Level { get; set; } = new Level();
         public int Experience { get; set; } = 0;
         public int ExperienceNeeded { get; set; } = 400;
 
-        public Weapon Weapon { get; set; }
-        
-        public Potion Potion { get; set; }
+        public Weapon Weapon { get; set; } = new Weapon("NailGun", 1, 200);
+
+        public Potion Potion { get; set; } = new Potion();
         //public List<Potion> Potions { get; set; }
-        public Ammo Ammo { get; set; }
-        public Armor Armor { get; set; }
+        public Ammo Ammo { get; set; } = new Ammo();
+        public Armor Armor { get; set; } = new Armor();
         private int money;
         public int Money
         {

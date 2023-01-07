@@ -9,7 +9,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Interfaces
         IList<string> PlayerList { get; set; }
 
         void LoadAssets();
-        void LoadPlayer(string playerName);
+        Player LoadPlayer(string playerName);
         void SavePlayer(Player player);
         void DeletePlayer(string playerName);
     }

@@ -17,10 +17,11 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
     /// <summary>
     /// Interaction logic for LoadWindow.xaml
     /// </summary>
+    /// 
     public partial class LoadWindow : Window
     {
-
         
+
         public LoadWindow()
         {
             InitializeComponent();
