@@ -1,0 +1,34 @@
+{
+  "Health": 100,
+  "Name": "Mil\u00E1n",
+  "Level": {
+    "Name": null,
+    "Enemy": null
+  },
+  "Experience": 0,
+  "ExperienceNeeded": 400,
+  "Weapon": {
+    "Name": "NailGun",
+    "BaseDamage": 1,
+    "Price": 200
+  },
+  "Potion": {
+    "Name": null,
+    "HealthRegeneration": 0,
+    "Price": 0
+  },
+  "Ammo": {
+    "Name": null,
+    "Damage": 0,
+    "Number": 0,
+    "Price": 0
+  },
+  "Armor": {
+    "Name": null,
+    "Protection": 0,
+    "DamageReducton": 0,
+    "Price": 0
+  },
+  "Money": 0,
+  "TimeToShoot": 10
+}

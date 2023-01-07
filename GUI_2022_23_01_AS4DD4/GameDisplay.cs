@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.IO;
+using System.Windows.Controls;
+using GUI_2022_23_01_AS4DD4.Windows;
 
 namespace GUI_2022_23_01_AS4DD4
 {
@@ -81,14 +83,9 @@ namespace GUI_2022_23_01_AS4DD4
         }
 
 
-        public void DrawBackground(DrawingContext dc)
-        {
-            dc.DrawRectangle(BackgroundBrush, null, new Rect(0, 0, size.Width, size.Height));
-        }
-
         public void DrawSign(DrawingContext dc)
         {
-            dc.DrawRectangle(SignBrush, null, new Rect( (size.Width / 16) * 13, (size.Height / 9) * 6, size.Width/6, size.Height/6 ));      //kinda reszponzív
+            dc.DrawRectangle(SignBrush, null, new Rect( size.Width-100, size.Height-100, size.Width/4, size.Height/4 ));      //kinda reszponzív
         }
 
         public void DrawEnemy(DrawingContext dc)        //random position az ablakban, ha legyőztük, akkor eltűnik és kirajzolja a következőt a listából
@@ -107,30 +104,31 @@ namespace GUI_2022_23_01_AS4DD4
         }
 
 
-
-
-
-
-
         protected override void OnRender(DrawingContext dc)
         {
-
-            base.OnRender(dc);
-            if (size.Width > 0 && size.Height > 0)
-            {
-
-                
-
-                DrawBackground(dc);
                 DrawSign(dc);
-                //DrawEnemy(dc);
-                //DrawCrossHair(dc);
-                
-            }
+                // Load the bandit and crosshair images
+                var banditImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Bandit.png"), UriKind.RelativeOrAbsolute));
+                var crosshairImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Crosshair.png"), UriKind.RelativeOrAbsolute));
+
+                // Generate a random position for the bandit image within the bounds of the grid
+                Random rnd = new Random();
+                double x = rnd.Next(0, (int)(GameWindow.Grid.ActualWidth - (banditImage.Width*1.3)));
+                double y = rnd.Next(0, (int)(GameWindow.Grid.ActualHeight - (banditImage.Height*1.3)));
+
+                // Draw the bandit image at the random position
+                dc.DrawImage(banditImage, new Rect(x, y, banditImage.Width, banditImage.Height));
+                Point banditPosition = new Point(x, y);
+
+                // Generate random positions for the crosshair images within the bounds of the bandit image
+                for (int i = 0; i < 5; i++)
+                {
+                    x = rnd.Next(0, (int)(banditImage.Width*0.45));
+                    y = rnd.Next(0, (int)(banditImage.Height*0.7));
+                    dc.DrawImage(crosshairImage, new Rect(x + banditPosition.X + 50, y + banditPosition.Y, crosshairImage.Width * 0.25, crosshairImage.Height * 0.25));
+                }
             
-
         }
-
 
 
     }

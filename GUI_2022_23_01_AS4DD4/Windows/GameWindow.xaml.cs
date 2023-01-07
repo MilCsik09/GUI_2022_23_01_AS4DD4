@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using GUI_2022_23_01_AS4DD4;
+using GUI_2022_23_01_AS4DD4.Models;
 using GUI_2022_23_01_AS4DD4.WPF;
+using Path = System.IO.Path;
 
 namespace GUI_2022_23_01_AS4DD4.Windows
 {
@@ -21,20 +23,35 @@ namespace GUI_2022_23_01_AS4DD4.Windows
     /// </summary>
     public partial class GameWindow : Window
     {
+
+        public static Grid Grid
+        {
+            get { return ((MainWindow)Application.Current.MainWindow).grid; }
+            set { ((MainWindow)Application.Current.MainWindow).grid = value; }
+        }
+
+
         //Display display = new Display();
 
         //GameDisplay display = new GameDisplay();          //xaml-ben beállítva
 
         public GameWindow()
-        {
+        {            
             InitializeComponent();
-            
-            //grid.Background = display.BackgroundBrush;
+            SetBackground();
+
+
             //display.DrawSign(grid);
             //display.DrawEnemy();
 
 
 
+        }
+        private void SetBackground()
+        {
+            ImageBrush myBrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Background.jpg"), UriKind.RelativeOrAbsolute)));
+
+            this.Background = myBrush;
         }
 
 
@@ -47,7 +64,6 @@ namespace GUI_2022_23_01_AS4DD4.Windows
             //dt.Interval = TimeSpan.FromMilliseconds(100);
             //dt.Tick += Dt_Tick;
             //dt.Start();
-
             display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
             //logic.SetupSizes((new System.Windows.Size((int)grid.ActualWidth, (int)grid.ActualHeight)));
         }

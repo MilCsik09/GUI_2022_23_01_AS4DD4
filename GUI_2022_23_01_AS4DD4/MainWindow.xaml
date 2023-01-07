@@ -7,7 +7,7 @@
         xmlns:viewmodel="clr-namespace:GUI_2022_23_01_AS4DD4"
         xmlns:display="clr-namespace:GUI_2022_23_01_AS4DD4.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged">
+        Title="MainWindow" Height="720" Width="1280" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" WindowState="Maximized" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Grid x:Name="grid">
         <StackPanel x:Name="stack">
         <Button x:Name="load" Content="Load" HorizontalAlignment="Center" VerticalAlignment="Top" Click="load_Click" Margin="30"/>

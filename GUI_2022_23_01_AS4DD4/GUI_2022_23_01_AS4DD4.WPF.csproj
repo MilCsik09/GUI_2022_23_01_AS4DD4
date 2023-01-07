@@ -10,7 +10,6 @@
   <ItemGroup>
     <None Remove="Images\Background.jpg" />
     <None Remove="Images\Bandit.png" />
-    <None Remove="Images\Crosshair.png" />
     <None Remove="Images\Potion.png" />
     <None Remove="Images\Sign.png" />
   </ItemGroup>
@@ -20,9 +19,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Bandit.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Crosshair.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Potion.png">
