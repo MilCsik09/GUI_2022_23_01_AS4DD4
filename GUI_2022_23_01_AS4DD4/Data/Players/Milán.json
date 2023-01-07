@@ -2,33 +2,58 @@
   "Health": 100,
   "Name": "Mil\u00E1n",
   "Level": {
-    "Name": null,
-    "Enemy": null
+    "Name": "First",
+    "Enemy": [
+      {
+        "Name": "Bandit",
+        "Health": 100,
+        "DamageToPlayer": 12,
+        "Size": {
+          "IsEmpty": false,
+          "Width": 20,
+          "Height": 20
+        },
+        "XPGiven": 50,
+        "MoneyGiven": 50
+      },
+      {
+        "Name": "Bandit",
+        "Health": 100,
+        "DamageToPlayer": 12,
+        "Size": {
+          "IsEmpty": false,
+          "Width": 20,
+          "Height": 20
+        },
+        "XPGiven": 50,
+        "MoneyGiven": 50
+      }
+    ]
   },
   "Experience": 0,
   "ExperienceNeeded": 400,
   "Weapon": {
-    "Name": "NailGun",
-    "BaseDamage": 1,
-    "Price": 200
+    "Name": "Sniper Rifle",
+    "BaseDamage": 10000,
+    "Price": 2000
   },
   "Potion": {
-    "Name": null,
+    "Name": "Water Bottle",
     "HealthRegeneration": 0,
     "Price": 0
   },
   "Ammo": {
-    "Name": null,
-    "Damage": 0,
-    "Number": 0,
+    "Name": "Sniper Bullet",
+    "Damage": 100000,
+    "Number": 1000,
     "Price": 0
   },
   "Armor": {
-    "Name": null,
-    "Protection": 0,
+    "Name": "Riot Armor",
+    "Protection": 1000,
     "DamageReducton": 0,
     "Price": 0
   },
-  "Money": 0,
+  "Money": 1000000,
   "TimeToShoot": 10
 }

@@ -3,8 +3,12 @@ using GUI_2022_23_01_AS4DD4.Models;
 using GUI_2022_23_01_AS4DD4.WPF.Viewmodels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace GUI_2022_23_01_AS4DD4.WPF.Windows
 {
@@ -38,6 +43,12 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            string path = Path.Combine(@"..\..\..\Data\Levels", "levels.json");
+            List<Level> levels;
+            levels = JsonSerializer.Deserialize<Level[]>(File.ReadAllText(path)).ToList<Level>();
+            
+
+
             Window current = Application.Current.MainWindow;
             Player newPlayer = new Player();
             if(nameTextBox.Text == "")
@@ -48,7 +59,9 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
             {
                 newPlayer.Name = nameTextBox.Text;
             }
-            
+
+            newPlayer.Level = levels[0];
+
             nameTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             MainWindow mw = new MainWindow(newPlayer);
             current.Close();

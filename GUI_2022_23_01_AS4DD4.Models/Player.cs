@@ -15,7 +15,7 @@ namespace GUI_2022_23_01_AS4DD4.Models
 
         public int Health { get; set; } = 100;
         public string Name { get; set; }
-        public Level Level { get; set; } = new Level();
+        public Level Level { get; set; }
         public int Experience { get; set; } = 0;
         public int ExperienceNeeded { get; set; } = 400;
 

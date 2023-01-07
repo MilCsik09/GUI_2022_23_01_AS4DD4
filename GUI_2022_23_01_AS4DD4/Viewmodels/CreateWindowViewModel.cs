@@ -13,10 +13,6 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
         
         public Player NewPlayer { get; set; }
 
-        //public void Setup(Player player)
-        //{
-        //    this.NewPlayer = player;
-        //}
 
         public void Setup()
         {
