@@ -18,7 +18,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <ListBox ItemsSource="{Binding Profiles}" SelectedItem="{Binding SelectedProfile}" Grid.Row="0">
+        <ListBox x:Name="playersListBox" ItemsSource="{Binding Profiles}" SelectedItem="{Binding SelectedProfile}" Grid.Row="0">
             <!--<ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label Content="{Binding }"/>
@@ -27,6 +27,7 @@
         </ListBox>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1">
+            <Button Content="New Player" Click="create_Click" Margin="30" Padding="10"/>
             <Button Content="Load Player" Command="{Binding LoadPlayerCommand}" Margin="30" Padding="10"/>
             <Button Content="Delete Player" Command="{Binding DeletePlayerCommand}" Margin="30" Padding="10"/>
         </StackPanel>

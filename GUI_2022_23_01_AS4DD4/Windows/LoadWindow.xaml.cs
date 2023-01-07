@@ -26,6 +26,16 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
             InitializeComponent();
         }
 
+        private void create_Click(object sender, RoutedEventArgs e)
+        {
+            CreateWindow cw = new CreateWindow();
+            cw.ShowDialog();
+        }
+
+
+
+
+
         //private void Window_Loaded(object? sender, EventArgs e)
         //{
 

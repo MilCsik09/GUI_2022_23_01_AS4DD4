@@ -1,0 +1,15 @@
+﻿<Window x:Class="GUI_2022_23_01_AS4DD4.WPF.Windows.CreateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_2022_23_01_AS4DD4.WPF.Windows"
+        mc:Ignorable="d"
+        Title="CreateWindow" Height="150" Width="319">
+
+    <StackPanel x:Name="stack">
+        <Label Content="Name:" Padding="10" Background="LightBlue" HorizontalContentAlignment="Center" />
+        <TextBox x:Name="nameTextBox" Text="{Binding NewPlayer.Name, UpdateSourceTrigger=Explicit}" HorizontalContentAlignment="Center" Padding="10"/>
+        <Button Content="Save" Padding="10" Click="Save_Click"  />
+    </StackPanel>
+</Window>
