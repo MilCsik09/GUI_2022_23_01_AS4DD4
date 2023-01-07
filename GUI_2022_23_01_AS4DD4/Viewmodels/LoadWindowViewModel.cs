@@ -73,6 +73,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
         public LoadWindowViewModel(ILoadLogic logic)
         {
             this.logic = logic;
+
             logic.LoadAssets();
 
             Profiles = new ObservableCollection<String>(logic.PlayerList);
@@ -80,20 +81,21 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
 
             LoadPlayerCommand = new RelayCommand(
                 () => { logic.LoadPlayer(selectedProfile); },
-                () => { return selectedProfile != null; }
+                () => selectedProfile != null
                 );
             DeletePlayerCommand = new RelayCommand(
                 () => { logic.DeletePlayer(selectedProfile); },
-                () => { return selectedProfile != null; }
+                () => selectedProfile != null
                 );
 
 
-            //Messenger.Register<ShopWindowViewModel, string, string>(this, "LoadInfo", (recipient, msg) =>
-            //{
-            //    OnPropertyChanged("CurrentAmmo");
+            Messenger.Register<LoadWindowViewModel, string, string>(this, "PlayerInfo", (recipient, msg) =>
+            {
+                OnPropertyChanged("LoadPlayerCommand");
+                OnPropertyChanged("DeletePlayerCommand");
 
 
-            //});
+            });
 
         }
 

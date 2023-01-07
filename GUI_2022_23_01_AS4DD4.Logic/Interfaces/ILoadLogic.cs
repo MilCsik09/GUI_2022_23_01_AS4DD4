@@ -6,7 +6,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Interfaces
     public interface ILoadLogic
     {
         Player Player { get; set; }
-        List<string> PlayerList { get; set; }
+        IList<string> PlayerList { get; set; }
 
         void LoadAssets();
         void LoadPlayer(string playerName);

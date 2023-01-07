@@ -16,7 +16,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
     {
         Player player = new Player();
         IMessenger messenger;
-        List<string> playerList = new List<string>();
+        IList<string> playerList = new List<string>();
 
         public Player Player
         {
@@ -24,7 +24,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             set => player = value;
         }
 
-        public List<string> PlayerList
+        public IList<string> PlayerList
         {
             get => playerList;
             set => playerList = value;
@@ -84,6 +84,8 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
 
             player =
                 JsonSerializer.Deserialize<Player>(File.ReadAllText(path));
+
+            messenger.Send("Player loaded", "PlayerInfo");
         }
 
         public void SavePlayer(Player player)
@@ -101,6 +103,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             string path = Path.Combine(@"..\..\..\Data\Players", fileName);
 
             File.Delete(path);
+            messenger.Send("Player removed", "PlayerInfo");
         }
     }
 }
