@@ -30,6 +30,25 @@ namespace GUI_2022_23_01_AS4DD4.Windows
             set { ((MainWindow)Application.Current.MainWindow).grid = value; }
         }
 
+        private void GameDisplay_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point mousePosition = e.GetPosition(display);
+
+            for (int i = 0; i < display.crosshairPositions.Count; i++)
+            {
+                Point crosshairPosition = display.crosshairPositions[i];
+                Rect crosshairBounds = new Rect(crosshairPosition.X, crosshairPosition.Y, display.crosshairImage.Width * 0.25, display.crosshairImage.Height * 0.25);
+                if (crosshairBounds.Contains(mousePosition))
+                {
+                    display.crosshairPositions.RemoveAt(i);
+                    break;
+                }
+            }
+
+            // Invalidate the display to redraw it
+            display.InvalidateVisual();
+        }
+
 
         //Display display = new Display();
 
@@ -64,7 +83,7 @@ namespace GUI_2022_23_01_AS4DD4.Windows
             //dt.Interval = TimeSpan.FromMilliseconds(100);
             //dt.Tick += Dt_Tick;
             //dt.Start();
-            display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
+            //display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
             //logic.SetupSizes((new System.Windows.Size((int)grid.ActualWidth, (int)grid.ActualHeight)));
         }
         private void Logic_GameOver(object? sender, EventArgs e)
@@ -78,14 +97,14 @@ namespace GUI_2022_23_01_AS4DD4.Windows
 
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if (grid.ActualWidth > 0 && grid.ActualHeight > 0)
+            /*if (grid.ActualWidth > 0 && grid.ActualHeight > 0)
             {
                 display.Resize(new Size()
                 {
                     Width = grid.ActualWidth,
                     Height = grid.ActualHeight
                 });
-            }
+            }*/
 
         }
 

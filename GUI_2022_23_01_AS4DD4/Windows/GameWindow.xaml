@@ -10,6 +10,6 @@
     <Grid x:Name="grid" Width="1280" Height="720">
 
 
-        <display:GameDisplay x:Name="display"/>
+        <display:GameDisplay x:Name="display" MouseLeftButtonDown="GameDisplay_MouseLeftButtonDown"/>
     </Grid>
 </Window>

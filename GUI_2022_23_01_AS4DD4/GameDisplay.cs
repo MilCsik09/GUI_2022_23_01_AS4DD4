@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.IO;
 using System.Windows.Controls;
 using GUI_2022_23_01_AS4DD4.Windows;
+using System.Windows.Input;
 
 namespace GUI_2022_23_01_AS4DD4
 {
@@ -29,42 +30,7 @@ namespace GUI_2022_23_01_AS4DD4
             this.model.Changed += (sender, eventargs) => this.InvalidateVisual();
         }
 
-        public void SetupSizes(Size size)
-        {
-            this.size = size;
-            this.InvalidateVisual();
-
-        }
-
-        public void Resize(Size size)
-        {
-            this.size = size;
-            InvalidateVisual();
-        }
-
-        public Brush BackgroundBrush
-        {
-            get
-            {
-                return new ImageBrush(new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Background.jpg"), UriKind.RelativeOrAbsolute)));
-            }
-        }
-
-        public Brush EnemyBrush
-        {
-            get
-            {
-                return new ImageBrush(new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Bandit.png"), UriKind.RelativeOrAbsolute)));
-            }
-        }
-
-        public Brush CrossHairBrush
-        {
-            get
-            {
-                return new ImageBrush(new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Crosshair.png"), UriKind.RelativeOrAbsolute)));
-            }
-        }
+       
 
         public Brush PotionBrush
         {
@@ -82,53 +48,64 @@ namespace GUI_2022_23_01_AS4DD4
             }
         }
 
-
         public void DrawSign(DrawingContext dc)
         {
             dc.DrawRectangle(SignBrush, null, new Rect( size.Width-100, size.Height-100, size.Width/4, size.Height/4 ));      //kinda reszponzív
         }
 
-        public void DrawEnemy(DrawingContext dc)        //random position az ablakban, ha legyőztük, akkor eltűnik és kirajzolja a következőt a listából
+        public List<Point> crosshairPositions = new List<Point>();
+        public Point banditPosition;
+        public BitmapImage banditImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Bandit.png"), UriKind.RelativeOrAbsolute));
+        public BitmapImage crosshairImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Crosshair.png"), UriKind.RelativeOrAbsolute));
+        bool drawn = false;
+
+
+        public void GenerateAssets(DrawingContext dc)
         {
-            //int enemyPositionX = r.Next(0, (int)size.Width);
-            //int enemyPositionY = r.Next(0, (int)size.Height);
+            
+            // Generate a random position for the bandit image within the bounds of the grid
+            Random rnd = new Random();
+            double x = rnd.Next(0, (int)(GameWindow.Grid.ActualWidth - (banditImage.Width * 1.3)));
+            double y = rnd.Next(0, (int)(GameWindow.Grid.ActualHeight - (banditImage.Height * 1.3)));
 
-            Point enemyPosition = new Point(r.Next(0, (int)size.Width), r.Next(0, (int)size.Height));
+            // Draw the bandit image at the random position
+            dc.DrawImage(banditImage, new Rect(x, y, banditImage.Width, banditImage.Height));
+            banditPosition = new Point(x, y);
 
-            dc.DrawRectangle(EnemyBrush, null, new Rect(enemyPosition.X, enemyPosition.Y, size.Width / 16, size.Height / 16));
+            // Generate random positions for the crosshair images within the bounds of the bandit image
+            for (int i = 0; i < 5; i++)
+            {
+                x = rnd.Next(0, (int)(banditImage.Width * 0.45));
+                y = rnd.Next(0, (int)(banditImage.Height * 0.7));
+                Point crosshairPosition = new Point(x + banditPosition.X + 50, y + banditPosition.Y);
+                crosshairPositions.Add(crosshairPosition);
+                dc.DrawImage(crosshairImage, new Rect(crosshairPosition.X, crosshairPosition.Y, crosshairImage.Width * 0.25, crosshairImage.Height * 0.25));
+            }
+            drawn = true;
         }
-
-        public void DrawCrossHair(DrawingContext dc)        //segédmetódus a DrawEnemyhez, playeren belül relatív random pozíció
-        {
-            //dc.DrawRectangle(CrossHairBrush, null, new Rect(model.Enemy.Position.X + r.Next(0, 100), model.Enemy.Position.Y + r.Next(0, 100), 50, 50));
-        }
-
+        
 
         protected override void OnRender(DrawingContext dc)
         {
-                DrawSign(dc);
-                // Load the bandit and crosshair images
-                var banditImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Bandit.png"), UriKind.RelativeOrAbsolute));
-                var crosshairImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Crosshair.png"), UriKind.RelativeOrAbsolute));
-
-                // Generate a random position for the bandit image within the bounds of the grid
-                Random rnd = new Random();
-                double x = rnd.Next(0, (int)(GameWindow.Grid.ActualWidth - (banditImage.Width*1.3)));
-                double y = rnd.Next(0, (int)(GameWindow.Grid.ActualHeight - (banditImage.Height*1.3)));
-
-                // Draw the bandit image at the random position
-                dc.DrawImage(banditImage, new Rect(x, y, banditImage.Width, banditImage.Height));
-                Point banditPosition = new Point(x, y);
-
-                // Generate random positions for the crosshair images within the bounds of the bandit image
-                for (int i = 0; i < 5; i++)
+            if (!drawn)
+            {
+                GenerateAssets(dc);
+            }
+            else
+            {
+                dc.DrawImage(banditImage, new Rect(banditPosition.X, banditPosition.Y, banditImage.Width, banditImage.Height));
+                for (int i = 0; i<crosshairPositions.Count; i++)
                 {
-                    x = rnd.Next(0, (int)(banditImage.Width*0.45));
-                    y = rnd.Next(0, (int)(banditImage.Height*0.7));
-                    dc.DrawImage(crosshairImage, new Rect(x + banditPosition.X + 50, y + banditPosition.Y, crosshairImage.Width * 0.25, crosshairImage.Height * 0.25));
+                    Point crosshairPosition = crosshairPositions[i];
+                    dc.DrawImage(crosshairImage, new Rect(crosshairPosition.X, crosshairPosition.Y, crosshairImage.Width * 0.25, crosshairImage.Height * 0.25));
                 }
+            }
             
+
         }
+
+        
+
 
 
     }
