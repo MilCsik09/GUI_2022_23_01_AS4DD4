@@ -37,11 +37,7 @@
     "BaseDamage": 10000,
     "Price": 2000
   },
-  "Potion": {
-    "Name": "Water Bottle",
-    "HealthRegeneration": 0,
-    "Price": 0
-  },
+  "Potion": null,
   "Ammo": {
     "Name": "Advanced",
     "Damage": 25,

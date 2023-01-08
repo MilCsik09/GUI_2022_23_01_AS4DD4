@@ -37,31 +37,12 @@ namespace GUI_2022_23_01_AS4DD4
             set { ((MainWindow)Application.Current.MainWindow).player = value; }
         }
 
-        //public IShopLogic logic;
-
-        //public Brush BackgroundBrush
-        //{
-        //    get
-        //    {
-        //        return new ImageBrush(new BitmapImage(new Uri(Path.Combine("Images", "Background"), UriKind.RelativeOrAbsolute)));
-        //        //return new ImageBrush(new BitmapImage(new Uri("pack://application:,,,/;component/Images/Background.jpg"), UriKind.RelativeOrAbsolute));
-        //    }
-        //}
-
         public MainWindow(Player player)
         {
             InitializeComponent();
-            //logic = new ShopLogic();
-            //logic.LoadAssets();         //lehet, hogy itt nincs is rá szükség
             this.player = player;
             SetBackground();
         }
-        //private void Dt_Tick(object? sender, EventArgs e)       //a GameWindowban fog kelleni
-        //{
-        //    logic.TimeStep();
-        //}
-
-
 
         private void SetBackground()
         {
@@ -69,41 +50,6 @@ namespace GUI_2022_23_01_AS4DD4
 
             grid.Background = myBrush;
         }
-
-        private void Window_Loaded(object? sender, EventArgs e)
-        {
-            ////logic.GameOver += Logic_GameOver;
-            ////display.SetupModel(logic);
-
-            //DispatcherTimer dt = new DispatcherTimer();
-            //dt.Interval = TimeSpan.FromMilliseconds(100);
-            //dt.Tick += Dt_Tick;
-            //dt.Start();
-
-            //display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
-            //logic.SetupSizes((new System.Windows.Size((int)grid.ActualWidth, (int)grid.ActualHeight)));
-        }
-        private void Logic_GameOver(object? sender, EventArgs e)
-        {
-            var result = MessageBox.Show("Game over");
-            if (result == MessageBoxResult.OK)
-            {
-                this.Close();
-            }
-        }
-
-        /*private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (grid.ActualWidth > 0 && grid.ActualHeight > 0)
-            {
-                display.Resize(new Size()
-                {
-                    Width = grid.ActualWidth,
-                    Height = grid.ActualHeight
-                });
-            }
-
-        }*/
 
         private void load_Click(object sender, RoutedEventArgs e)
         {
@@ -122,8 +68,7 @@ namespace GUI_2022_23_01_AS4DD4
             LoadLogic ll = new LoadLogic();
             MainWindow.Player = ll.LoadPlayer(player.Name);
             GameWindow gw = new GameWindow();            
-            gw.Show();
-            gw.ContentRendered += Window_Loaded;
+            gw.Show();            
         }
 
 
@@ -134,8 +79,7 @@ namespace GUI_2022_23_01_AS4DD4
         }
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            //logic.SavePlayer(logic.player);
-
+            //AUTOSAVE ALREADY ENABLED!
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
