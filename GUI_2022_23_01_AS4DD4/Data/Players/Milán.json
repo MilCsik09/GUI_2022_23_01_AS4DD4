@@ -42,18 +42,13 @@
     "HealthRegeneration": 0,
     "Price": 0
   },
-  "Ammo": {
-    "Name": "Sniper Bullet",
-    "Damage": 100000,
-    "Number": 10000,
-    "Price": 0
-  },
+  "Ammo": null,
   "Armor": {
     "Name": "Riot Armor",
     "Protection": 1000,
     "DamageReducton": 0.5,
     "Price": 0
   },
-  "Money": 267,
+  "Money": 151,
   "TimeToShoot": 10
 }

@@ -38,8 +38,18 @@
     "Price": 100
   },
   "Potion": null,
-  "Ammo": null,
-  "Armor": null,
-  "Money": 5396,
+  "Ammo": {
+    "Name": "Advanced",
+    "Damage": 25,
+    "Number": 54,
+    "Price": 25
+  },
+  "Armor": {
+    "Name": "Medium",
+    "Protection": 15,
+    "DamageReducton": 0.8,
+    "Price": 20
+  },
+  "Money": 5271,
   "TimeToShoot": 20
 }
