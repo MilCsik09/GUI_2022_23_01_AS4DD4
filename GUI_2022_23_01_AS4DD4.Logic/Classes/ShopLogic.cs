@@ -141,7 +141,23 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
         {
             if (player.Money >= ammo.Price)
             {
-                player.Ammo = ammo;
+                if (player.Ammo != null)
+                {
+                    if (player.Ammo.Name.Equals(ammo.Name))
+                    {
+                        player.Ammo.Number += ammo.Number;
+                    }
+                    else
+                    {
+                        player.Ammo = ammo;
+                    }
+                }
+                
+                else
+                {
+                    player.Ammo = ammo;
+                }
+                //player.Ammo = ammo;
                 player.Money -= ammo.Price;
                 messenger.Send("Ammo bought", "ShopInfo");
                 SavePlayer(player);
@@ -154,7 +170,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
         {
             if (player.Ammo != null)
             {
-                player.Money += (int)(0.8 * player.Ammo.Price);
+                player.Money += player.Ammo.Price;
                 player.Ammo = null;
                 messenger.Send("Ammo sold", "ShopInfo");
                 SavePlayer(player);
@@ -179,7 +195,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
         {
             if (player.Armor != null)
             {
-                player.Money += (int)(0.8 * player.Armor.Price);
+                player.Money += player.Armor.Price;
                 player.Armor = null;
                 messenger.Send("Armor sold", "ShopInfo");
                 SavePlayer(player);
@@ -205,7 +221,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
 
             if (player.Potion != null)
             {
-                player.Money += (int)(0.8 * player.Potion.Price);
+                player.Money += player.Potion.Price;
                 player.Potion = null;
                 messenger.Send("Potion sold", "ShopInfo");
                 SavePlayer(player);
@@ -255,7 +271,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
         {
             if (player.Weapon != null)
             {
-                player.Money += (int)(0.8 * player.Weapon.Price);
+                player.Money += player.Weapon.Price;
                 player.Weapon = null;
                 messenger.Send("Weapon sold", "ShopInfo");
                 SavePlayer(player);
