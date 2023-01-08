@@ -65,6 +65,7 @@ namespace GUI_2022_23_01_AS4DD4
         int maxTime = 7;
         int timeToShoot;
         public int moneyEarned = 0;
+        public int healRemaining = 1;
 
         public void StartGame(DrawingContext dc)
         {
@@ -77,6 +78,7 @@ namespace GUI_2022_23_01_AS4DD4
                                                 Brushes.Red);
 
             dc.DrawText(startText, new Point(GameWindow.Grid.ActualWidth / 4 - startText.Width / 4, GameWindow.Grid.ActualHeight / 4 - startText.Height / 4));
+            
         }
 
         public void GenerateEnemy(DrawingContext dc)
@@ -134,7 +136,6 @@ namespace GUI_2022_23_01_AS4DD4
 
         public void MoneyEarnedDisplay(DrawingContext dc)
         {
-            isRunning = true;
             FormattedText moneyText = new FormattedText("Money Earned:" + moneyEarned,
                                                 CultureInfo.CurrentCulture,
                                                 FlowDirection.LeftToRight,
@@ -147,15 +148,41 @@ namespace GUI_2022_23_01_AS4DD4
 
         public void AmmoDisplay(DrawingContext dc)
         {
-            isRunning = true;
-            FormattedText ammoText = new FormattedText("Ammo: " + MainWindow.Player.Ammo.Number,
+            if(MainWindow.Player.Ammo == null)
+            {
+                FormattedText ammoText = new FormattedText("Ammo: " + 0,
                                                 CultureInfo.CurrentCulture,
                                                 FlowDirection.LeftToRight,
                                                 new Typeface("Arial"),
                                                 36,
                                                 Brushes.Red);
 
-            dc.DrawText(ammoText, new Point(720, 720));
+                dc.DrawText(ammoText, new Point(720, 720));
+            }
+            else
+            {
+                FormattedText ammoText = new FormattedText("Ammo: " + MainWindow.Player.Ammo.Number,
+                                                CultureInfo.CurrentCulture,
+                                                FlowDirection.LeftToRight,
+                                                new Typeface("Arial"),
+                                                36,
+                                                Brushes.Red);
+
+                dc.DrawText(ammoText, new Point(720, 720));
+            }
+            
+        }
+
+        public void PotionDisplay(DrawingContext dc)
+        {
+            FormattedText potiText = new FormattedText("Potion: " + healRemaining,
+                                                CultureInfo.CurrentCulture,
+                                                FlowDirection.LeftToRight,
+                                                new Typeface("Arial"),
+                                                36,
+                                                Brushes.Red);
+
+            dc.DrawText(potiText, new Point(360, 720));
         }
 
 
@@ -164,8 +191,20 @@ namespace GUI_2022_23_01_AS4DD4
             timeToShoot -= 1;
             if(timeToShoot == 0)
             {
-                MainWindow.Player.Health -= (int)(20 * MainWindow.Player.Armor.DamageReducton);
+                if(MainWindow.Player.Armor != null)
+                {
+                    MainWindow.Player.Health -= (int)(20 * MainWindow.Player.Armor.DamageReducton);
+                }
+                else
+                {
+                    MainWindow.Player.Health -= (20);
+                }
+                
                 timeToShoot = maxTime;
+            }else if(MainWindow.Player.Health <= 0)
+            {
+                gameover = true;
+                isRunning = false;
             }
             InvalidateVisual();
         }
@@ -177,6 +216,22 @@ namespace GUI_2022_23_01_AS4DD4
                 StartGame(dc);
                 PlayerHealthDisplay(dc);
                 AmmoDisplay(dc);
+                if(MainWindow.Player.Potion != null)
+                {
+                    healRemaining = 1;
+                }
+                else
+                {
+                    healRemaining = 0;
+                }
+                if (MainWindow.Player.Ammo != null)
+                {
+
+                }
+                else
+                {
+                    healRemaining = 0;
+                }
             }
             else if (!drawn && isRunning && !gameover)
             {
@@ -185,6 +240,7 @@ namespace GUI_2022_23_01_AS4DD4
                 TimeDisplay(dc);
                 MoneyEarnedDisplay(dc);
                 AmmoDisplay(dc);
+                PotionDisplay(dc);
             }
             else if (crosshairPositions.Count != 0 && !gameover)
             {
@@ -198,6 +254,7 @@ namespace GUI_2022_23_01_AS4DD4
                 TimeDisplay(dc);
                 MoneyEarnedDisplay(dc);
                 AmmoDisplay(dc);
+                PotionDisplay(dc);
             }
             else if(!gameover)
             {
@@ -209,6 +266,7 @@ namespace GUI_2022_23_01_AS4DD4
                 moneyEarned += 10;
                 MoneyEarnedDisplay(dc);
                 AmmoDisplay(dc);
+                PotionDisplay(dc);
                 MainWindow.Player.Money += 10;
 
             }

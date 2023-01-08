@@ -51,10 +51,23 @@ namespace GUI_2022_23_01_AS4DD4.Windows
             {
                 dt = new DispatcherTimer();
                 isRunning = true;
-                display.InvalidateVisual();                
-                dt.Interval = TimeSpan.FromMilliseconds(1000);
+                display.InvalidateVisual();
+                if (MainWindow.Player.Ammo == null)
+                {
+                    GameWindow.dt.Interval = TimeSpan.FromMilliseconds(100);
+                }
+                else
+                {
+                    dt.Interval = TimeSpan.FromMilliseconds(1000);
+                }                
                 dt.Tick += display.Timer;
                 dt.Start();
+            }else if(e.Key == Key.H && isRunning && display.healRemaining > 0)
+            {
+                display.healRemaining -= 1;
+                MainWindow.Player.Health += MainWindow.Player.Potion.HealthRegeneration;
+                MainWindow.Player.Potion = null;
+                display.InvalidateVisual();
             }
         }
 
@@ -68,7 +81,7 @@ namespace GUI_2022_23_01_AS4DD4.Windows
                 {
                     Point crosshairPosition = display.crosshairPositions[i];
                     Rect crosshairBounds = new Rect(crosshairPosition.X, crosshairPosition.Y, display.crosshairImage.Width * 0.25, display.crosshairImage.Height * 0.25);
-                    if (crosshairBounds.Contains(mousePosition))
+                    if (crosshairBounds.Contains(mousePosition) && (MainWindow.Player.Ammo != null))
                     {
                         display.crosshairPositions.RemoveAt(i);
                         display.moneyEarned += 1;
@@ -76,9 +89,17 @@ namespace GUI_2022_23_01_AS4DD4.Windows
                         MainWindow.Player.Ammo.Number -= 1;
                         break;
                     }
-                    if(i == display.crosshairPositions.Count - 1)
+                    if((i == display.crosshairPositions.Count - 1) && (MainWindow.Player.Ammo != null))
                     {
-                        MainWindow.Player.Health -= (int)(10 * MainWindow.Player.Armor.DamageReducton);
+                        if (MainWindow.Player.Armor != null)
+                        {
+                            MainWindow.Player.Health -= (int)(10 * MainWindow.Player.Armor.DamageReducton);
+                        }
+                        else
+                        {
+                            MainWindow.Player.Health -= (10);
+                        }
+
                         MainWindow.Player.Ammo.Number -= 1;
                     }                                        
                 }
@@ -87,11 +108,13 @@ namespace GUI_2022_23_01_AS4DD4.Windows
                     display.gameover = true;
                     isRunning = false;
                 }
-                if (MainWindow.Player.Ammo.Number <= 0)
+                if (MainWindow.Player.Ammo != null)
                 {
-                    display.gameover = true;
-                    isRunning = false;
-                    MainWindow.Player.Ammo.Number = 0;
+                    if (MainWindow.Player.Ammo.Number <= 0)
+                    {
+                        MainWindow.Player.Ammo = null;
+                        dt.Interval = TimeSpan.FromMilliseconds(100);
+                    }
                 }
 
                 display.InvalidateVisual();
