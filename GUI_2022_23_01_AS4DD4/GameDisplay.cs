@@ -12,6 +12,7 @@ using System.Windows.Controls;
 using GUI_2022_23_01_AS4DD4.Windows;
 using System.Windows.Input;
 using System.Globalization;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GUI_2022_23_01_AS4DD4
 {
@@ -47,7 +48,7 @@ namespace GUI_2022_23_01_AS4DD4
 
         public void DrawSign(DrawingContext dc)
         {
-            dc.DrawRectangle(SignBrush, null, new Rect( size.Width-100, size.Height-100, size.Width/4, size.Height/4 ));      //kinda reszponzív
+            dc.DrawRectangle(SignBrush, null, new Rect( size.Width-100, size.Height-100, size.Width/4, size.Height/4 ));  
         }
 
         public List<Point> crosshairPositions = new List<Point>();
@@ -58,10 +59,12 @@ namespace GUI_2022_23_01_AS4DD4
         bool drawn = false;
         public bool gameover = false;
         bool isRunning = false;
-        int maxTime = 7;
+        int maxTime = MainWindow.Player.TimeToShoot;
         int timeToShoot;
         public int moneyEarned = 0;
         public int healRemaining = 1;
+        public int enemyKilled = 0;
+        int maxCross = 3;
 
         public void StartGame(DrawingContext dc)
         {
@@ -70,23 +73,27 @@ namespace GUI_2022_23_01_AS4DD4
                                                 CultureInfo.CurrentCulture,
                                                 FlowDirection.LeftToRight,
                                                 new Typeface("Arial"),
-                                                136,
+                                                72,
                                                 Brushes.Red);
+            dc.DrawText(startText, new Point(GameWindow.Grid.ActualWidth / 2 - startText.Width / 2, GameWindow.Grid.ActualHeight / 4 - startText.Height / 4));
 
-            dc.DrawText(startText, new Point(GameWindow.Grid.ActualWidth / 4 - startText.Width / 4, GameWindow.Grid.ActualHeight / 4 - startText.Height / 4));
+            if (MainWindow.Player.Armor != null)
+            {
+                MainWindow.Player.Health += MainWindow.Player.Armor.Protection;
+            }
             
         }
 
         public void GenerateEnemy(DrawingContext dc)
         {
-            GameWindow.dt.Stop();            
-            timeToShoot = maxTime;
-            GameWindow.dt.Start();
+                GameWindow.dt.Stop();
+                timeToShoot = maxTime;
+                GameWindow.dt.Start();
 
             Random rnd = new Random();
-            crosshairNum = rnd.Next(1, 10);
-            double x = rnd.Next(0, (int)(GameWindow.Grid.ActualWidth - (banditImage.Width * 1.3)));
-            double y = rnd.Next(0, (int)(GameWindow.Grid.ActualHeight - (banditImage.Height * 1.3)));
+            crosshairNum = rnd.Next(1, maxCross);
+            double x = rnd.Next(0, (int)(GameWindow.Grid.ActualWidth - (banditImage.Width)));
+            double y = rnd.Next(0, (int)(GameWindow.Grid.ActualHeight - (banditImage.Height)));
 
 
             dc.DrawImage(banditImage, new Rect(x, y, banditImage.Width, banditImage.Height));
@@ -113,7 +120,7 @@ namespace GUI_2022_23_01_AS4DD4
                                                 36,
                                                 Brushes.Red);
 
-            dc.DrawText(hp, new Point(0,0));
+            dc.DrawText(hp, new Point(10, GameWindow.Grid.ActualHeight - hp.Height - 10));
 
         }
 
@@ -126,7 +133,7 @@ namespace GUI_2022_23_01_AS4DD4
                                                 36,
                                                 Brushes.Red);
 
-            dc.DrawText(time, new Point(720, 0));
+            dc.DrawText(time, new Point((GameWindow.Grid.ActualWidth - time.Width) / 2, 10));
 
         }
 
@@ -139,7 +146,20 @@ namespace GUI_2022_23_01_AS4DD4
                                                 36,
                                                 Brushes.Red);
 
-            dc.DrawText(moneyText, new Point(0,720));
+            dc.DrawText(moneyText, new Point(10,10));
+        }
+
+        public void EnemyDisplay(DrawingContext dc)
+        {
+            FormattedText enemyText = new FormattedText("Enemy Killed:" + enemyKilled,
+                                                CultureInfo.CurrentCulture,
+                                                FlowDirection.LeftToRight,
+                                                new Typeface("Arial"),
+                                                36,
+                                                Brushes.Red);
+
+            dc.DrawText(enemyText, new Point(GameWindow.Grid.ActualWidth - enemyText.Width - 10, 10));
+
         }
 
         public void AmmoDisplay(DrawingContext dc)
@@ -151,9 +171,9 @@ namespace GUI_2022_23_01_AS4DD4
                                                 FlowDirection.LeftToRight,
                                                 new Typeface("Arial"),
                                                 36,
-                                                Brushes.Red);
+                Brushes.Red);
 
-                dc.DrawText(ammoText, new Point(720, 720));
+                dc.DrawText(ammoText, new Point(GameWindow.Grid.ActualWidth - ammoText.Width - 10, GameWindow.Grid.ActualHeight - ammoText.Height - 10));
             }
             else
             {
@@ -164,7 +184,7 @@ namespace GUI_2022_23_01_AS4DD4
                                                 36,
                                                 Brushes.Red);
 
-                dc.DrawText(ammoText, new Point(720, 720));
+                dc.DrawText(ammoText, new Point(GameWindow.Grid.ActualWidth - ammoText.Width - 10, GameWindow.Grid.ActualHeight - ammoText.Height - 10));
             }
             
         }
@@ -173,8 +193,9 @@ namespace GUI_2022_23_01_AS4DD4
         {            
             if(healRemaining > 0)
             {
-                dc.DrawRectangle(PotionBrush, null, new Rect(new Point(360, 720), new Size(100, 100)));
-            }            
+                dc.DrawRectangle(PotionBrush, null, new Rect(new Point(GameWindow.Grid.ActualWidth / 2 - 75, GameWindow.Grid.ActualHeight - 150 - 10), new Size(150, 150)));
+
+            }
         }
 
         public void Timer(object sender, EventArgs e)
@@ -190,7 +211,10 @@ namespace GUI_2022_23_01_AS4DD4
                 {
                     MainWindow.Player.Health -= (20);
                 }
-                
+                if(maxTime < 5)
+                {
+                    maxTime = 5;
+                }
                 timeToShoot = maxTime;
             }else if(MainWindow.Player.Health <= 0)
             {
@@ -200,79 +224,94 @@ namespace GUI_2022_23_01_AS4DD4
             InvalidateVisual();
         }
 
+        bool doubleRenderProtection = false;
+
         protected override void OnRender(DrawingContext dc)
         {
-            if (!drawn && !isRunning && !gameover)
+            if (doubleRenderProtection)
             {
-                StartGame(dc);
-                PlayerHealthDisplay(dc);
-                AmmoDisplay(dc);
-                if(MainWindow.Player.Potion != null)
+                if (!drawn && !isRunning && !gameover)
                 {
-                    healRemaining = 1;
+                    StartGame(dc);
+                    PlayerHealthDisplay(dc);
+                    AmmoDisplay(dc);
+                    if (MainWindow.Player.Potion != null)
+                    {
+                        healRemaining = 1;
+                    }
+                    else
+                    {
+                        healRemaining = 0;
+                    }
                 }
-                else
+                else if (!drawn && isRunning && !gameover)
                 {
-                    healRemaining = 0;
+                    GenerateEnemy(dc);
+                    PlayerHealthDisplay(dc);
+                    TimeDisplay(dc);
+                    MoneyEarnedDisplay(dc);
+                    AmmoDisplay(dc);
+                    PotionDisplay(dc);
+                    EnemyDisplay(dc);
                 }
-                if (MainWindow.Player.Ammo != null)
+                else if (crosshairPositions.Count != 0 && !gameover)
                 {
+                    dc.DrawImage(banditImage, new Rect(banditPosition.X, banditPosition.Y, banditImage.Width, banditImage.Height));
+                    for (int i = 0; i < crosshairPositions.Count; i++)
+                    {
+                        Point crosshairPosition = crosshairPositions[i];
+                        dc.DrawImage(crosshairImage, new Rect(crosshairPosition.X, crosshairPosition.Y, crosshairImage.Width * 0.25, crosshairImage.Height * 0.25));
+                    }
+                    PlayerHealthDisplay(dc);
+                    TimeDisplay(dc);
+                    MoneyEarnedDisplay(dc);
+                    AmmoDisplay(dc);
+                    PotionDisplay(dc);
+                    EnemyDisplay(dc);
+                }
+                else if (!gameover)
+                {
+
+                    drawn = false;
+                    enemyKilled++;
+                    maxCross++;
+                    if(enemyKilled % 10 == 0) 
+                    {
+                        if(maxTime > 1)
+                        {
+                            maxTime -= 1;
+
+                        }                        
+                    }
+                    GenerateEnemy(dc);
+                    PlayerHealthDisplay(dc);
+                    TimeDisplay(dc);
+                    moneyEarned += 10;
+                    MoneyEarnedDisplay(dc);
+                    AmmoDisplay(dc);
+                    EnemyDisplay(dc);
+                    PotionDisplay(dc);
+                    MainWindow.Player.Money += 10;
+                    
 
                 }
                 else
                 {
-                    healRemaining = 0;
+                    isRunning = false;
+                    MainWindow.Player.TimeToShoot = 5;
+                    FormattedText gameOverText = new FormattedText("Game Over \nPress ESC to Exit!\nYou killed: " + enemyKilled + " enemy\nYou earned: " + moneyEarned + " money.",
+                                                        CultureInfo.CurrentCulture,
+                                                        FlowDirection.LeftToRight,
+                                                        new Typeface("Arial"),
+                                                        72,
+                                                        Brushes.Red);
+                    dc.DrawText(gameOverText, new Point(GameWindow.Grid.ActualWidth / 2 - gameOverText.Width / 2, GameWindow.Grid.ActualHeight / 2 - gameOverText.Height / 2));
                 }
             }
-            else if (!drawn && isRunning && !gameover)
+            if (!doubleRenderProtection)
             {
-                GenerateEnemy(dc);
-                PlayerHealthDisplay(dc);
-                TimeDisplay(dc);
-                MoneyEarnedDisplay(dc);
-                AmmoDisplay(dc);
-                PotionDisplay(dc);
-            }
-            else if (crosshairPositions.Count != 0 && !gameover)
-            {
-                dc.DrawImage(banditImage, new Rect(banditPosition.X, banditPosition.Y, banditImage.Width, banditImage.Height));
-                for (int i = 0; i<crosshairPositions.Count; i++)
-                {
-                    Point crosshairPosition = crosshairPositions[i];
-                    dc.DrawImage(crosshairImage, new Rect(crosshairPosition.X, crosshairPosition.Y, crosshairImage.Width * 0.25, crosshairImage.Height * 0.25));
-                }
-                PlayerHealthDisplay(dc);
-                TimeDisplay(dc);
-                MoneyEarnedDisplay(dc);
-                AmmoDisplay(dc);
-                PotionDisplay(dc);
-            }
-            else if(!gameover)
-            {
-
-                drawn = false;
-                GenerateEnemy(dc);
-                PlayerHealthDisplay(dc);
-                TimeDisplay(dc);
-                moneyEarned += 10;
-                MoneyEarnedDisplay(dc);
-                AmmoDisplay(dc);
-                PotionDisplay(dc);
-                MainWindow.Player.Money += 10;
-
-            }
-            else
-            {
-                isRunning = false;
-                FormattedText gameOverText = new FormattedText("Game Over \nPress ESC to Exit!",
-                                                    CultureInfo.CurrentCulture,
-                                                    FlowDirection.LeftToRight,
-                                                    new Typeface("Arial"),
-                                                    136,
-                                                    Brushes.Red);
-
-                dc.DrawText(gameOverText, new Point(GameWindow.Grid.ActualWidth / 4 - gameOverText.Width / 4, GameWindow.Grid.ActualHeight / 4 - gameOverText.Height / 4));
-            }
+                doubleRenderProtection = true;
+            }            
 
         }
 

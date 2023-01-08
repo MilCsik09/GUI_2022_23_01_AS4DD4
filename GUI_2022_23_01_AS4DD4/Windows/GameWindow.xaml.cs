@@ -26,7 +26,9 @@ namespace GUI_2022_23_01_AS4DD4.Windows
     /// </summary>
     public partial class GameWindow : Window
     {
+        public bool isRunning = false;
         
+
         public static Grid Grid
         {
             get { return ((MainWindow)Application.Current.MainWindow).grid; }
@@ -34,7 +36,7 @@ namespace GUI_2022_23_01_AS4DD4.Windows
         }
         public static DispatcherTimer dt { get; set; }
 
-        public bool isRunning = false;
+        
         
 
         private void GameDisplay_KeyDown(object sender, KeyEventArgs e)
@@ -45,7 +47,11 @@ namespace GUI_2022_23_01_AS4DD4.Windows
                 MainWindow.Player.Health = 100;
                 LoadLogic ll = new LoadLogic();
                 ll.SavePlayer(MainWindow.Player);
-                dt.Stop();
+                if(dt != null)
+                {
+                    dt.Stop();
+                }
+                
             }
             else if (e.Key == Key.Enter && !isRunning)
             {
@@ -64,9 +70,15 @@ namespace GUI_2022_23_01_AS4DD4.Windows
                 dt.Start();
             }else if(e.Key == Key.H && isRunning && display.healRemaining > 0)
             {
-                display.healRemaining -= 1;
+                if (!MainWindow.Player.Potion.IsInfinite)
+                {
+                    display.healRemaining -= 1;
+                }                
                 MainWindow.Player.Health += MainWindow.Player.Potion.HealthRegeneration;
-                MainWindow.Player.Potion = null;
+                if (!MainWindow.Player.Potion.IsInfinite)
+                {
+                    MainWindow.Player.Potion = null;
+                }                
                 display.InvalidateVisual();
             }
         }
@@ -127,48 +139,13 @@ namespace GUI_2022_23_01_AS4DD4.Windows
         {            
             InitializeComponent();
             SetBackground();
-
-
-
-
         }
+
         private void SetBackground()
         {
             ImageBrush myBrush = new ImageBrush(new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Background.jpg"), UriKind.RelativeOrAbsolute)));
 
             this.Background = myBrush;
-        }
-
-
-        private void Window_Loaded(object? sender, EventArgs e)
-        {
-            ////logic.GameOver += Logic_GameOver;
-            ////display.SetupModel(logic);
-
-            
-            //display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
-            //logic.SetupSizes((new System.Windows.Size((int)grid.ActualWidth, (int)grid.ActualHeight)));
-        }
-        private void Logic_GameOver(object? sender, EventArgs e)
-        {
-            var result = MessageBox.Show("Game over");
-            if (result == MessageBoxResult.OK)
-            {
-                this.Close();
-            }
-        }
-
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            /*if (grid.ActualWidth > 0 && grid.ActualHeight > 0)
-            {
-                display.Resize(new Size()
-                {
-                    Width = grid.ActualWidth,
-                    Height = grid.ActualHeight
-                });
-            }*/
-
         }
 
         

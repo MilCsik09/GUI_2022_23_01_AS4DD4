@@ -1,6 +1,6 @@
 {
   "Health": 100,
-  "Name": "Mil\u00E1n",
+  "Name": "Anonymus",
   "Level": {
     "Name": "First",
     "Enemy": [
@@ -33,28 +33,23 @@
   "Experience": 0,
   "ExperienceNeeded": 400,
   "Weapon": {
-    "Name": "Sniper Rifle",
-    "BaseDamage": 10000,
-    "Price": 2000
+    "Name": "Revolver",
+    "BaseDamage": 30,
+    "Price": 100
   },
-  "Potion": {
-    "Name": "InFiNiTe P\u00F3S\u00F6N",
-    "HealthRegeneration": 1,
-    "Price": 0,
-    "IsInfinite": true
-  },
+  "Potion": null,
   "Ammo": {
-    "Name": "Advanced",
-    "Damage": 25,
-    "Number": 321,
-    "Price": 25
+    "Name": "Standard",
+    "Damage": 5,
+    "Number": 132,
+    "Price": 5
   },
   "Armor": {
-    "Name": "Riot Armor",
-    "Protection": 1000,
-    "DamageReducton": 0.5,
-    "Price": 0
+    "Name": "Heavy",
+    "Protection": 20,
+    "DamageReducton": 0.7,
+    "Price": 30
   },
-  "Money": 2999672,
-  "TimeToShoot": 2
+  "Money": 1950,
+  "TimeToShoot": 5
 }

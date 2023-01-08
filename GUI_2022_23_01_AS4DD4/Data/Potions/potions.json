@@ -2,11 +2,16 @@
   {
     "Name": "Minor",
     "HealthRegeneration": 25,
-	"Price":5
+	"Price":50
   },
   {
     "Name": "Major",
     "HealthRegeneration": 50,
-	"Price":10
+    "Price": 100
+  },
+  {
+    "Name": "GigaMega",
+    "HealthRegeneration": 100,
+    "Price": 150
   }
 ]

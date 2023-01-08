@@ -25,6 +25,12 @@ namespace GUI_2022_23_01_AS4DD4.Models
             get { return price; }
             set { SetProperty(ref price, value); }
         }
+        private bool isInfinite;
+        public bool IsInfinite
+        {
+            get { return isInfinite; }
+            set { SetProperty(ref isInfinite, value); }
+        }
 
         public Potion()
         {
