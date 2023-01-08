@@ -28,16 +28,8 @@ namespace GUI_2022_23_01_AS4DD4.Models
         {
             get { return price; }
             set { SetProperty(ref price, value); }
-        }
-         
-        //public Ammo(string name, int damage, int number, int price)
-        //{
-        //    Name = name;
-        //    Damage = damage;
-        //    Number = number;
-        //    Price = price;
-        //}
-
+        }         
+        
         public Ammo()
         {
 

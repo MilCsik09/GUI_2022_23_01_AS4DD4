@@ -22,7 +22,6 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
     public class ShopWindowViewModel : ObservableRecipient
     {
 
-        //ShopLogic logic = new ShopLogic();
         IShopLogic logic; 
 
         public ObservableCollection<Ammo> Ammos { get; set; }
@@ -38,17 +37,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             }
         }
 
-        //public Ammo currentAmmo { get; set; }     //lejjebb a propertyknél
-        //public Armor currentArmor { get; set; }
-        //public Weapon currentWeapon { get; set; }
-
-
-        
-
-
-        //ammo
         private Ammo selectedAmmo;
-
         public Ammo SelectedAmmo
         {
             get { return selectedAmmo; }
@@ -59,9 +48,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             }
         }
 
-        //armor
         private Armor selectedArmor;
-
         public Armor SelectedArmor
         {
             get { return selectedArmor; }
@@ -72,9 +59,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             }
         }
 
-        //potion
         private Potion selectedPotion;
-
         public Potion SelectedPotion
         {
             get { return selectedPotion; }
@@ -85,9 +70,7 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             }
         }
 
-        //weapon
         private Weapon selectedWeapon;
-
         public Weapon SelectedWeapon
         {
             get { return selectedWeapon; }
@@ -98,54 +81,26 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             }
         }
 
-        //current ammo
-
         public Ammo CurrentAmmo
         {
-            get { return logic.GetCurrentAmmo; }
-            //set
-            //{
-            //    //logic.SetCurrentAmmo = value;
-            //    //(SellAmmoCommand as RelayCommand).NotifyCanExecuteChanged();
-            //}
+            get { return logic.GetCurrentAmmo; }            
         }
-
-        //current armor
 
         public Armor CurrentArmor
         {
             get { return logic.GetCurrentArmor; }
         }
 
-        //current weapon
-
         public Weapon CurrentWeapon
         {
             get { return logic.GetCurrentWeapon; }
         }
-
-        //current potions
 
         public Potion CurrentPotion
         {
             get { return logic.GetCurrentPotion; }
         }
 
-
-        //current potions - selected item
-        //private Potion selectedPlayerPotion;
-
-        //public Potion SelectedPlayerPotion
-        //{
-        //    get { return selectedPlayerPotion; }
-        //    set
-        //    {
-        //        SetProperty(ref selectedPlayerPotion, value);
-        //        (SellPotionCommand as RelayCommand).NotifyCanExecuteChanged();
-        //    }
-        //}
-
-        //icommands
         public ICommand BuyAmmoCommand { get; set; }
         public ICommand BuyArmorCommand { get; set; }
         public ICommand BuyPotionCommand { get; set; }
@@ -156,8 +111,6 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
         public ICommand SellPotionCommand { get; set; }
         public ICommand SellWeaponCommand { get; set; }
 
-
-
         public static bool IsInDesignMode
         {
             get
@@ -167,37 +120,24 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             }
         }
 
-
         public ShopWindowViewModel()
             : this(IsInDesignMode ? null : Ioc.Default.GetService<IShopLogic>())
         {
 
         }
 
-        //ctor
         public ShopWindowViewModel(IShopLogic logic)
         {
 
             this.logic = logic;
             logic.LoadAssets();
             logic.LoadPlayer(MainWindow.Player.Name);
-
-            //player = logic.player;
-
-            //current equipment
-            //currentAmmo = logic.Player.Ammo;
-            //currentArmor = logic.Player.Armor;
-            //currentWeapon = logic.Player.Weapon;
-            //PlayerPotions = new ObservableCollection<Potion>(logic.Player.Potions);
-
-
+                        
             Ammos = new ObservableCollection<Ammo>(logic.AmmoList);
             Armors = new ObservableCollection<Armor>(logic.ArmorList);
             Potions = new ObservableCollection<Potion>(logic.PotionList);
             Weapons = new ObservableCollection<Weapon>(logic.WeaponList);
-            //Money = logic.Player.Money;
-
-
+            
             BuyAmmoCommand = new RelayCommand(
                 () => { logic.BuyAmmo(selectedAmmo); },
                 () => { return selectedAmmo != null; }
@@ -216,22 +156,17 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
                 );
 
             SellAmmoCommand = new RelayCommand(
-                () => { logic.SellAmmo(); }
-                //() => { return CurrentAmmo != null; }
+                () => { logic.SellAmmo(); }                
                 );
             SellArmorCommand = new RelayCommand(
-                () => { logic.SellArmor(); }
-                //() => { return CurrentArmor != null; }
+                () => { logic.SellArmor(); }                
                 );
             SellPotionCommand = new RelayCommand(
-                () => { logic.SellPotion(); }
-                //() => { logic.SellPotion(selectedPlayerPotion); }
-                //() => { return SelectedPlayerPotion != null; }
+                () => { logic.SellPotion(); }                
                 );
 
             SellWeaponCommand = new RelayCommand(
-                () => { logic.SellWeapon(); }
-                //() => { return CurrentWeapon != null; }
+                () => { logic.SellWeapon(); }                
                 );
 
 
@@ -240,21 +175,12 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
                 OnPropertyChanged("CurrentAmmo");
                 OnPropertyChanged("CurrentArmor");
                 OnPropertyChanged("CurrentWeapon");
-                //OnPropertyChanged("PlayerPotions");
                 OnPropertyChanged("CurrentPotion");
                 OnPropertyChanged("Money");
 
             });
 
         }
-
-
-
-
-
- 
-
-
 
     }
 }

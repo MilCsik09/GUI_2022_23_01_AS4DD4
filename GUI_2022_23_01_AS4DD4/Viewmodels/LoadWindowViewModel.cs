@@ -20,19 +20,12 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
     public class LoadWindowViewModel : ObservableRecipient
     {
 
-        
-
-        //logic
         ILoadLogic logic;
-
-        //profilok listája
+        
         public ObservableCollection<string> Profiles { get; set; }
 
 
-
-        //properties
         private String selectedProfile;
-
         public String SelectedProfile
         {
             get { return selectedProfile; }
@@ -45,13 +38,8 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             }
         }
 
-
-
-        //icommandok
         public ICommand LoadPlayerCommand { get; set; }
         public ICommand DeletePlayerCommand { get; set; }
-
-
 
         public static bool IsInDesignMode
         {
@@ -62,17 +50,12 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             }
         }
 
-
         public LoadWindowViewModel()
             : this(IsInDesignMode ? null : Ioc.Default.GetService<ILoadLogic>())
         {
 
         }
 
-
-
-
-        //ctor
         public LoadWindowViewModel(ILoadLogic logic)
         {
             this.logic = logic;
@@ -80,7 +63,6 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             logic.LoadAssets();
 
             Profiles = new ObservableCollection<String>(logic.PlayerList);
-
 
             LoadPlayerCommand = new RelayCommand(
                 () => {Window current = Application.Current.MainWindow;
@@ -105,7 +87,6 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
                 () => selectedProfile != null
                 );
 
-
             Messenger.Register<LoadWindowViewModel, string, string>(this, "PlayerInfo", (recipient, msg) =>
             {
                 OnPropertyChanged("LoadPlayerCommand");
@@ -115,8 +96,6 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
             });
 
         }
-
-
 
     }
 }

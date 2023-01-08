@@ -5,18 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_2022_23_01_AS4DD4"
         xmlns:viewmodel="clr-namespace:GUI_2022_23_01_AS4DD4"
-        xmlns:display="clr-namespace:GUI_2022_23_01_AS4DD4.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" WindowState="Maximized" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
+        Title="MainWindow" Height="720" Width="1280" Loaded="Window_Loaded" WindowState="Maximized" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
     <Grid x:Name="grid">
         <StackPanel x:Name="stack">
-        <Button x:Name="load" Content="Load" HorizontalAlignment="Center" VerticalAlignment="Top" Click="load_Click" Margin="30"/>
-        <Button x:Name="create" Content="New Game" HorizontalAlignment="Center" VerticalAlignment="Top" Click="create_Click" Margin="20"/>
-        <Button x:Name="shop" Content="Shop" HorizontalAlignment="Center" VerticalAlignment="Top" Click="shop_Click" Margin="20"/>
+            <Button x:Name="load" Content="Load" HorizontalAlignment="Center" VerticalAlignment="Top" Click="load_Click" Margin="30"/>
+            <Button x:Name="create" Content="New Game" HorizontalAlignment="Center" VerticalAlignment="Top" Click="create_Click" Margin="20"/>
+            <Button x:Name="shop" Content="Shop" HorizontalAlignment="Center" VerticalAlignment="Top" Click="shop_Click" Margin="20"/>
             <Button x:Name="save" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Top" Click="save_Click" Margin="20"/>
             <Button x:Name="exit" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Top" Click="exit_Click" Margin="20"/>
         </StackPanel>
-        <local:Display x:Name="display"/>
 
     </Grid>
 </Window>

@@ -37,11 +37,15 @@
     "BaseDamage": 30,
     "Price": 100
   },
-  "Potion": null,
+  "Potion": {
+    "Name": "Major",
+    "HealthRegeneration": 50,
+    "Price": 10
+  },
   "Ammo": {
     "Name": "Advanced",
     "Damage": 25,
-    "Number": 54,
+    "Number": 355,
     "Price": 25
   },
   "Armor": {
@@ -50,6 +54,6 @@
     "DamageReducton": 0.8,
     "Price": 20
   },
-  "Money": 5271,
+  "Money": 5077,
   "TimeToShoot": 20
 }

@@ -20,7 +20,6 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
     /// 
     public partial class LoadWindow : Window
     {
-        
 
         public LoadWindow()
         {
@@ -33,41 +32,5 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
             cw.ShowDialog();
         }
 
-
-
-
-
-        //private void Window_Loaded(object? sender, EventArgs e)
-        //{
-
-        //    display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
-
-        //}
-
-        //public void SetupSizes(Size size)
-        //{
-        //    this.size = size;
-        //    this.InvalidateVisual();
-
-        //}
-
-        //public void Resize(Size size)
-        //{
-        //    this.size = size;
-        //    InvalidateVisual();
-        //}
-
-        //private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
-        //{
-        //    if (grid.ActualWidth > 0 && grid.ActualHeight > 0)
-        //    {
-        //        display.Resize(new Size()
-        //        {
-        //            Width = grid.ActualWidth,
-        //            Height = grid.ActualHeight
-        //        });
-        //    }
-
-        //}
     }
 }

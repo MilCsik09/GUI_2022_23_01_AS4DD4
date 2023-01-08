@@ -32,7 +32,6 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
         {
             InitializeComponent();
             var vm = new CreateWindowViewModel();
-            //vm.Setup();
             this.DataContext = vm;
         }
 
@@ -46,8 +45,6 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
             string path = Path.Combine(@"..\..\..\Data\Levels", "levels.json");
             List<Level> levels;
             levels = JsonSerializer.Deserialize<Level[]>(File.ReadAllText(path)).ToList<Level>();
-            
-
 
             Window current = Application.Current.MainWindow;
             Player newPlayer = new Player();
@@ -68,9 +65,6 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
             App.Current.MainWindow = mw;
             mw.Show();
             logic.SavePlayer(newPlayer);
-
-
-
 
             this.DialogResult = true;
         }

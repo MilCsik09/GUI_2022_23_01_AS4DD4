@@ -8,7 +8,6 @@ namespace GUI_2022_23_01_AS4DD4.Models
     public class CrossHair
     {
 
-
         public Point Position { get; set; }
         public Size Size { get; set; }
         public CrossHair(Point position, Size size)

@@ -14,6 +14,7 @@
             BaseDamage = baseDamage;
             Price = price;
         }
+
         public Weapon()
         {
 

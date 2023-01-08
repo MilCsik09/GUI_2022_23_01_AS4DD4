@@ -16,9 +16,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Interfaces
         Ammo GetCurrentAmmo { get; }
         Armor GetCurrentArmor { get; }
         Potion GetCurrentPotion { get; }
-        //List<Potion> GetCurrentPotions { get; }
         Weapon GetCurrentWeapon { get; }
-
 
         void BuyAmmo(Ammo ammo);
         void BuyArmor(Armor armor);

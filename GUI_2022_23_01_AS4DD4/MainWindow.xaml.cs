@@ -80,7 +80,7 @@ namespace GUI_2022_23_01_AS4DD4
             //dt.Tick += Dt_Tick;
             //dt.Start();
 
-            display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
+            //display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
             //logic.SetupSizes((new System.Windows.Size((int)grid.ActualWidth, (int)grid.ActualHeight)));
         }
         private void Logic_GameOver(object? sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace GUI_2022_23_01_AS4DD4
             }
         }
 
-        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        /*private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             if (grid.ActualWidth > 0 && grid.ActualHeight > 0)
             {
@@ -103,7 +103,7 @@ namespace GUI_2022_23_01_AS4DD4
                 });
             }
 
-        }
+        }*/
 
         private void load_Click(object sender, RoutedEventArgs e)
         {

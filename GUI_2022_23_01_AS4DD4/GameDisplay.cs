@@ -23,15 +23,11 @@ namespace GUI_2022_23_01_AS4DD4
         IShooterModel model;
         IShooterControl control;
 
-
-
         public void SetupModel(IShooterModel model)
         {
             this.model = model;
             this.model.Changed += (sender, eventargs) => this.InvalidateVisual();
         }
-
-       
 
         public Brush PotionBrush
         {
@@ -174,17 +170,12 @@ namespace GUI_2022_23_01_AS4DD4
         }
 
         public void PotionDisplay(DrawingContext dc)
-        {
-            FormattedText potiText = new FormattedText("Potion: " + healRemaining,
-                                                CultureInfo.CurrentCulture,
-                                                FlowDirection.LeftToRight,
-                                                new Typeface("Arial"),
-                                                36,
-                                                Brushes.Red);
-
-            dc.DrawText(potiText, new Point(360, 720));
+        {            
+            if(healRemaining > 0)
+            {
+                dc.DrawRectangle(PotionBrush, null, new Rect(new Point(360, 720), new Size(100, 100)));
+            }            
         }
-
 
         public void Timer(object sender, EventArgs e)
         {
@@ -283,11 +274,7 @@ namespace GUI_2022_23_01_AS4DD4
                 dc.DrawText(gameOverText, new Point(GameWindow.Grid.ActualWidth / 4 - gameOverText.Width / 4, GameWindow.Grid.ActualHeight / 4 - gameOverText.Height / 4));
             }
 
-
         }
-
-        
-
 
 
     }

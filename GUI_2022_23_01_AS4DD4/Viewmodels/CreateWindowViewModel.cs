@@ -8,17 +8,14 @@ using System.Threading.Tasks;
 namespace GUI_2022_23_01_AS4DD4.WPF.Viewmodels
 {
     public class CreateWindowViewModel
-    {
-        
+    {        
         
         public Player NewPlayer { get; set; }
-
 
         public void Setup()
         {
             this.NewPlayer = new Player();
         }
-
 
         public CreateWindowViewModel()
         {

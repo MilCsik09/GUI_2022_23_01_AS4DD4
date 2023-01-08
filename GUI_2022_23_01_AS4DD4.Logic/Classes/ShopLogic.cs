@@ -26,7 +26,6 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             set => player = value; 
         }
 
-
         public List<Ammo> AmmoList
         {
             get => ammoList;
@@ -55,11 +54,8 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
         {
             this.messenger = messenger;
             LoadAssets();
-            //LoadPlayer(player.Name);
         }
 
-
-        //for UI update
         public int GetMoney
         {
             get
@@ -88,13 +84,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
                 return Player.Potion;
             }
         }
-        //public List<Potion> GetCurrentPotions
-        //{
-        //    get
-        //    {
-        //        return Player.Potions;
-        //    }
-        //}
+
         public Weapon GetCurrentWeapon
         {
             get
@@ -102,8 +92,6 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
                 return Player.Weapon;
             }
         }
-
-
 
         public void LoadAssets()
         {
@@ -136,7 +124,6 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             File.WriteAllText(path, jsonString);
         }
 
-        //ammo
         public void BuyAmmo(Ammo ammo)
         {
             if (player.Money >= ammo.Price)
@@ -157,7 +144,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
                 {
                     player.Ammo = ammo;
                 }
-                //player.Ammo = ammo;
+
                 player.Money -= ammo.Price;
                 messenger.Send("Ammo bought", "ShopInfo");
                 SavePlayer(player);
@@ -178,7 +165,6 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             }
         }
 
-        //armor
         public void BuyArmor(Armor armor)
         {
             if (player.Money >= armor.Price)
@@ -203,7 +189,6 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             }
         }
 
-        //potion
         public void BuyPotion(Potion potion)
         {
             if (player.Money >= potion.Price)
@@ -229,32 +214,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             }
 
         }
-
-        //public void BuyPotion(Potion potion)
-        //{
-        //    if (player.Money >= potion.Price)
-        //    {
-        //        player.Potions.Add(potion);
-        //        player.Money -= potion.Price;
-        //        messenger.Send("Potion bought", "ShopInfo");
-        //        SavePlayer(player);
-        //    }
-        //}
-
-        //public void SellPotion(Potion potionToSell)
-        //{
-
-        //    if (player.Potions.Contains(potionToSell) && player.Potions.Count > 0)
-        //    {
-        //        player.Money += (int)(0.8 * potionToSell.Price);
-        //        player.Potions.Remove(potionToSell);
-        //        messenger.Send("Potion sold", "ShopInfo");
-        //        SavePlayer(player);
-        //    }
-
-        //}
-
-        //weapon
+        
         public void BuyWeapon(Weapon weapon)
         {
             if (player.Money >= weapon.Price)
@@ -278,9 +238,6 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
                 LoadPlayer(player.Name);
             }
         }
-
-
-
 
     }
 }

@@ -38,8 +38,6 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
         public LoadLogic(IMessenger messenger)
         {
             this.messenger = messenger;
-            //LoadAssets();
-            //LoadPlayer(player.Name);
         }
 
 
@@ -54,26 +52,6 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
                 fileName = fileName.Replace(".json", "");
                 playerList.Add(fileName);
             }
-        
-
-            //foreach (string file in files)
-            //{
-            //    string[] split = file.Split('\\');
-            //    string[] split2 = split[split.Length - 1].Split('.');
-            //    playerList.Add(split2[0]);
-            //}
-            ;
-            //foreach (var file in files)
-            //{
-            //    string json = File.ReadAllText(file);
-            //    Player player = JsonSerializer.Deserialize<Player>(json);
-            //    PlayerList.Add(player);
-            //}
-
-            //PlayerList =
-            //    JsonSerializer.Deserialize<List<Player>>(File.ReadAllText(Path.Combine(@"..\..\..\Data\Players", "*.json")));
-
-            ;
 
         }
 
@@ -85,9 +63,6 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             string fileName = playerName + ".json";
             string path = Path.Combine(@"..\..\..\Data\Players", fileName);
 
-            
-
-            //messenger.Send("Player loaded", "PlayerInfo");
             return JsonSerializer.Deserialize<Player>(File.ReadAllText(path));
         }
 

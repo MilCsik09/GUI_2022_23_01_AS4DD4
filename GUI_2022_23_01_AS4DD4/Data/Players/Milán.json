@@ -42,13 +42,18 @@
     "HealthRegeneration": 0,
     "Price": 0
   },
-  "Ammo": null,
+  "Ammo": {
+    "Name": "Advanced",
+    "Damage": 25,
+    "Number": 30,
+    "Price": 25
+  },
   "Armor": {
     "Name": "Riot Armor",
     "Protection": 1000,
     "DamageReducton": 0.5,
     "Price": 0
   },
-  "Money": 151,
+  "Money": 3000000,
   "TimeToShoot": 10
 }
