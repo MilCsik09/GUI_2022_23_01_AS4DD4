@@ -13,6 +13,8 @@ using GUI_2022_23_01_AS4DD4.Windows;
 using System.Windows.Input;
 using System.Globalization;
 using static System.Net.Mime.MediaTypeNames;
+using GUI_2022_23_01_AS4DD4.Logic.Classes;
+using System.Security.Cryptography.X509Certificates;
 
 namespace GUI_2022_23_01_AS4DD4
 {
@@ -297,8 +299,11 @@ namespace GUI_2022_23_01_AS4DD4
                 }
                 else
                 {
+                    GameWindow.dt.Stop();
                     isRunning = false;
                     MainWindow.Player.TimeToShoot = 5;
+                    MainWindow.Highscores.Add(new Models.HighscoreEntry(MainWindow.Player.Name, enemyKilled, DateTime.Now));
+                    LoadLogic.SaveHighscore(MainWindow.Highscores);
                     FormattedText gameOverText = new FormattedText("Game Over \nPress ESC to Exit!\nYou killed: " + enemyKilled + " enemy\nYou earned: " + moneyEarned + " money.",
                                                         CultureInfo.CurrentCulture,
                                                         FlowDirection.LeftToRight,

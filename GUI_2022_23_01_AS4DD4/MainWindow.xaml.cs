@@ -29,6 +29,15 @@ namespace GUI_2022_23_01_AS4DD4
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static List<HighscoreEntry> highscores = LoadLogic.LoadHighscore();
+
+        public static List<HighscoreEntry> Highscores
+        {
+            get { return highscores; }
+            set { highscores = value; }
+        }
+
+
         private Player player;
 
        public static Player Player
@@ -83,7 +92,7 @@ namespace GUI_2022_23_01_AS4DD4
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
-        {
+        {            
             Close();
         }
 

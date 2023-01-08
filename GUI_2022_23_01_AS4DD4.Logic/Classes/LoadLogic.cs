@@ -75,6 +75,25 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
             File.WriteAllText(path, jsonString);
         }
 
+        public static List<HighscoreEntry> LoadHighscore()
+        {
+
+            string fileName = "highscores.json";
+            string path = Path.Combine(@"..\..\..\Data\Highscores", fileName);
+
+            return JsonSerializer.Deserialize<List<HighscoreEntry>>(File.ReadAllText(path));
+        }
+
+        public static void SaveHighscore(List<HighscoreEntry> highscores)
+        {
+            highscores.Sort((a, b) => b.EnemiesKilled.CompareTo(a.EnemiesKilled));
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string jsonString = JsonSerializer.Serialize(highscores, options);
+            string fileName = "highscores.json";
+            string path = Path.Combine(@"..\..\..\Data\Highscores", fileName);
+            File.WriteAllText(path, jsonString);
+        }
+
         public void DeletePlayer(string playerName)
         {
             string fileName = playerName + ".json";

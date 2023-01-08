@@ -43,18 +43,13 @@
     "Price": 0,
     "IsInfinite": true
   },
-  "Ammo": {
-    "Name": "Advanced",
-    "Damage": 25,
-    "Number": 321,
-    "Price": 25
-  },
+  "Ammo": null,
   "Armor": {
     "Name": "Riot Armor",
     "Protection": 1000,
     "DamageReducton": 0.5,
     "Price": 0
   },
-  "Money": 2999672,
-  "TimeToShoot": 2
+  "Money": 3000155,
+  "TimeToShoot": 5
 }

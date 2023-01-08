@@ -41,7 +41,7 @@
   "Ammo": {
     "Name": "Standard",
     "Damage": 5,
-    "Number": 132,
+    "Number": 61,
     "Price": 5
   },
   "Armor": {
@@ -50,6 +50,6 @@
     "DamageReducton": 0.7,
     "Price": 30
   },
-  "Money": 1950,
+  "Money": 2039,
   "TimeToShoot": 5
 }
