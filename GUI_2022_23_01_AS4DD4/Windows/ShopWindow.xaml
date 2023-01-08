@@ -30,7 +30,16 @@
         <ListBox ItemsSource="{Binding Ammos}" SelectedItem="{Binding SelectedAmmo}" Grid.Row="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Name}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding Name}" Grid.Column="0"/>
+                        <Label Content="{Binding Number}" ContentStringFormat="Number: {0}" Grid.Column="1" />
+                        <Label Content="{Binding Price}" ContentStringFormat="Price: {0}" Grid.Column="2" />
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -40,12 +49,31 @@
                 <Button Content="Buy Ammo" Command="{Binding BuyAmmoCommand}" Margin="10" Padding="10"/>
                 <Button Content="Sell Ammo" Command="{Binding SellAmmoCommand}" Margin="10" Padding="10"/>
             </StackPanel>
-            <Label Content="{Binding CurrentAmmo.Name}" ContentStringFormat="Current: {0}" Padding="10"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="{Binding CurrentAmmo.Name}" ContentStringFormat="Current: {0}" Padding="10" Grid.Column="0"/>
+                <Label Content="{Binding CurrentAmmo.Number}" ContentStringFormat="Number: {0}" Padding="10" Grid.Column="1"/>
+                <Label Content="{Binding CurrentAmmo.Price}" ContentStringFormat="Sell Price: {0}" Padding="10" Grid.Column="2"/>
+            </Grid>
+
         </StackPanel>
         <ListBox ItemsSource="{Binding Armors}" SelectedItem="{Binding SelectedArmor}" Grid.Row="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Name}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding Name}" Grid.Column="0"/>
+                        <Label Content="{Binding DamageReducton}" ContentStringFormat="Damage Reduction: {0}" Grid.Column="1" />
+                        <Label Content="{Binding Price}" ContentStringFormat="Price: {0}" Grid.Column="2" />
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -56,12 +84,29 @@
                 <Button Content="Buy Armor" Command="{Binding BuyArmorCommand}" Margin="10" Padding="10"/>
                 <Button Content="Sell Armor" Command="{Binding SellArmorCommand}" Margin="10" Padding="10"/>
             </StackPanel>
-            <Label Content="{Binding CurrentArmor.Name}" ContentStringFormat="Current: {0}" Padding="10" Margin="0,0,0,30"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="{Binding CurrentArmor.Name}" ContentStringFormat="Current: {0}" Padding="10" Grid.Column="0"/>
+                <Label Content="{Binding CurrentArmor.Price}" ContentStringFormat="Sell Price: {0}" Padding="10" Grid.Column="1"/>
+            </Grid>
+            <!--<Label Content="{Binding CurrentArmor.Name}" ContentStringFormat="Current: {0}" Padding="10" Margin="0,0,0,30"/>-->
         </StackPanel>
         <ListBox ItemsSource="{Binding Potions}" SelectedItem="{Binding SelectedPotion}" Grid.Row="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Name}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding Name}" Grid.Column="0"/>
+                        <Label Content="{Binding HealthRegeneration}" ContentStringFormat="Health Regeneration: {0}" Grid.Column="1" />
+                        <Label Content="{Binding Price}" ContentStringFormat="Price: {0}" Grid.Column="2" />
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -72,13 +117,29 @@
                 <Button Content="Buy Potion" Command="{Binding BuyPotionCommand}" Margin="10" Padding="10"/>
                 <Button Content="Sell Potion" Command="{Binding SellPotionCommand}" Margin="10" Padding="10"/>
             </StackPanel>
-            <Label Content="{Binding CurrentPotion.Name}" ContentStringFormat="Current: {0}" Padding="10" Margin="0,0,0,30"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="{Binding CurrentPotion.Name}" ContentStringFormat="Current: {0}" Padding="10" Grid.Column="0"/>
+                <Label Content="{Binding CurrentPotion.Price}" ContentStringFormat="Sell Price: {0}" Padding="10" Grid.Column="1"/>
+            </Grid>
         </StackPanel>
 
         <ListBox ItemsSource="{Binding Weapons}" SelectedItem="{Binding SelectedWeapon}" Grid.Row="3">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding Name}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding Name}" Grid.Column="0"/>
+                        <Label Content="{Binding BaseDamage}" ContentStringFormat="Base Damage: {0}" Grid.Column="1" />
+                        <Label Content="{Binding Price}" ContentStringFormat="Price: {0}" Grid.Column="2" />
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
@@ -89,7 +150,14 @@
                 <Button Content="Buy Weapon" Command="{Binding BuyWeaponCommand}" Margin="10" Padding="10"/>
                 <Button Content="Sell Weapon" Command="{Binding SellWeaponCommand}" Margin="10" Padding="10"/>
             </StackPanel>
-            <Label Content="{Binding CurrentWeapon.Name}" ContentStringFormat="Current: {0}" Padding="10" Margin="0,0,0,30"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Label Content="{Binding CurrentWeapon.Name}" ContentStringFormat="Current: {0}" Padding="10" Grid.Column="0"/>
+                <Label Content="{Binding CurrentWeapon.Price}" ContentStringFormat="Sell Price: {0}" Padding="10" Grid.Column="1"/>
+            </Grid>
         </StackPanel>
         <Label Grid.Column="0" Grid.Row="4" x:Name="money" Content="{Binding Money}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="14" ContentStringFormat="Money: {0}$"/>
 
