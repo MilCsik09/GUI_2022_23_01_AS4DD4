@@ -87,7 +87,7 @@ namespace GUI_2022_23_01_AS4DD4.Logic.Classes
 
             
 
-            messenger.Send("Player loaded", "PlayerInfo");
+            //messenger.Send("Player loaded", "PlayerInfo");
             return JsonSerializer.Deserialize<Player>(File.ReadAllText(path));
         }
 
