@@ -45,15 +45,15 @@
   "Ammo": {
     "Name": "Sniper Bullet",
     "Damage": 100000,
-    "Number": 1000,
+    "Number": 10000,
     "Price": 0
   },
   "Armor": {
     "Name": "Riot Armor",
     "Protection": 1000,
-    "DamageReducton": 0,
+    "DamageReducton": 0.5,
     "Price": 0
   },
-  "Money": 1000000,
+  "Money": 267,
   "TimeToShoot": 10
 }

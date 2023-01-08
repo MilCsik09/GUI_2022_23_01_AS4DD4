@@ -2,19 +2,19 @@
   {
     "Name": "Light",
     "Protection": 10,
-    "DamageReducton": 5,
+    "DamageReducton": 0.9,
 	"Price":5
   },
   {
     "Name": "Medium",
     "Protection": 15,
-    "DamageReducton": 10,
+    "DamageReducton": 0.8,
 	"Price":20
   },
   {
     "Name": "Heavy",
     "Protection": 20,
-    "DamageReducton": 15,
+    "DamageReducton": 0.7,
 	"Price":30
   }
 ]

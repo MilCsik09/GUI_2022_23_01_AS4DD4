@@ -49,11 +49,11 @@
     "Price": 25
   },
   "Armor": {
-    "Name": "Medium",
-    "Protection": 15,
-    "DamageReducton": 10,
-    "Price": 20
+    "Name": "Light",
+    "Protection": 10,
+    "DamageReducton": 0.9,
+    "Price": 5
   },
-  "Money": 5072,
+  "Money": 5080,
   "TimeToShoot": 20
 }

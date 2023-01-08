@@ -119,6 +119,8 @@ namespace GUI_2022_23_01_AS4DD4
         }
         private void create_Click(object sender, RoutedEventArgs e)
         {
+            LoadLogic ll = new LoadLogic();
+            MainWindow.Player = ll.LoadPlayer(player.Name);
             GameWindow gw = new GameWindow();            
             gw.Show();
             gw.ContentRendered += Window_Loaded;

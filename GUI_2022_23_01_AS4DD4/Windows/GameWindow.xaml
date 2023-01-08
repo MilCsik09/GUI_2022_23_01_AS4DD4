@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:GUI_2022_23_01_AS4DD4.Windows" 
         xmlns:display="clr-namespace:GUI_2022_23_01_AS4DD4"
         mc:Ignorable="d"
-        Title="GameWindow" Height="720" Width="1280" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" WindowState="Maximized" WindowStyle="SingleBorderWindow" ResizeMode="NoResize">
+        Title="GameWindow" Height="720" Width="1280" Loaded="Window_Loaded" SizeChanged="Window_SizeChanged" WindowState="Maximized" WindowStyle="SingleBorderWindow" ResizeMode="NoResize" Keyboard.KeyDown="GameDisplay_KeyDown" MouseLeftButtonDown="GameDisplay_MouseLeftButtonDown">
     <Grid x:Name="grid" Width="1280" Height="720">
 
 
-        <display:GameDisplay x:Name="display" MouseLeftButtonDown="GameDisplay_MouseLeftButtonDown"/>
+        <display:GameDisplay x:Name="display"  />
     </Grid>
 </Window>

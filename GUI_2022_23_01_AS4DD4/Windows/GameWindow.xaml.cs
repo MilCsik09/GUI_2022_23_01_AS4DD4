@@ -11,9 +11,12 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using GUI_2022_23_01_AS4DD4;
+using GUI_2022_23_01_AS4DD4.Logic.Classes;
 using GUI_2022_23_01_AS4DD4.Models;
 using GUI_2022_23_01_AS4DD4.WPF;
+using GUI_2022_23_01_AS4DD4.WPF.Windows;
 using Path = System.IO.Path;
 
 namespace GUI_2022_23_01_AS4DD4.Windows
@@ -23,45 +26,85 @@ namespace GUI_2022_23_01_AS4DD4.Windows
     /// </summary>
     public partial class GameWindow : Window
     {
-
+        
         public static Grid Grid
         {
             get { return ((MainWindow)Application.Current.MainWindow).grid; }
             set { ((MainWindow)Application.Current.MainWindow).grid = value; }
         }
+        public static DispatcherTimer dt { get; set; }
+
+        public bool isRunning = false;
+        
+
+        private void GameDisplay_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+                MainWindow.Player.Health = 100;
+                LoadLogic ll = new LoadLogic();
+                ll.SavePlayer(MainWindow.Player);
+                dt.Stop();
+            }
+            else if (e.Key == Key.Enter && !isRunning)
+            {
+                dt = new DispatcherTimer();
+                isRunning = true;
+                display.InvalidateVisual();                
+                dt.Interval = TimeSpan.FromMilliseconds(1000);
+                dt.Tick += display.Timer;
+                dt.Start();
+            }
+        }
 
         private void GameDisplay_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Point mousePosition = e.GetPosition(display);
-
-            for (int i = 0; i < display.crosshairPositions.Count; i++)
+            if (isRunning)
             {
-                Point crosshairPosition = display.crosshairPositions[i];
-                Rect crosshairBounds = new Rect(crosshairPosition.X, crosshairPosition.Y, display.crosshairImage.Width * 0.25, display.crosshairImage.Height * 0.25);
-                if (crosshairBounds.Contains(mousePosition))
-                {
-                    display.crosshairPositions.RemoveAt(i);
-                    break;
-                }
-            }
+                Point mousePosition = e.GetPosition(display);
 
-            // Invalidate the display to redraw it
-            display.InvalidateVisual();
+                for (int i = 0; i < display.crosshairPositions.Count; i++)
+                {
+                    Point crosshairPosition = display.crosshairPositions[i];
+                    Rect crosshairBounds = new Rect(crosshairPosition.X, crosshairPosition.Y, display.crosshairImage.Width * 0.25, display.crosshairImage.Height * 0.25);
+                    if (crosshairBounds.Contains(mousePosition))
+                    {
+                        display.crosshairPositions.RemoveAt(i);
+                        display.moneyEarned += 1;
+                        MainWindow.Player.Money += 1;
+                        MainWindow.Player.Ammo.Number -= 1;
+                        break;
+                    }
+                    if(i == display.crosshairPositions.Count - 1)
+                    {
+                        MainWindow.Player.Health -= (int)(10 * MainWindow.Player.Armor.DamageReducton);
+                        MainWindow.Player.Ammo.Number -= 1;
+                    }                                        
+                }
+                if (MainWindow.Player.Health <= 0)
+                {
+                    display.gameover = true;
+                    isRunning = false;
+                }
+                if (MainWindow.Player.Ammo.Number <= 0)
+                {
+                    display.gameover = true;
+                    isRunning = false;
+                    MainWindow.Player.Ammo.Number = 0;
+                }
+
+                display.InvalidateVisual();
+            }
+            
         }
 
-
-        //Display display = new Display();
-
-        //GameDisplay display = new GameDisplay();          //xaml-ben beállítva
 
         public GameWindow()
         {            
             InitializeComponent();
             SetBackground();
 
-
-            //display.DrawSign(grid);
-            //display.DrawEnemy();
 
 
 
@@ -79,10 +122,7 @@ namespace GUI_2022_23_01_AS4DD4.Windows
             ////logic.GameOver += Logic_GameOver;
             ////display.SetupModel(logic);
 
-            //DispatcherTimer dt = new DispatcherTimer();
-            //dt.Interval = TimeSpan.FromMilliseconds(100);
-            //dt.Tick += Dt_Tick;
-            //dt.Start();
+            
             //display.SetupSizes(new Size(grid.ActualWidth, grid.ActualHeight));
             //logic.SetupSizes((new System.Windows.Size((int)grid.ActualWidth, (int)grid.ActualHeight)));
         }
@@ -108,9 +148,6 @@ namespace GUI_2022_23_01_AS4DD4.Windows
 
         }
 
-         
-
-
-
+        
     }
 }
