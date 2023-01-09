@@ -5,29 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_2022_23_01_AS4DD4.WPF.Windows"
         mc:Ignorable="d"
-        Title="HighscoreWindow" Height="450" Width="800">
+        Title="HighscoreWindow" Height="450" Width="900" ResizeMode="NoResize">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Name" FontSize="20" FontWeight="Bold" Margin="10,10,10,10"/>
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Score" FontSize="20" FontWeight="Bold" Margin="10,10,10,10"/>
-        <TextBlock Grid.Row="0" Grid.Column="2" Text="Date" FontSize="20" FontWeight="Bold" Margin="10,10,10,10"/>
-        <ListBox ItemsSource="{Binding highscores}" Grid.Row="1">
-            <ListBox.ItemTemplate>
+        <ListView ItemsSource="{Binding Highscores}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding PlayerName}" Header="Name" Width="280" />
+                    <GridViewColumn DisplayMemberBinding="{Binding EnemiesKilled}" Header="Score" Width="280" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Date}" Header="Date" Width="280" />
+                </GridView>
+            </ListView.View>
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Label Content="{Binding PlayerName}" Grid.Column="0"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="{Binding PlayerName}" Grid.Column="0"/>
+                        <Label Content="{Binding EnemiesKilled}" Grid.Column="1"/>
+                        <Label Content="{Binding Date}" Grid.Column="2"/>
+                    </Grid>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding highscores.EnemyKilled, Mode=OneWay}" Margin="10,10,10,10"/>
-        <ListBox Grid.Row="1" Grid.Column="2" ItemsSource="{Binding highscores.Date, Mode=OneWay}" Margin="10,10,10,10"/>
-
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>

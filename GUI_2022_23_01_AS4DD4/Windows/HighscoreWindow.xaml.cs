@@ -22,16 +22,20 @@ namespace GUI_2022_23_01_AS4DD4.WPF.Windows
     /// </summary>
     public partial class HighscoreWindow : Window
     {
-        static List<HighscoreEntry> highscores = LoadLogic.LoadHighscore();
-        static ObservableCollection<HighscoreEntry> highscoresObservableCollection = new ObservableCollection<HighscoreEntry>(highscores);
-
+        static List<HighscoreEntry> highscores;
+        static ObservableCollection<HighscoreEntry> highscoresObservableCollection;
 
         public HighscoreWindow()
         {
             InitializeComponent();
-            
+            this.DataContext = this;
+            highscores = LoadLogic.LoadHighscore();
+            highscoresObservableCollection = new ObservableCollection<HighscoreEntry>(highscores);
         }
 
-
+        public ObservableCollection<HighscoreEntry> Highscores
+        {
+            get { return highscoresObservableCollection; }
+        }
     }
 }
