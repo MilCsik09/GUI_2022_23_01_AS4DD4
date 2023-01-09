@@ -89,8 +89,8 @@ namespace GUI_2022_23_01_AS4DD4
         }
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("AUTOSAVE ALREADY ENABLED! YOU CAN'T TURN IT OFF!", ":)", MessageBoxButton.OK);
-            
+            CustomMessageBox messageBox = new CustomMessageBox();
+            messageBox.ShowDialog();
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
