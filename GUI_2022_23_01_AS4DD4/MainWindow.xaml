@@ -13,6 +13,7 @@
             <Button x:Name="create" Content="Start Game" HorizontalAlignment="Center" VerticalAlignment="Top" Click="create_Click" Margin="20" Background="Green"/>
             <Button x:Name="shop" Content="Shop" HorizontalAlignment="Center" VerticalAlignment="Top" Click="shop_Click" Margin="20"/>
             <Button x:Name="save" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Top" Click="save_Click" Margin="20"/>
+            <Button x:Name="btn_highscores" Content="Highscores" HorizontalAlignment="Center" VerticalAlignment="Top" Click="highscore_Click" Margin="20"/>
             <Button x:Name="exit" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Top" Click="exit_Click" Margin="20"/>
         </StackPanel>
 
