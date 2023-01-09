@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_2022_23_01_AS4DD4.WPF.Windows"
         mc:Ignorable="d"
-        Title="" Height="107" Width="481">
+        Title="" Height="107" Width="481" ResizeMode="NoResize">
     <Grid>
         <Grid>
             <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="AUTOSAVE ALREADY ENABLED! YOU CAN'T TURN IT OFF!" />
