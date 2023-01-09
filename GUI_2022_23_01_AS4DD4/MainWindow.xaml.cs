@@ -6,6 +6,7 @@ using GUI_2022_23_01_AS4DD4.Windows;
 using GUI_2022_23_01_AS4DD4.WPF.Windows;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -88,7 +89,8 @@ namespace GUI_2022_23_01_AS4DD4
         }
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            //AUTOSAVE ALREADY ENABLED!
+            MessageBox.Show("AUTOSAVE ALREADY ENABLED! YOU CAN'T TURN IT OFF!", ":)", MessageBoxButton.OK);
+            
         }
 
         private void exit_Click(object sender, RoutedEventArgs e)
@@ -96,6 +98,10 @@ namespace GUI_2022_23_01_AS4DD4
             Close();
         }
 
-
+        private void highscore_Click(object sender, RoutedEventArgs e)
+        {
+            HighscoreWindow hw = new HighscoreWindow();
+            hw.Show();
+        }
     }
 }
