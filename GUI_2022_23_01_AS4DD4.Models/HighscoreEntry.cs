@@ -10,9 +10,9 @@ namespace GUI_2022_23_01_AS4DD4.Models
     {
         public string PlayerName { get; set; }
         public int EnemiesKilled { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
-        public HighscoreEntry(string playerName, int enemiesKilled, DateTime date)
+        public HighscoreEntry(string playerName, int enemiesKilled, string date)
         {
             PlayerName = playerName;
             EnemiesKilled = enemiesKilled;

@@ -55,7 +55,7 @@ namespace GUI_2022_23_01_AS4DD4
 
         public List<Point> crosshairPositions = new List<Point>();
         public Point banditPosition;
-        public BitmapImage banditImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Bandit.png"), UriKind.RelativeOrAbsolute));
+        public BitmapImage banditImage;
         public BitmapImage crosshairImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Crosshair.png"), UriKind.RelativeOrAbsolute));
         public int crosshairNum;
         bool drawn = false;
@@ -93,7 +93,25 @@ namespace GUI_2022_23_01_AS4DD4
                 GameWindow.dt.Start();
 
             Random rnd = new Random();
-            crosshairNum = rnd.Next(1, maxCross);
+            int enemyRnd = rnd.Next(0, 100);
+            if(0<=enemyRnd && enemyRnd < 70)
+            {
+                banditImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Bandit.png"), UriKind.RelativeOrAbsolute));
+            }
+            else if(70 <= enemyRnd && enemyRnd <= 80)
+            {
+                banditImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "FKF.png"), UriKind.RelativeOrAbsolute));
+            }
+            else if (80 <= enemyRnd && enemyRnd <= 90)
+            {
+                banditImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Policeman.png"), UriKind.RelativeOrAbsolute));
+            }
+            else
+            {
+                banditImage = new BitmapImage(new Uri(Path.Combine(@"..\..\..\Images", "Soldier.png"), UriKind.RelativeOrAbsolute));
+            }
+
+                crosshairNum = rnd.Next(1, maxCross);
             double x = rnd.Next(0, (int)(GameWindow.Grid.ActualWidth - (banditImage.Width)));
             double y = rnd.Next(0, (int)(GameWindow.Grid.ActualHeight - (banditImage.Height)));
 
@@ -302,7 +320,7 @@ namespace GUI_2022_23_01_AS4DD4
                     GameWindow.dt.Stop();
                     isRunning = false;
                     MainWindow.Player.TimeToShoot = 5;
-                    MainWindow.Highscores.Add(new Models.HighscoreEntry(MainWindow.Player.Name, enemyKilled, DateTime.Now));
+                    MainWindow.Highscores.Add(new Models.HighscoreEntry(MainWindow.Player.Name, enemyKilled, DateTime.Now.ToString("yyyy.MM.dd.\thh:mm")));
                     LoadLogic.SaveHighscore(MainWindow.Highscores);
                     FormattedText gameOverText = new FormattedText("Game Over \nPress ESC to Exit!\nYou killed: " + enemyKilled + " enemy\nYou earned: " + moneyEarned + " money.",
                                                         CultureInfo.CurrentCulture,

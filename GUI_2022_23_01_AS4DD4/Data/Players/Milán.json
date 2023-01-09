@@ -43,13 +43,18 @@
     "Price": 0,
     "IsInfinite": true
   },
-  "Ammo": null,
+  "Ammo": {
+    "Name": "SniperBullet",
+    "Damage": 25,
+    "Number": 1808497,
+    "Price": 25
+  },
   "Armor": {
     "Name": "Riot Armor",
     "Protection": 1000,
     "DamageReducton": 0.5,
     "Price": 0
   },
-  "Money": 3000155,
+  "Money": 3003528,
   "TimeToShoot": 5
 }

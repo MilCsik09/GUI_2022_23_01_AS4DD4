@@ -1,6 +1,6 @@
 {
   "Health": 100,
-  "Name": "Anonymus",
+  "Name": "Jani",
   "Level": {
     "Name": "First",
     "Enemy": [
@@ -32,17 +32,18 @@
   },
   "Experience": 0,
   "ExperienceNeeded": 400,
-  "Weapon": {
-    "Name": "Revolver",
-    "BaseDamage": 30,
-    "Price": 100
+  "Weapon": null,
+  "Potion": {
+    "Name": "GigaMega",
+    "HealthRegeneration": 100,
+    "Price": 150,
+    "IsInfinite": false
   },
-  "Potion": null,
   "Ammo": {
-    "Name": "Standard",
-    "Damage": 5,
-    "Number": 61,
-    "Price": 5
+    "Name": "Advanced",
+    "Damage": 25,
+    "Number": 400,
+    "Price": 25
   },
   "Armor": {
     "Name": "Heavy",
@@ -50,6 +51,6 @@
     "DamageReducton": 0.7,
     "Price": 30
   },
-  "Money": 2039,
+  "Money": 40,
   "TimeToShoot": 5
 }
