@@ -320,7 +320,7 @@ namespace GUI_2022_23_01_AS4DD4
                     GameWindow.dt.Stop();
                     isRunning = false;
                     MainWindow.Player.TimeToShoot = 5;
-                    MainWindow.Highscores.Add(new Models.HighscoreEntry(MainWindow.Player.Name, enemyKilled, DateTime.Now.ToString("yyyy.MM.dd.\thh:mm")));
+                    MainWindow.Highscores.Add(new Models.HighscoreEntry(MainWindow.Player.Name, enemyKilled, DateTime.Now.ToString("yyyy.MM.dd.\tHH:mm ")));
                     LoadLogic.SaveHighscore(MainWindow.Highscores);
                     FormattedText gameOverText = new FormattedText("Game Over \nPress ESC to Exit!\nYou killed: " + enemyKilled + " enemy\nYou earned: " + moneyEarned + " money.",
                                                         CultureInfo.CurrentCulture,

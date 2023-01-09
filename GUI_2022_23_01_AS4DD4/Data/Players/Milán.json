@@ -46,7 +46,7 @@
   "Ammo": {
     "Name": "SniperBullet",
     "Damage": 25,
-    "Number": 1808497,
+    "Number": 1808262,
     "Price": 25
   },
   "Armor": {
@@ -55,6 +55,6 @@
     "DamageReducton": 0.5,
     "Price": 0
   },
-  "Money": 3003528,
+  "Money": 3003625,
   "TimeToShoot": 5
 }
